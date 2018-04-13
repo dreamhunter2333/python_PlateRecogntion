@@ -2,7 +2,14 @@
 __author__ = '樱花落舞'
 import cv2
 import numpy as np
-
+MAX_WIDTH = 1000
+Min_Area = 2000
+"""
+该文件包含读文件函数
+取零值函数
+矩阵校正函数
+颜色判断函数
+"""
 def img_read(filename):
     return  cv2.imdecode(np.fromfile(filename, dtype=np.uint8), cv2.IMREAD_COLOR)
     #以uint8方式读取filename 放入imdecode中，cv2.IMREAD_COLOR读取彩色照片
@@ -13,6 +20,30 @@ def point_limit(point):
     if point[1] < 0:
         point[1] = 0
 
+def img_findContours(img_contours,oldimg):
+    img, contours, hierarchy = cv2.findContours(img_contours, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours = [cnt for cnt in contours if cv2.contourArea(cnt) > Min_Area]
+    print("findContours len = ", len(contours))
+    # 排除面积最小的点
+
+    car_contours = []
+    for cnt in contours:
+        ant = cv2.minAreaRect(cnt)
+        width, height = ant[1]
+
+        if width < height:
+            width, height = height, width
+
+        ration = width / height
+        print(ration)
+        if ration > 2 and ration < 5.5:
+            car_contours.append(ant)
+            box = cv2.boxPoints(ant)
+            box = np.int0(box)
+            # oldimg = cv2.drawContours(oldimg, [box], 0, (0, 0, 255), 2)
+            # cv2.imshow("edge4", oldimg)
+            # cv2.waitKey(0)
+    return  car_contours
 
 def img_Transform(car_contours,oldimg,pic_width,pic_hight):
     car_imgs = []
@@ -49,8 +80,8 @@ def img_Transform(car_contours,oldimg,pic_width,pic_hight):
             point_limit(left_point)
             car_img = dst[int(left_point[1]):int(heigth_point[1]), int(left_point[0]):int(new_right_point[0])]
             car_imgs.append(car_img)
-            # cv2.imshow("card", car_img)
-            # cv2.waitKey(0)
+            cv2.imshow("card", car_img)
+            cv2.waitKey(0)
         elif left_point[1] > right_point[1]:  # 负角度
             new_left_point = [left_point[0], heigth_point[1]]
             pts2 = np.float32([new_left_point, heigth_point, right_point])  # 字符只是高度需要改变
@@ -62,8 +93,8 @@ def img_Transform(car_contours,oldimg,pic_width,pic_hight):
             point_limit(new_left_point)
             car_img = dst[int(right_point[1]):int(heigth_point[1]), int(new_left_point[0]):int(right_point[0])]
             car_imgs.append(car_img)
-            # cv2.imshow("card", car_img)
-            # cv2.waitKey(0)
+            cv2.imshow("card", car_img)
+            cv2.waitKey(0)
     return car_imgs
 
 def img_color(card_imgs):
@@ -108,7 +139,7 @@ def img_color(card_imgs):
             color = "blue"
             limit1 = 100
             limit2 = 124  # 有的图片有色偏偏紫
-        elif black + white >= card_img_count * 0.7:  # TODO
+        elif black + white >= card_img_count * 0.7:
             color = "bw"
         print(color)
         colors.append(color)

@@ -18,5 +18,5 @@ filename = askopenfilename(title="选择识别图片", filetypes=[("jpg图片", 
 
 ans = img_function.img_main()
 first_img,oldimg = ans.img_first_pre(filename)
-ans.img_color_findContours(first_img,oldimg)
+ans.img_color_Contours(first_img,oldimg)
 

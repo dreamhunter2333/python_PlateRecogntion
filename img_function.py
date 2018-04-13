@@ -54,44 +54,24 @@ class img_main:
         img_edge2 = cv2.morphologyEx(img_edge1, cv2.MORPH_OPEN, kernel)
         return img_edge2,oldimg
 
-    def img_color_findContours(self,img_contours,oldimg):
+    def img_color_Contours(self,img_contours,oldimg):
         pic_hight,pic_width = img_contours.shape[:2]
-        #print(pic_hight,pic_width)
-        img,contours,hierarchy = cv2.findContours(img_contours, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        contours = [cnt for cnt in contours if cv2.contourArea(cnt)>Min_Area]
-        print("findContours len = ",len(contours))
-        #排除面积最小的点
-
-        car_contours = []
-        for cnt in contours:
-            ant = cv2.minAreaRect(cnt)
-            width,height = ant[1]
-
-            if width < height:
-                width,height = height,width
-
-            ration = width/height
-            print(ration)
-            if ration > 2 and ration < 5.5:
-                car_contours.append(ant)
-                box = cv2.boxPoints(ant)
-                box = np.int0(box)
-
-        card_imgs=img_math.img_Transform(car_contours,oldimg,pic_width,pic_hight)
+        card_contours = img_math.img_findContours(img_contours,oldimg)
+        card_imgs = img_math.img_Transform(card_contours,oldimg,pic_width,pic_hight)
         colors = img_math.img_color(card_imgs)
 
 
 
-    def img_only_color(self,filename):
+    def img_only_color(self,filename,oldimg):
         lower_blue = np.array([100, 110, 110])
         upper_blue = np.array([130, 255, 255])
 
-        # 根据阈值找到对应颜色
+
         hsv = cv2.cvtColor(filename, cv2.COLOR_BGR2HSV)
         mask = cv2.inRange(hsv, lower_blue, upper_blue)
-        output = cv2.bitwise_and(filename, filename, mask=mask)
+        output = cv2.bitwise_and(hsv, hsv, mask=mask)
+        # 根据阈值找到对应颜色
+        output = cv2.cvtColor(output, cv2.COLOR_BGR2GRAY)
 
-        # 展示图片
-        cv2.imshow("images", output)
-        cv2.waitKey(0)
+        card_contours = img_math.img_findContours(output,oldimg)
 
