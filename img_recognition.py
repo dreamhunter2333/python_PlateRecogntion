@@ -66,7 +66,7 @@ provinces = [
     "zh_meng", "蒙",
     "zh_min", "闽",
     "zh_ning", "宁",
-    "zh_qing", "靑",
+    "zh_qing", "青",
     "zh_qiong", "琼",
     "zh_shan", "陕",
     "zh_su", "苏",

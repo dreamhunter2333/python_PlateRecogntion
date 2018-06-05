@@ -10,9 +10,9 @@ import threading
 import time
 import img_math
 import traceback
-
+import debug
+import config
 from threading import Thread
-
 
 class ThreadWithReturnValue(Thread):
     def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, *, daemon=None):
@@ -48,27 +48,39 @@ class Surface(ttk.Frame):
         frame_right2 = ttk.Frame(self)
         win.title("车牌识别")
         win.state("zoomed")
-        self.pack(fill=tk.BOTH, expand=tk.YES, padx="5", pady="5")
+        self.pack(fill=tk.BOTH, expand=tk.YES, padx="10", pady="10")
         frame_left.pack(side=LEFT, expand=1, fill=BOTH)
         frame_right1.pack(side=TOP, expand=1, fill=tk.Y)
         frame_right2.pack(side=RIGHT, expand=0)
         ttk.Label(frame_left, text='原图：').pack(anchor="nw")
-        ttk.Label(frame_right1, text='车牌位置：').grid(column=0, row=0, sticky=tk.W)
+        ttk.Label(frame_right1, text='形状定位车牌位置：').grid(column=0, row=0, sticky=tk.W)
 
         from_pic_ctl = ttk.Button(frame_right2, text="来自图片", width=20, command=self.from_pic)
         from_vedio_ctl = ttk.Button(frame_right2, text="来自摄像头", width=20, command=self.from_vedio)
+        from_img_pre = ttk.Button(frame_right2, text="查看形状预处理图像", width=20,command = self.show_img_pre)
         self.image_ctl = ttk.Label(frame_left)
         self.image_ctl.pack(anchor="nw")
 
         self.roi_ctl = ttk.Label(frame_right1)
         self.roi_ctl.grid(column=0, row=1, sticky=tk.W)
-        ttk.Label(frame_right1, text='识别结果：').grid(column=0, row=2, sticky=tk.W)
-        self.r_ctl = ttk.Label(frame_right1, text="")
+        ttk.Label(frame_right1, text='形状定位识别结果：').grid(column=0, row=2, sticky=tk.W)
+        self.r_ctl = ttk.Label(frame_right1, text="",font=('Times','20'))
         self.r_ctl.grid(column=0, row=3, sticky=tk.W)
         self.color_ctl = ttk.Label(frame_right1, text="", width="20")
         self.color_ctl.grid(column=0, row=4, sticky=tk.W)
         from_vedio_ctl.pack(anchor="se", pady="5")
         from_pic_ctl.pack(anchor="se", pady="5")
+        from_img_pre.pack(anchor="se", pady="5")
+
+        ttk.Label(frame_right1, text='颜色定位车牌位置：').grid(column=0, row=5, sticky=tk.W)
+        self.roi_ct2 = ttk.Label(frame_right1)
+        self.roi_ct2.grid(column=0, row=6, sticky=tk.W)
+        ttk.Label(frame_right1, text='颜色定位识别结果：').grid(column=0, row=7, sticky=tk.W)
+        self.r_ct2 = ttk.Label(frame_right1, text="",font=('Times','20'))
+        self.r_ct2.grid(column=0, row=8, sticky=tk.W)
+        self.color_ct2 = ttk.Label(frame_right1, text="", width="20")
+        self.color_ct2.grid(column=0, row=9, sticky=tk.W)
+
         self.predictor = predict.CardPredictor()
         self.predictor.train_svm()
 
@@ -90,7 +102,9 @@ class Surface(ttk.Frame):
             imgtk = ImageTk.PhotoImage(image=im)
         return imgtk
 
-    def show_roi(self, r, roi, color):
+
+
+    def show_roi1(self, r, roi, color):
         if r:
             roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
             roi = Image.fromarray(roi)
@@ -107,6 +121,32 @@ class Surface(ttk.Frame):
             self.roi_ctl.configure(state='disabled')
             self.r_ctl.configure(text="")
             self.color_ctl.configure(state='disabled')
+
+    def show_roi2(self, r, roi, color):
+        if r:
+            roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
+            roi = Image.fromarray(roi)
+            self.imgtk_roi = ImageTk.PhotoImage(image=roi)
+            self.roi_ct2.configure(image=self.imgtk_roi, state='enable')
+            self.r_ct2.configure(text=str(r))
+            self.update_time = time.time()
+            try:
+                c = self.color_transform[color]
+                self.color_ct2.configure(text=c[0], background=c[1], state='enable')
+            except:
+                self.color_ct2.configure(state='disabled')
+        elif self.update_time + 8 < time.time():
+
+            self.roi_ct2.configure(state='disabled')
+            self.r_ct2.configure(text="")
+            self.color_ct2.configure(state='disabled')
+
+    def show_img_pre(self):
+
+        filename = config.get_name()
+        if filename.any() == True:
+            debug.img_show(filename)
+
 
     def from_vedio(self):
         if self.thread_run:
@@ -137,10 +177,10 @@ class Surface(ttk.Frame):
             r_c, roi_c, color_c = th1.join()
             r_color,roi_color,color_color = th2.join()
             print(r_c,r_color)
-            if r_c == [] or r_c == None:
-                self.show_roi(r_color, roi_color, color_color)
-            else:
-                self.show_roi(r_c, roi_c, color_c)
+
+            self.show_roi2(r_color, roi_color, color_color)
+
+            self.show_roi1(r_c, roi_c, color_c)
 
 
     @staticmethod
@@ -174,4 +214,3 @@ if __name__ == '__main__':
     win.protocol('WM_DELETE_WINDOW', close_window)
     # 进入消息循环
     win.mainloop()
-

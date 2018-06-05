@@ -2,9 +2,18 @@
 __author__ = '樱花落舞'
 import cv2
 import numpy as np
+import config
+# 引用全局变量
+
+
+
 def img_show(filename):
     cv2.imshow("img_show",filename)
     cv2.waitKey(0)
+
+
+
+
 
 def img_contours(oldimg,box):
     box = np.int0(box)

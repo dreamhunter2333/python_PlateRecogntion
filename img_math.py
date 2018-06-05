@@ -217,7 +217,15 @@ def img_color(card_imgs):
             xl = 0
             xr = col_num
             need_accurate = True
-        card_imgs[card_index] = card_img[yl:yh, xl:xr] if color != "green" or yl < (yh - yl) // 4 else card_img[yl - (yh - yl) // 4:yh,xl:xr]
+
+        if color =="green":
+            card_imgs[card_index] = card_img
+        else:
+            card_imgs[card_index] = card_img[yl:yh, xl:xr] if color != "green" or yl < (yh - yl) // 4 else card_img[
+                                                                                                            yl - (
+                                                                                                                        yh - yl) // 4:yh,
+                                                                                                            xl:xr]
+
         if need_accurate:
             card_img = card_imgs[card_index]
             card_img_hsv = cv2.cvtColor(card_img, cv2.COLOR_BGR2HSV)
@@ -230,7 +238,13 @@ def img_color(card_imgs):
             if xl >= xr:
                 xl = 0
                 xr = col_num
-        card_imgs[card_index] = card_img[yl:yh, xl:xr] if color != "green" or yl < (yh - yl) // 4 else card_img[yl - (yh - yl) // 4:yh,xl:xr]
+        if color =="green":
+            card_imgs[card_index] = card_img
+        else:
+            card_imgs[card_index] = card_img[yl:yh, xl:xr] if color != "green" or yl < (yh - yl) // 4 else card_img[
+                                                                                                            yl - (
+                                                                                                                        yh - yl) // 4:yh,
+                                                                                                            xl:xr]
 
     return  colors,card_imgs
 # 根据设定的阈值和图片直方图，找出波峰，用于分隔字符

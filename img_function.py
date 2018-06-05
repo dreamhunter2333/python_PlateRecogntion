@@ -15,8 +15,7 @@ SZ = 20  # 训练图片长宽
 MAX_WIDTH = 1000  # 原始图片最大宽度
 Min_Area = 2000  # 车牌区域允许最大面积
 PROVINCE_START = 1000
-
-
+import config
 class StatModel(object):
     def load(self, fn):
         self.model = self.model.load(fn)
@@ -152,7 +151,11 @@ class CardPredictor:
         :return: 已经定位好的车牌
         """
 
+        if img_contours.any() == True:
+            config.set_name(img_contours)
+
         pic_hight, pic_width = img_contours.shape[:2]
+
         card_contours = img_math.img_findContours(img_contours, oldimg)
         card_imgs = img_math.img_Transform(card_contours, oldimg, pic_width, pic_hight)
         colors, car_imgs = img_math.img_color(card_imgs)
@@ -218,6 +221,8 @@ class CardPredictor:
                 if len(wave_peaks) <= 6:
                     print("peak less 2:", len(wave_peaks))
                     continue
+
+
                 part_cards = img_math.seperate_card(gray_img, wave_peaks)
                 for i, part_card in enumerate(part_cards):
                     # 可能是固定车牌的铆钉
@@ -261,11 +266,15 @@ class CardPredictor:
         upper_blue = np.array([130, 255, 255])
         lower_yellow = np.array([15, 55, 55])
         upper_yellow = np.array([50, 255, 255])
+        lower_green = np.array([50,50,50])
+        upper_green = np.array([100,255,255])
         hsv = cv2.cvtColor(filename, cv2.COLOR_BGR2HSV)
         mask_blue = cv2.inRange(hsv, lower_blue, upper_blue)
         mask_yellow = cv2.inRange(hsv, lower_yellow, upper_yellow)
-        output = cv2.bitwise_and(hsv, hsv, mask=mask_blue + mask_yellow)
+        mask_green = cv2.inRange(hsv,lower_yellow,upper_green)
+        output = cv2.bitwise_and(hsv, hsv, mask=mask_blue + mask_yellow + mask_green)
         # 根据阈值找到对应颜色
+
         output = cv2.cvtColor(output, cv2.COLOR_BGR2GRAY)
         Matrix = np.ones((20, 20), np.uint8)
         img_edge1 = cv2.morphologyEx(output, cv2.MORPH_CLOSE, Matrix)
@@ -341,7 +350,13 @@ class CardPredictor:
                 if len(wave_peaks) <= 6:
                     print("peak less 2:", len(wave_peaks))
                     continue
+
+
+
+
+
                 part_cards = img_math.seperate_card(gray_img, wave_peaks)
+
                 for i, part_card in enumerate(part_cards):
                     # 可能是固定车牌的铆钉
 
@@ -399,4 +414,3 @@ class CardPredictor:
             if color != "no":
                 print(color)
                 debug.img_show(car_imgs[i])
-
