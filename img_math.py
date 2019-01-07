@@ -2,13 +2,7 @@
 __author__ = '樱花落舞'
 import cv2
 import numpy as np
-from numpy.linalg import norm
-import sys
-import os
-import debug
-import json
-from matplotlib import pyplot as plt
-from PIL import Image
+
 MAX_WIDTH = 1000
 Min_Area = 2000
 SZ = 20
@@ -20,9 +14,10 @@ PROVINCE_START = 1000
 颜色判断函数
 """
 
+
 def img_read(filename):
-    return  cv2.imdecode(np.fromfile(filename, dtype=np.uint8), cv2.IMREAD_COLOR)
-    #以uint8方式读取filename 放入imdecode中，cv2.IMREAD_COLOR读取彩色照片
+    return cv2.imdecode(np.fromfile(filename, dtype=np.uint8), cv2.IMREAD_COLOR)
+    # 以uint8方式读取filename 放入imdecode中，cv2.IMREAD_COLOR读取彩色照片
 
 
 def find_waves(threshold, histogram):
@@ -44,11 +39,13 @@ def find_waves(threshold, histogram):
         wave_peaks.append((up_point, i))
     return wave_peaks
 
+
 def point_limit(point):
     if point[0] < 0:
         point[0] = 0
     if point[1] < 0:
         point[1] = 0
+
 
 def accurate_place(card_img_hsv, limit1, limit2, color):
     row_num, col_num = card_img_hsv.shape[:2]
@@ -86,7 +83,8 @@ def accurate_place(card_img_hsv, limit1, limit2, color):
                 xr = j
     return xl, xr, yh, yl
 
-def img_findContours(img_contours,oldimg):
+
+def img_findContours(img_contours):
     img, contours, hierarchy = cv2.findContours(img_contours, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     contours = [cnt for cnt in contours if cv2.contourArea(cnt) > Min_Area]
     print("findContours len = ", len(contours))
@@ -99,16 +97,17 @@ def img_findContours(img_contours,oldimg):
             width, height = height, width
         ration = width / height
 
-        if ration > 2 and ration < 5.5:
+        if 2 < ration < 5.5:
             car_contours.append(ant)
             box = cv2.boxPoints(ant)
 
-    return  car_contours
+    return car_contours
 
-def img_Transform(car_contours,oldimg,pic_width,pic_hight):
+#进行矩形矫正
+def img_Transform(car_contours, oldimg, pic_width, pic_hight):
     car_imgs = []
     for car_rect in car_contours:
-        if car_rect[2] > -1 and car_rect[2] < 1:
+        if -1 < car_rect[2] < 1:
             angle = 1
             # 对于角度为-1 1之间时，默认为1
         else:
@@ -153,6 +152,7 @@ def img_Transform(car_contours,oldimg,pic_width,pic_hight):
             car_imgs.append(car_img)
 
     return car_imgs
+
 
 def img_color(card_imgs):
     colors = []
@@ -202,7 +202,6 @@ def img_color(card_imgs):
         colors.append(color)
         card_imgs[card_index] = card_img
 
-
         if limit1 == 0:
             continue
         xl, xr, yh, yl = accurate_place(card_img_hsv, limit1, limit2, color)
@@ -218,13 +217,13 @@ def img_color(card_imgs):
             xr = col_num
             need_accurate = True
 
-        if color =="green":
+        if color == "green":
             card_imgs[card_index] = card_img
         else:
             card_imgs[card_index] = card_img[yl:yh, xl:xr] if color != "green" or yl < (yh - yl) // 4 else card_img[
-                                                                                                            yl - (
-                                                                                                                        yh - yl) // 4:yh,
-                                                                                                            xl:xr]
+                                                                                                           yl - (
+                                                                                                                   yh - yl) // 4:yh,
+                                                                                                           xl:xr]
 
         if need_accurate:
             card_img = card_imgs[card_index]
@@ -238,15 +237,17 @@ def img_color(card_imgs):
             if xl >= xr:
                 xl = 0
                 xr = col_num
-        if color =="green":
+        if color == "green":
             card_imgs[card_index] = card_img
         else:
             card_imgs[card_index] = card_img[yl:yh, xl:xr] if color != "green" or yl < (yh - yl) // 4 else card_img[
-                                                                                                            yl - (
-                                                                                                                        yh - yl) // 4:yh,
-                                                                                                            xl:xr]
+                                                                                                           yl - (
+                                                                                                                   yh - yl) // 4:yh,
+                                                                                                           xl:xr]
 
-    return  colors,card_imgs
+    return colors, card_imgs
+
+
 # 根据设定的阈值和图片直方图，找出波峰，用于分隔字符
 def find_waves(threshold, histogram):
     up_point = -1  # 上升点
@@ -267,17 +268,13 @@ def find_waves(threshold, histogram):
         wave_peaks.append((up_point, i))
     return wave_peaks
 
+#分离车牌字符
 def seperate_card(img, waves):
     part_cards = []
     for wave in waves:
         part_cards.append(img[:, wave[0]:wave[1]])
 
     return part_cards
-
-
-
-
-
 
 
 def img_mser_color(card_imgs):
@@ -307,18 +304,15 @@ def img_mser_color(card_imgs):
         color = "no"
         if yello * 2 >= card_img_count:
             color = "yello"
-            limit1 = 11
-            limit2 = 34  # 有的图片有色偏偏绿
+
         elif green * 2 >= card_img_count:
             color = "green"
-            limit1 = 35
-            limit2 = 99
+
         elif blue * 2 >= card_img_count:
             color = "blue"
-            limit1 = 100
-            limit2 = 124  # 有的图片有色偏偏紫
+
         elif black + white >= card_img_count * 0.7:
             color = "bw"
         colors.append(color)
         card_imgs[card_index] = card_img
-    return  colors,card_imgs
+    return colors, card_imgs

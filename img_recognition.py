@@ -3,11 +3,6 @@ __author__ = '樱花落舞'
 import cv2
 import numpy as np
 from numpy.linalg import norm
-import sys
-import os
-import json
-from matplotlib import pyplot as plt
-from PIL import Image
 
 SZ = 20  # 训练图片长宽
 MAX_WIDTH = 1000  # 原始图片最大宽度

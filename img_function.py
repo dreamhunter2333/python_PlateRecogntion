@@ -1,21 +1,19 @@
 # -*- coding: utf-8 -*-
 __author__ = '樱花落舞'
+import os
 import cv2
 import numpy as np
-from numpy.linalg import norm
-import sys
-import img_math
-import os
-import json
-from matplotlib import pyplot as plt
-from PIL import Image
-import img_recognition
 import debug
+import img_math
+import img_recognition
+import config
+
 SZ = 20  # 训练图片长宽
 MAX_WIDTH = 1000  # 原始图片最大宽度
 Min_Area = 2000  # 车牌区域允许最大面积
 PROVINCE_START = 1000
-import config
+
+
 class StatModel(object):
     def load(self, fn):
         self.model = self.model.load(fn)
@@ -108,7 +106,7 @@ class CardPredictor:
         if not os.path.exists("svmchinese.dat"):
             self.modelchinese.save("svmchinese.dat")
 
-    def img_first_pre(self,car_pic_file):
+    def img_first_pre(self, car_pic_file):
         """
         :param car_pic_file: 图像文件
         :return:已经处理好的图像文件 原图像文件
@@ -151,7 +149,7 @@ class CardPredictor:
         :return: 已经定位好的车牌
         """
 
-        if img_contours.any() == True:
+        if img_contours.any():
             config.set_name(img_contours)
 
         pic_hight, pic_width = img_contours.shape[:2]
@@ -222,7 +220,6 @@ class CardPredictor:
                     print("peak less 2:", len(wave_peaks))
                     continue
 
-
                 part_cards = img_math.seperate_card(gray_img, wave_peaks)
                 for i, part_card in enumerate(part_cards):
                     # 可能是固定车牌的铆钉
@@ -266,12 +263,12 @@ class CardPredictor:
         upper_blue = np.array([130, 255, 255])
         lower_yellow = np.array([15, 55, 55])
         upper_yellow = np.array([50, 255, 255])
-        lower_green = np.array([50,50,50])
-        upper_green = np.array([100,255,255])
+        lower_green = np.array([50, 50, 50])
+        upper_green = np.array([100, 255, 255])
         hsv = cv2.cvtColor(filename, cv2.COLOR_BGR2HSV)
         mask_blue = cv2.inRange(hsv, lower_blue, upper_blue)
         mask_yellow = cv2.inRange(hsv, lower_yellow, upper_yellow)
-        mask_green = cv2.inRange(hsv,lower_yellow,upper_green)
+        mask_green = cv2.inRange(hsv, lower_yellow, upper_green)
         output = cv2.bitwise_and(hsv, hsv, mask=mask_blue + mask_yellow + mask_green)
         # 根据阈值找到对应颜色
 
@@ -351,10 +348,6 @@ class CardPredictor:
                     print("peak less 2:", len(wave_peaks))
                     continue
 
-
-
-
-
                 part_cards = img_math.seperate_card(gray_img, wave_peaks)
 
                 for i, part_card in enumerate(part_cards):
@@ -404,7 +397,7 @@ class CardPredictor:
                 width, height = height, width
             ration = width / height
 
-            if w * h > 1500 and ration > 3 and ration < 4 and w > h:
+            if w * h > 1500 and 3 < ration < 4 and w > h:
                 cropimg = img[y:y + h, x:x + w]
                 colors_img.append(cropimg)
 
