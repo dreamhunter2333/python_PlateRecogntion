@@ -154,7 +154,7 @@ class CardPredictor:
 
         pic_hight, pic_width = img_contours.shape[:2]
 
-        card_contours = img_math.img_findContours(img_contours, oldimg)
+        card_contours = img_math.img_findContours(img_contours)
         card_imgs = img_math.img_Transform(card_contours, oldimg, pic_width, pic_hight)
         colors, car_imgs = img_math.img_color(card_imgs)
         predict_result = []
@@ -277,7 +277,7 @@ class CardPredictor:
         img_edge1 = cv2.morphologyEx(output, cv2.MORPH_CLOSE, Matrix)
         img_edge2 = cv2.morphologyEx(img_edge1, cv2.MORPH_OPEN, Matrix)
 
-        card_contours = img_math.img_findContours(img_edge2, oldimg)
+        card_contours = img_math.img_findContours(img_edge2)
         card_imgs = img_math.img_Transform(card_contours, oldimg, pic_width, pic_hight)
         colors, car_imgs = img_math.img_color(card_imgs)
 
