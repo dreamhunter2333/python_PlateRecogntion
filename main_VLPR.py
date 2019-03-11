@@ -55,7 +55,8 @@ class Surface(ttk.Frame):
         ttk.Label(frame_right1, text='形状定位车牌位置：').grid(column=0, row=0, sticky=tk.W)
 
         from_pic_ctl = ttk.Button(frame_right2, text="来自图片", width=20, command=self.from_pic)
-        from_vedio_ctl = ttk.Button(frame_right2, text="来自摄像头", width=20, command=self.from_vedio)
+        from_vedio_ctl = ttk.Button(frame_right2, text="打开摄像头", width=20, command=self.from_vedio)
+        from_video_ctl = ttk.Button(frame_right2, text="拍照并识别", width=20, command=self.video_pic)
         from_img_pre = ttk.Button(frame_right2, text="查看形状预处理图像", width=20, command=self.show_img_pre)
         self.image_ctl = ttk.Label(frame_left)
         self.image_ctl.pack(anchor="nw")
@@ -68,6 +69,7 @@ class Surface(ttk.Frame):
         self.color_ctl = ttk.Label(frame_right1, text="", width="20")
         self.color_ctl.grid(column=0, row=4, sticky=tk.W)
         from_vedio_ctl.pack(anchor="se", pady="5")
+        from_video_ctl.pack(anchor="se", pady="5")
         from_pic_ctl.pack(anchor="se", pady="5")
         from_img_pre.pack(anchor="se", pady="5")
 
@@ -144,7 +146,7 @@ class Surface(ttk.Frame):
         if filename.any():
             debug.img_show(filename)
 
-    #摄像头功能未实现
+
     def from_vedio(self):
         if self.thread_run:
             return
@@ -158,6 +160,7 @@ class Surface(ttk.Frame):
         self.thread.setDaemon(True)
         self.thread.start()
         self.thread_run = True
+
 
     def from_pic(self):
         self.thread_run = False
@@ -179,19 +182,42 @@ class Surface(ttk.Frame):
 
             self.show_roi1(r_c, roi_c, color_c)
 
-    @staticmethod
-    def vedio_thread(self):
+
+    def vedio_thread(delf,self):
         self.thread_run = True
-        predict_time = time.time()
         while self.thread_run:
             _, img_bgr = self.camera.read()
             self.imgtk = self.get_imgtk(img_bgr)
             self.image_ctl.configure(image=self.imgtk)
-            if time.time() - predict_time > 2:
-                r, roi, color = self.predictor(img_bgr)
-                self.show_roi(r, roi, color)
-                predict_time = time.time()
+
+
+
+
+
         print("run end")
+
+    def video_pic(self):
+        _, img_bgr = self.camera.read()
+        cv2.imwrite("tmp/test.jpg", img_bgr)
+        self.thread_run = False
+        self.pic_path = "tmp/test.jpg"
+        if self.pic_path:
+            print("video_pic")
+            img_bgr = img_math.img_read(self.pic_path)
+            first_img, oldimg = self.predictor.img_first_pre(img_bgr)
+            self.imgtk = self.get_imgtk(img_bgr)
+            self.image_ctl.configure(image=self.imgtk)
+            th1 = ThreadWithReturnValue(target=self.predictor.img_color_contours, args=(first_img, oldimg))
+            th2 = ThreadWithReturnValue(target=self.predictor.img_only_color, args=(oldimg, oldimg, first_img))
+            th1.start()
+            th2.start()
+            r_c, roi_c, color_c = th1.join()
+            r_color, roi_color, color_color = th2.join()
+            print(r_c, r_color)
+
+            self.show_roi2(r_color, roi_color, color_color)
+
+            self.show_roi1(r_c, roi_c, color_c)
 
 
 def close_window():
