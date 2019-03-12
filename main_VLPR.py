@@ -4,14 +4,14 @@ import threading
 import time
 import tkinter as tk
 import cv2
-import config
-import debug
 import img_function as predict
 import img_math
 from threading import Thread
 from tkinter import ttk
 from tkinter.filedialog import *
 from PIL import Image, ImageTk
+import tkinter.messagebox #这个是消息框，对话框的关键
+
 
 
 class ThreadWithReturnValue(Thread):
@@ -57,7 +57,9 @@ class Surface(ttk.Frame):
         from_pic_ctl = ttk.Button(frame_right2, text="来自图片", width=20, command=self.from_pic)
         from_vedio_ctl = ttk.Button(frame_right2, text="打开摄像头", width=20, command=self.from_vedio)
         from_video_ctl = ttk.Button(frame_right2, text="拍照并识别", width=20, command=self.video_pic)
-        from_img_pre = ttk.Button(frame_right2, text="查看形状预处理图像", width=20, command=self.show_img_pre)
+        from_img_pre = ttk.Button(frame_right2, text="查看预处理图像", width=20, command=self.show_img_pre)
+        clean_ctrl = ttk.Button(frame_right2, text="清除识别数据", width=20, command=self.clean)
+        exit_ctrl = ttk.Button(frame_right2, text="退出", width=20, command=close_window)
         self.image_ctl = ttk.Label(frame_left)
         self.image_ctl.pack(anchor="nw")
 
@@ -72,6 +74,9 @@ class Surface(ttk.Frame):
         from_video_ctl.pack(anchor="se", pady="5")
         from_pic_ctl.pack(anchor="se", pady="5")
         from_img_pre.pack(anchor="se", pady="5")
+        clean_ctrl.pack(anchor="se", pady="5")
+        exit_ctrl.pack(anchor="se", pady="5")
+
 
         ttk.Label(frame_right1, text='颜色定位车牌位置：').grid(column=0, row=5, sticky=tk.W)
         self.roi_ct2 = ttk.Label(frame_right1)
@@ -140,11 +145,7 @@ class Surface(ttk.Frame):
             self.r_ct2.configure(text="")
             self.color_ct2.configure(state='disabled')
 
-    def show_img_pre(self):
 
-        filename = config.get_name()
-        if filename.any():
-            debug.img_show(filename)
 
 
     def from_vedio(self):
@@ -153,7 +154,7 @@ class Surface(ttk.Frame):
         if self.camera is None:
             self.camera = cv2.VideoCapture(0)
             if not self.camera.isOpened():
-                mBox.showwarning('警告', '摄像头打开失败！')
+                tkinter.messagebox.showinfo('警告', '摄像头打开失败！')
                 self.camera = None
                 return
         self.thread = threading.Thread(target=self.vedio_thread, args=(self,))
@@ -164,24 +165,23 @@ class Surface(ttk.Frame):
 
     def from_pic(self):
         self.thread_run = False
-        self.camera.release()
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpg图片", "*.jpg"), ("png图片", "*.png")])
-        if self.pic_path:
-            img_bgr = img_math.img_read(self.pic_path)
-            first_img, oldimg = self.predictor.img_first_pre(img_bgr)
-            self.imgtk = self.get_imgtk(img_bgr)
-            self.image_ctl.configure(image=self.imgtk)
-            th1 = ThreadWithReturnValue(target=self.predictor.img_color_contours, args=(first_img, oldimg))
-            th2 = ThreadWithReturnValue(target=self.predictor.img_only_color, args=(oldimg, oldimg, first_img))
-            th1.start()
-            th2.start()
-            r_c, roi_c, color_c = th1.join()
-            r_color, roi_color, color_color = th2.join()
-            print(r_c, r_color)
 
-            self.show_roi2(r_color, roi_color, color_color)
+        img_bgr = img_math.img_read(self.pic_path)
+        first_img, oldimg = self.predictor.img_first_pre(img_bgr)
+        self.imgtk = self.get_imgtk(img_bgr)
+        self.image_ctl.configure(image=self.imgtk)
+        th1 = ThreadWithReturnValue(target=self.predictor.img_color_contours, args=(first_img, oldimg))
+        th2 = ThreadWithReturnValue(target=self.predictor.img_only_color, args=(oldimg, oldimg, first_img))
+        th1.start()
+        th2.start()
+        r_c, roi_c, color_c = th1.join()
+        r_color, roi_color, color_color = th2.join()
+        print(r_c, r_color)
 
-            self.show_roi1(r_c, roi_c, color_c)
+        self.show_roi2(r_color, roi_color, color_color)
+
+        self.show_roi1(r_c, roi_c, color_c)
 
 
     def vedio_thread(delf,self):
@@ -194,11 +194,11 @@ class Surface(ttk.Frame):
 
     def video_pic(self):
         if (self.thread_run==False):
+            tkinter.messagebox.showinfo('提示', '请点击    [打开摄像头]    按钮！')
             return
         self.thread_run = False
         _, img_bgr = self.camera.read()
         cv2.imwrite("tmp/test.jpg", img_bgr)
-        self.camera.release()
         self.pic_path = "tmp/test.jpg"
         print("video_pic")
         img_bgr = img_math.img_read(self.pic_path)
@@ -216,6 +216,22 @@ class Surface(ttk.Frame):
         self.show_roi2(r_color, roi_color, color_color)
 
         self.show_roi1(r_c, roi_c, color_c)
+
+    def show_img_pre(self):
+        if (self.thread_run==True):
+            return
+        self.thread_run = False
+        filename = img_math.img_read("tmp/img_contours.jpg")
+        cv2.imshow("img_show", filename)
+
+    def clean(self):
+        self.thread_run = False
+        self.roi_ctl.configure(state='disabled')
+        self.r_ctl.configure(text="")
+        self.color_ctl.configure(text="", state='enable')
+        self.color_ct2.configure(text="", state='enable')
+        self.r_ct2.configure(text="")
+        self.color_ct2.configure(state='disabled')
 
 
 def close_window():

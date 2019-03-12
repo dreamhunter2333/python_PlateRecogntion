@@ -3,10 +3,8 @@ __author__ = '樱花落舞'
 import os
 import cv2
 import numpy as np
-import debug
 import img_math
 import img_recognition
-import config
 
 SZ = 20  # 训练图片长宽
 MAX_WIDTH = 1000  # 原始图片最大宽度
@@ -150,7 +148,8 @@ class CardPredictor:
         """
 
         if img_contours.any():
-            config.set_name(img_contours)
+            #config.set_name(img_contours)
+            cv2.imwrite("tmp/img_contours.jpg", img_contours)
 
         pic_hight, pic_width = img_contours.shape[:2]
 
@@ -401,9 +400,3 @@ class CardPredictor:
                 cropimg = img[y:y + h, x:x + w]
                 colors_img.append(cropimg)
 
-        debug.img_show(img)
-        colors, car_imgs = img_math.img_color(colors_img)
-        for i, color in enumerate(colors):
-            if color != "no":
-                print(color)
-                debug.img_show(car_imgs[i])
