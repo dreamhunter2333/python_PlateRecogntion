@@ -87,6 +87,8 @@ class Surface(ttk.Frame):
         self.color_ct2 = ttk.Label(frame_right1, text="")
         self.color_ct2.grid(column=0, row=9, sticky=tk.W)
 
+        self.clean()
+
         self.predictor = predict.CardPredictor()
         self.predictor.train_svm()
 
@@ -163,11 +165,8 @@ class Surface(ttk.Frame):
         self.thread_run = True
 
 
-    def from_pic(self):
-        self.thread_run = False
-        self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpg图片", "*.jpg"), ("png图片", "*.png")])
-
-        img_bgr = img_math.img_read(self.pic_path)
+    def pic(self,pic_path):
+        img_bgr = img_math.img_read(pic_path)
         first_img, oldimg = self.predictor.img_first_pre(img_bgr)
         self.imgtk = self.get_imgtk(img_bgr)
         self.image_ctl.configure(image=self.imgtk)
@@ -182,6 +181,12 @@ class Surface(ttk.Frame):
         self.show_roi2(r_color, roi_color, color_color)
 
         self.show_roi1(r_c, roi_c, color_c)
+
+    def from_pic(self):
+        self.thread_run = False
+        self.clean()
+        self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpg图片", "*.jpg"), ("png图片", "*.png")])
+        self.pic(self.pic_path)
 
 
     def vedio_thread(delf,self):
@@ -197,35 +202,29 @@ class Surface(ttk.Frame):
             tkinter.messagebox.showinfo('提示', '请点击    [打开摄像头]    按钮！')
             return
         self.thread_run = False
+        self.clean()
         _, img_bgr = self.camera.read()
         cv2.imwrite("tmp/test.jpg", img_bgr)
         self.pic_path = "tmp/test.jpg"
+        self.pic(self.pic_path)
         print("video_pic")
-        img_bgr = img_math.img_read(self.pic_path)
-        first_img, oldimg = self.predictor.img_first_pre(img_bgr)
-        self.imgtk = self.get_imgtk(img_bgr)
-        self.image_ctl.configure(image=self.imgtk)
-        th1 = ThreadWithReturnValue(target=self.predictor.img_color_contours, args=(first_img, oldimg))
-        th2 = ThreadWithReturnValue(target=self.predictor.img_only_color, args=(oldimg, oldimg, first_img))
-        th1.start()
-        th2.start()
-        r_c, roi_c, color_c = th1.join()
-        r_color, roi_color, color_color = th2.join()
-        print(r_c, r_color)
 
-        self.show_roi2(r_color, roi_color, color_color)
-
-        self.show_roi1(r_c, roi_c, color_c)
 
     def show_img_pre(self):
-        if (self.thread_run==True):
+        if self.thread_run:
             return
         self.thread_run = False
         filename = img_math.img_read("tmp/img_contours.jpg")
         cv2.imshow("img_show", filename)
 
     def clean(self):
+        if self.thread_run:
+            return
         self.thread_run = False
+        img_bgr = img_math.img_read("pic/hy.png")
+        self.imgtk2 = self.get_imgtk(img_bgr)
+        self.image_ctl.configure(image=self.imgtk2)
+
         self.roi_ctl.configure(state='disabled')
         self.r_ctl.configure(text="")
         self.color_ctl.configure(text="", state='enable')
