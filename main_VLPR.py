@@ -164,6 +164,7 @@ class Surface(ttk.Frame):
 
     def from_pic(self):
         self.thread_run = False
+        self.camera.release()
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpg图片", "*.jpg"), ("png图片", "*.png")])
         if self.pic_path:
             img_bgr = img_math.img_read(self.pic_path)
@@ -189,35 +190,32 @@ class Surface(ttk.Frame):
             _, img_bgr = self.camera.read()
             self.imgtk = self.get_imgtk(img_bgr)
             self.image_ctl.configure(image=self.imgtk)
-
-
-
-
-
         print("run end")
 
     def video_pic(self):
+        if (self.thread_run==False):
+            return
+        self.thread_run = False
         _, img_bgr = self.camera.read()
         cv2.imwrite("tmp/test.jpg", img_bgr)
-        self.thread_run = False
+        self.camera.release()
         self.pic_path = "tmp/test.jpg"
-        if self.pic_path:
-            print("video_pic")
-            img_bgr = img_math.img_read(self.pic_path)
-            first_img, oldimg = self.predictor.img_first_pre(img_bgr)
-            self.imgtk = self.get_imgtk(img_bgr)
-            self.image_ctl.configure(image=self.imgtk)
-            th1 = ThreadWithReturnValue(target=self.predictor.img_color_contours, args=(first_img, oldimg))
-            th2 = ThreadWithReturnValue(target=self.predictor.img_only_color, args=(oldimg, oldimg, first_img))
-            th1.start()
-            th2.start()
-            r_c, roi_c, color_c = th1.join()
-            r_color, roi_color, color_color = th2.join()
-            print(r_c, r_color)
+        print("video_pic")
+        img_bgr = img_math.img_read(self.pic_path)
+        first_img, oldimg = self.predictor.img_first_pre(img_bgr)
+        self.imgtk = self.get_imgtk(img_bgr)
+        self.image_ctl.configure(image=self.imgtk)
+        th1 = ThreadWithReturnValue(target=self.predictor.img_color_contours, args=(first_img, oldimg))
+        th2 = ThreadWithReturnValue(target=self.predictor.img_only_color, args=(oldimg, oldimg, first_img))
+        th1.start()
+        th2.start()
+        r_c, roi_c, color_c = th1.join()
+        r_color, roi_color, color_color = th2.join()
+        print(r_c, r_color)
 
-            self.show_roi2(r_color, roi_color, color_color)
+        self.show_roi2(r_color, roi_color, color_color)
 
-            self.show_roi1(r_c, roi_c, color_c)
+        self.show_roi1(r_c, roi_c, color_c)
 
 
 def close_window():
