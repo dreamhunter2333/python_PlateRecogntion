@@ -46,7 +46,7 @@ class Surface(ttk.Frame):
         frame_right1 = ttk.Frame(self)
         frame_right2 = ttk.Frame(self)
         win.title("车牌识别")
-        win.state("zoomed")
+        #win.state("zoomed")
         self.pack(fill=tk.BOTH, expand=tk.YES, padx="10", pady="10")
         frame_left.pack(side=LEFT, expand=1, fill=BOTH)
         frame_right1.pack(side=TOP, expand=1, fill=tk.Y)
@@ -77,15 +77,17 @@ class Surface(ttk.Frame):
         clean_ctrl.pack(anchor="se", pady="5")
         exit_ctrl.pack(anchor="se", pady="5")
 
-
-        ttk.Label(frame_right1, text='颜色定位车牌位置：').grid(column=0, row=5, sticky=tk.W)
+        ttk.Label(frame_right1, text='-------------------------------').grid(column=0, row=5, sticky=tk.W)
+        ttk.Label(frame_right1, text='颜色定位车牌位置：').grid(column=0, row=6, sticky=tk.W)
         self.roi_ct2 = ttk.Label(frame_right1)
-        self.roi_ct2.grid(column=0, row=6, sticky=tk.W)
-        ttk.Label(frame_right1, text='颜色定位识别结果：').grid(column=0, row=7, sticky=tk.W)
+        self.roi_ct2.grid(column=0, row=7, sticky=tk.W)
+        ttk.Label(frame_right1, text='颜色定位识别结果：').grid(column=0, row=8, sticky=tk.W)
         self.r_ct2 = ttk.Label(frame_right1, text="")
-        self.r_ct2.grid(column=0, row=8, sticky=tk.W)
+        self.r_ct2.grid(column=0, row=9, sticky=tk.W)
         self.color_ct2 = ttk.Label(frame_right1, text="")
-        self.color_ct2.grid(column=0, row=9, sticky=tk.W)
+        self.color_ct2.grid(column=0, row=10, sticky=tk.W)
+
+        ttk.Label(frame_right1, text='-------------------------------').grid(column=0, row=11, sticky=tk.W)
 
         self.clean()
 
@@ -114,13 +116,13 @@ class Surface(ttk.Frame):
         if r:
             roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
             roi = Image.fromarray(roi)
-            self.imgtk_roi = ImageTk.PhotoImage(image=roi)
-            self.roi_ctl.configure(image=self.imgtk_roi, state='enable')
+            self.imgtk_roi1 = ImageTk.PhotoImage(image=roi)
+            self.roi_ctl.configure(image=self.imgtk_roi1, state='enable')
             self.r_ctl.configure(text=str(r))
             self.update_time = time.time()
             try:
                 c = self.color_transform[color]
-                self.color_ctl.configure(text=c[0], background=c[1], state='enable')
+                self.color_ctl.configure(text=c[0], state='enable')
             except:
                 self.color_ctl.configure(state='disabled')
         elif self.update_time + 8 < time.time():
@@ -132,13 +134,13 @@ class Surface(ttk.Frame):
         if r:
             roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
             roi = Image.fromarray(roi)
-            self.imgtk_roi = ImageTk.PhotoImage(image=roi)
-            self.roi_ct2.configure(image=self.imgtk_roi, state='enable')
+            self.imgtk_roi2 = ImageTk.PhotoImage(image=roi)
+            self.roi_ct2.configure(image=self.imgtk_roi2, state='enable')
             self.r_ct2.configure(text=str(r))
             self.update_time = time.time()
             try:
                 c = self.color_transform[color]
-                self.color_ct2.configure(text=c[0], background=c[1], state='enable')
+                self.color_ct2.configure(text=c[0], state='enable')
             except:
                 self.color_ct2.configure(state='disabled')
         elif self.update_time + 8 < time.time():
@@ -184,8 +186,8 @@ class Surface(ttk.Frame):
 
     def from_pic(self):
         self.thread_run = False
-        #self.clean()
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpg图片", "*.jpg"), ("png图片", "*.png")])
+        self.clean()
         self.pic(self.pic_path)
 
 
@@ -202,10 +204,10 @@ class Surface(ttk.Frame):
             tkinter.messagebox.showinfo('提示', '请点击    [打开摄像头]    按钮！')
             return
         self.thread_run = False
-        #self.clean()
         _, img_bgr = self.camera.read()
         cv2.imwrite("tmp/test.jpg", img_bgr)
         self.pic_path = "tmp/test.jpg"
+        self.clean()
         self.pic(self.pic_path)
         print("video_pic")
 
@@ -221,18 +223,20 @@ class Surface(ttk.Frame):
         if self.thread_run:
             return
         self.thread_run = False
-        img_bgr = img_math.img_read("pic/hy.png")
-        self.imgtk2 = self.get_imgtk(img_bgr)
+        img_bgr3 = img_math.img_read("pic/hy.png")
+        self.imgtk2 = self.get_imgtk(img_bgr3)
         self.image_ctl.configure(image=self.imgtk2)
 
         self.r_ctl.configure(text="")
         self.color_ctl.configure(text="", state='enable')
 
-
         self.r_ct2.configure(text="")
         self.color_ct2.configure(text="", state='enable')
+
         self.roi_ctl.configure(state='disabled')
         self.roi_ct2.configure(state='disabled')
+
+
 
 
 def close_window():

@@ -9,36 +9,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/img_recognition.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="241" column="32" lean-forward="true" selection-start-line="241" selection-start-column="32" selection-end-line="241" selection-end-column="32" />
-              <folding>
-                <element signature="e#25#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/img_math.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-              <folding>
-                <element signature="e#44#54#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="133">
+              <caret line="224" column="28" selection-start-line="224" selection-start-column="28" selection-end-line="224" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -46,8 +22,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/img_function.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+            <state relative-caret-position="1122">
+              <caret line="70" column="41" selection-start-line="70" selection-start-column="35" selection-end-line="70" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/img_math.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/img_recognition.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -56,22 +50,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>name</find>
+      <find>train_svm</find>
       <find>deskew</find>
-      <find>config</find>
-      <find>img_contours</find>
-      <find>debug</find>
-      <find>oldimg</find>
-      <find>predict_result</find>
-      <find>r_ctl</find>
-      <find>color_ctl</find>
-      <find>roi_ct2</find>
-      <find>r_ct2</find>
-      <find>color_transform</find>
-      <find>camera</find>
-      <find>image_ctl</find>
-      <find>math</find>
-      <find>img_math</find>
+      <find>get_imgtk</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -80,19 +61,19 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/debug.py" />
-        <option value="$PROJECT_DIR$/img_function.py" />
         <option value="$PROJECT_DIR$/main_VLPR.py" />
+        <option value="$PROJECT_DIR$/img_function.py" />
         <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="499" />
+    <option name="x" value="366" />
     <option name="y" value="23" />
-    <option name="width" value="1393" />
+    <option name="width" value="1348" />
     <option name="height" value="972" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -115,6 +96,7 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -182,97 +164,67 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="499" y="23" width="1393" height="972" extended-state="0" />
+    <frame x="366" y="23" width="1348" height="972" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2539563" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32954547" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3284091" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Educational.CheckDetails" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3284091" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.3284091" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config.py" />
-    <entry file="file://$PROJECT_DIR$/debug.py" />
-    <entry file="file:///usr/local/lib/python3.7/site-packages/cv2/__init__.py">
+    <entry file="file://C:/Program Files/Python37/Lib/tkinter/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/main_VLPR.py" />
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharmEdu2018.3/python_stubs/-1199943126/cv2/cv2/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/math.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#44#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/img_function.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/img_math.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-          <folding>
-            <element signature="e#44#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main_VLPR.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="12" selection-end-column="25" />
-          <folding>
-            <element signature="e#44#60#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="183">
+          <caret line="10607" column="4" selection-start-line="10607" selection-start-column="4" selection-end-line="10607" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/img_recognition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+        <state relative-caret-position="323">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.7/site-packages/PIL/ImageTk.py">
+    <entry file="file://$PROJECT_DIR$/img_math.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="122" selection-start-line="122" selection-end-line="122" />
+        <state relative-caret-position="15">
+          <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img_function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1122">
+          <caret line="70" column="41" selection-start-line="70" selection-start-column="35" selection-end-line="70" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="241" column="32" lean-forward="true" selection-start-line="241" selection-start-column="32" selection-end-line="241" selection-end-column="32" />
-          <folding>
-            <element signature="e#25#41#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="133">
+          <caret line="224" column="28" selection-start-line="224" selection-start-column="28" selection-end-line="224" selection-end-column="28" />
         </state>
       </provider>
     </entry>
