@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__author__ = '樱花落舞'
+
 import threading
 import time
 import tkinter as tk
@@ -10,7 +10,7 @@ from threading import Thread
 from tkinter import ttk
 from tkinter.filedialog import *
 from PIL import Image, ImageTk
-import tkinter.messagebox #这个是消息框，对话框的关键
+import tkinter.messagebox
 
 
 
@@ -184,7 +184,7 @@ class Surface(ttk.Frame):
 
     def from_pic(self):
         self.thread_run = False
-        self.clean()
+        #self.clean()
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpg图片", "*.jpg"), ("png图片", "*.png")])
         self.pic(self.pic_path)
 
@@ -202,7 +202,7 @@ class Surface(ttk.Frame):
             tkinter.messagebox.showinfo('提示', '请点击    [打开摄像头]    按钮！')
             return
         self.thread_run = False
-        self.clean()
+        #self.clean()
         _, img_bgr = self.camera.read()
         cv2.imwrite("tmp/test.jpg", img_bgr)
         self.pic_path = "tmp/test.jpg"
@@ -225,12 +225,14 @@ class Surface(ttk.Frame):
         self.imgtk2 = self.get_imgtk(img_bgr)
         self.image_ctl.configure(image=self.imgtk2)
 
-        self.roi_ctl.configure(state='disabled')
         self.r_ctl.configure(text="")
         self.color_ctl.configure(text="", state='enable')
-        self.color_ct2.configure(text="", state='enable')
+
+
         self.r_ct2.configure(text="")
-        self.color_ct2.configure(state='disabled')
+        self.color_ct2.configure(text="", state='enable')
+        self.roi_ctl.configure(state='disabled')
+        self.roi_ct2.configure(state='disabled')
 
 
 def close_window():
