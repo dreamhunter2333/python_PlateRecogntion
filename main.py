@@ -11,6 +11,9 @@ from tkinter import ttk
 from tkinter.filedialog import *
 from PIL import Image, ImageTk
 import tkinter.messagebox
+import xlrd
+import xlwt
+from xlutils import copy
 
 
 
@@ -92,9 +95,35 @@ class Surface(ttk.Frame):
         ttk.Label(frame_right1, text='-------------------------------').grid(column=0, row=11, sticky=tk.W)
 
         self.clean()
+        self.excel()
 
         self.predictor = predict.CardPredictor()
         self.predictor.train_svm()
+
+    def excel(self):
+        self.row = 0
+        self.i = 0
+        excel_path2 = "data.xls"
+        w = xlwt.Workbook()
+        w_sheet = w.add_sheet('1')
+        alignment = xlwt.Alignment() #创建居中
+        style = xlwt.XFStyle() # 创建样式
+        alignment.horz = xlwt.Alignment.HORZ_CENTER
+        alignment.vert = xlwt.Alignment.VERT_CENTER
+        style.alignment = alignment # 给样式添加文字居中属性
+        tall_style = xlwt.easyxf('font:height 720')  # 36pt
+        first_row = w_sheet.row(0)
+        first_row.set_style(tall_style)
+        value2 = ["时间", "形状识别车牌颜色", "形状识别车牌号", "颜色识别车牌颜色", "颜色识别车牌号"]
+        while (self.i <= 4):
+            clo = self.i
+            w_sheet.write(self.row, clo, value2[self.i], style)
+            w_sheet.col(self.i).width = 7777
+            self.i = self.i + 1
+        self.i = 0
+        self.row = 1
+        w.save(excel_path2)
+
 
     def get_imgtk(self, img_bgr):
         img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
@@ -151,8 +180,6 @@ class Surface(ttk.Frame):
             self.r_ct2.configure(text="")
             self.color_ct2.configure(state='disabled')
 
-
-
     def camera_flag(self):
         if self.thread_run==False:
             return
@@ -161,7 +188,6 @@ class Surface(ttk.Frame):
         else:
             self.cameraflag=0
         print("self.cameraflag", self.cameraflag)
-
 
     def from_vedio(self):
         if self.thread_run:
@@ -178,8 +204,7 @@ class Surface(ttk.Frame):
         self.thread.start()
         self.thread_run = True
 
-
-    def pic(self,pic_path):
+    def pic(self, pic_path):
         img_bgr = img_math.img_read(pic_path)
         first_img, oldimg = self.predictor.img_first_pre(img_bgr)
         self.imgtk = self.get_imgtk(img_bgr)
@@ -190,11 +215,37 @@ class Surface(ttk.Frame):
         th2.start()
         r_c, roi_c, color_c = th1.join()
         r_color, roi_color, color_color = th2.join()
-        print(r_c, r_color)
 
+        localtime = time.asctime( time.localtime(time.time()))
+        value = [localtime, color_c, r_c, color_color, r_color]
+        self.excle_add(value)
+
+        print(localtime, color_c, r_c, color_color, r_color)
         self.show_roi2(r_color, roi_color, color_color)
-
         self.show_roi1(r_c, roi_c, color_c)
+
+    def excle_add(self, the_value):
+        excel_path = "data.xls"
+        rbook = xlrd.open_workbook(excel_path, formatting_info=True)
+        wbook = copy.copy(rbook)
+        w_sheet = wbook.get_sheet(0)
+        alignment = xlwt.Alignment() #创建居中
+        style = xlwt.XFStyle() # 创建样式
+        alignment.horz = xlwt.Alignment.HORZ_CENTER
+        alignment.vert = xlwt.Alignment.VERT_CENTER
+        style.alignment = alignment # 给样式添加文字居中属性
+        tall_style = xlwt.easyxf('font:height 720')  # 36pt
+        while (self.i <= 4):
+            clo = self.i
+            first_row = w_sheet.row(self.i)
+            first_row.set_style(tall_style)
+            w_sheet.write(self.row, clo, the_value[self.i], style)
+            self.i = self.i + 1
+        if (self.i == 5):
+            self.i = 0
+            self.row = self.row + 1
+            print("写入成功")
+        wbook.save(excel_path)
 
     def from_pic(self):
         self.thread_run = False
