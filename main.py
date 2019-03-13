@@ -60,6 +60,7 @@ class Surface(ttk.Frame):
         from_img_pre = ttk.Button(frame_right2, text="查看预处理图像", width=20, command=self.show_img_pre)
         clean_ctrl = ttk.Button(frame_right2, text="清除识别数据", width=20, command=self.clean)
         exit_ctrl = ttk.Button(frame_right2, text="退出", width=20, command=close_window)
+        camera_ctrl = ttk.Button(frame_right2, text="开关摄像头实时识别(测试)", width=20, command=self.camera_flag)
         self.image_ctl = ttk.Label(frame_left)
         self.image_ctl.pack(anchor="nw")
 
@@ -70,6 +71,7 @@ class Surface(ttk.Frame):
         self.r_ctl.grid(column=0, row=3, sticky=tk.W)
         self.color_ctl = ttk.Label(frame_right1, text="", width="20")
         self.color_ctl.grid(column=0, row=4, sticky=tk.W)
+        camera_ctrl.pack(anchor="se", pady="5")
         from_vedio_ctl.pack(anchor="se", pady="5")
         from_video_ctl.pack(anchor="se", pady="5")
         from_pic_ctl.pack(anchor="se", pady="5")
@@ -151,6 +153,15 @@ class Surface(ttk.Frame):
 
 
 
+    def camera_flag(self):
+        if self.thread_run==False:
+            return
+        if (self.cameraflag==0):
+            self.cameraflag=1
+        else:
+            self.cameraflag=0
+        print("self.cameraflag", self.cameraflag)
+
 
     def from_vedio(self):
         if self.thread_run:
@@ -161,6 +172,7 @@ class Surface(ttk.Frame):
                 tkinter.messagebox.showinfo('警告', '摄像头打开失败！')
                 self.camera = None
                 return
+        self.cameraflag=0
         self.thread = threading.Thread(target=self.vedio_thread, args=(self,))
         self.thread.setDaemon(True)
         self.thread.start()
@@ -186,6 +198,7 @@ class Surface(ttk.Frame):
 
     def from_pic(self):
         self.thread_run = False
+        self.cameraflag=0
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpg图片", "*.jpg"), ("png图片", "*.png")])
         self.clean()
         self.pic(self.pic_path)
@@ -197,6 +210,11 @@ class Surface(ttk.Frame):
             _, img_bgr = self.camera.read()
             self.imgtk = self.get_imgtk(img_bgr)
             self.image_ctl.configure(image=self.imgtk)
+            if self.cameraflag :
+                print("video self.cameraflag",self.cameraflag)
+                cv2.imwrite("tmp/test.jpg", img_bgr)
+                self.pic_path = "tmp/test.jpg"
+                self.pic(self.pic_path)
         print("run end")
 
     def video_pic(self):
@@ -221,6 +239,7 @@ class Surface(ttk.Frame):
 
     def clean(self):
         if self.thread_run:
+            self.cameraflag=0
             return
         self.thread_run = False
         img_bgr3 = img_math.img_read("pic/hy.png")
