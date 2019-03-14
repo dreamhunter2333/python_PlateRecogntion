@@ -122,6 +122,8 @@ class Surface(ttk.Frame):
             self.i = self.i + 1
         self.i = 0
         self.row = 1
+        first_row = w_sheet.row(self.row)
+        first_row.set_style(tall_style)
         w.save(excel_path2)
 
 
@@ -250,10 +252,10 @@ class Surface(ttk.Frame):
         alignment.vert = xlwt.Alignment.VERT_CENTER
         style.alignment = alignment # 给样式添加文字居中属性
         tall_style = xlwt.easyxf('font:height 720')  # 36pt
+        first_row = w_sheet.row(self.row)
+        first_row.set_style(tall_style)
         while (self.i <= 4):
             clo = self.i
-            first_row = w_sheet.row(self.i)
-            first_row.set_style(tall_style)
             w_sheet.write(self.row, clo, the_value[self.i], style)
             self.i = self.i + 1
         if (self.i == 5):
