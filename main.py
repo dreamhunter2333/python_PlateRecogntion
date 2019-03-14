@@ -58,7 +58,7 @@ class Surface(ttk.Frame):
         ttk.Label(frame_right1, text='形状定位车牌位置：').grid(column=0, row=0, sticky=tk.W)
 
         from_pic_ctl = ttk.Button(frame_right2, text="来自图片", width=20, command=self.from_pic)
-        from_vedio_ctl = ttk.Button(frame_right2, text="打开摄像头", width=20, command=self.from_vedio)
+        from_vedio_ctl = ttk.Button(frame_right2, text="打开/关闭摄像头", width=20, command=self.from_vedio)
         from_video_ctl = ttk.Button(frame_right2, text="拍照并识别", width=20, command=self.video_pic)
         from_img_pre = ttk.Button(frame_right2, text="查看预处理图像", width=20, command=self.show_img_pre)
         clean_ctrl = ttk.Button(frame_right2, text="清除识别数据", width=20, command=self.clean)
@@ -187,17 +187,31 @@ class Surface(ttk.Frame):
             self.cameraflag=1
         else:
             self.cameraflag=0
-        print("self.cameraflag", self.cameraflag)
+        print("关闭摄像头实时识别 self.cameraflag", self.cameraflag)
 
     def from_vedio(self):
         if self.thread_run:
+            if self.camera.isOpened():
+                self.camera.release()
+                print("关闭摄像头")
+                self.camera = None
+                self.thread_run = False
             return
         if self.camera is None:
-            self.camera = cv2.VideoCapture(0)
+            self.camera = cv2.VideoCapture(1)
             if not self.camera.isOpened():
-                tkinter.messagebox.showinfo('警告', '摄像头打开失败！')
                 self.camera = None
-                return
+                print("没有外置摄像头")
+                self.camera = cv2.VideoCapture(0)
+                if not self.camera.isOpened():
+                    print("没有内置摄像头")
+                    tkinter.messagebox.showinfo('警告', '摄像头打开失败！')
+                    self.camera = None
+                    return
+                else:
+                    print("打开内置摄像头")
+            else:
+                print("打开外置摄像头")
         self.cameraflag=0
         self.thread = threading.Thread(target=self.vedio_thread, args=(self,))
         self.thread.setDaemon(True)
@@ -218,13 +232,14 @@ class Surface(ttk.Frame):
 
         localtime = time.asctime( time.localtime(time.time()))
         value = [localtime, color_c, r_c, color_color, r_color]
-        self.excle_add(value)
+        if (self.cameraflag==0):
+            self.excel_add(value)
 
         print(localtime, color_c, r_c, color_color, r_color)
         self.show_roi2(r_color, roi_color, color_color)
         self.show_roi1(r_c, roi_c, color_c)
 
-    def excle_add(self, the_value):
+    def excel_add(self, the_value):
         excel_path = "data.xls"
         rbook = xlrd.open_workbook(excel_path, formatting_info=True)
         wbook = copy.copy(rbook)
@@ -254,18 +269,20 @@ class Surface(ttk.Frame):
         self.clean()
         self.pic(self.pic_path)
 
-
     def vedio_thread(delf,self):
         self.thread_run = True
+        predict_time = time.time()
         while self.thread_run:
             _, img_bgr = self.camera.read()
             self.imgtk = self.get_imgtk(img_bgr)
             self.image_ctl.configure(image=self.imgtk)
             if self.cameraflag :
-                print("video self.cameraflag",self.cameraflag)
-                cv2.imwrite("tmp/test.jpg", img_bgr)
-                self.pic_path = "tmp/test.jpg"
-                self.pic(self.pic_path)
+                if time.time() - predict_time > 2:
+                    print("实时识别中self.cameraflag", self.cameraflag)
+                    cv2.imwrite("tmp/test.jpg", img_bgr)
+                    self.pic_path = "tmp/test.jpg"
+                    self.pic(self.pic_path)
+                    predict_time = time.time()
         print("run end")
 
     def video_pic(self):

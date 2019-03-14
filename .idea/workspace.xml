@@ -13,10 +13,26 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1850">
-              <caret line="118" column="24" lean-forward="true" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
+            <state relative-caret-position="379">
+              <caret line="275" column="29" selection-start-line="275" selection-start-column="29" selection-end-line="275" selection-end-column="29" />
               <folding>
-                <element signature="e#25#41#0" expanded="true" />
+                <element signature="e#369#892#0" />
+                <element signature="e#658#786#0" />
+                <element signature="e#1200#4170#0" />
+                <element signature="e#4201#5031#0" />
+                <element signature="e#5076#5736#0" />
+                <element signature="e#5786#6519#0" />
+                <element signature="e#6569#7303#0" />
+                <element signature="e#7340#7542#0" />
+                <element signature="e#7578#8327#0" />
+                <element signature="e#8096#9024#0" />
+                <element signature="e#9007#9847#0" />
+                <element signature="e#9881#10091#0" />
+                <element signature="e#10632#10986#0" />
+                <element signature="e#11025#11197#0" />
+                <element signature="e#11228#11771#0" />
+                <element signature="e#11800#11929#0" />
+                <element signature="e#11963#12111#0" />
               </folding>
             </state>
           </provider>
@@ -30,6 +46,7 @@
       <find>deskew</find>
       <find>get_imgtk</find>
       <find>print</find>
+      <find>else</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -143,6 +160,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="562" y="23" width="1348" height="972" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23210248" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -223,10 +241,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1850">
-          <caret line="118" column="24" lean-forward="true" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
+        <state relative-caret-position="379">
+          <caret line="275" column="29" selection-start-line="275" selection-start-column="29" selection-end-line="275" selection-end-column="29" />
           <folding>
-            <element signature="e#25#41#0" expanded="true" />
+            <element signature="e#369#892#0" />
+            <element signature="e#658#786#0" />
+            <element signature="e#1200#4170#0" />
+            <element signature="e#4201#5031#0" />
+            <element signature="e#5076#5736#0" />
+            <element signature="e#5786#6519#0" />
+            <element signature="e#6569#7303#0" />
+            <element signature="e#7340#7542#0" />
+            <element signature="e#7578#8327#0" />
+            <element signature="e#8096#9024#0" />
+            <element signature="e#9007#9847#0" />
+            <element signature="e#9881#10091#0" />
+            <element signature="e#10632#10986#0" />
+            <element signature="e#11025#11197#0" />
+            <element signature="e#11228#11771#0" />
+            <element signature="e#11800#11929#0" />
+            <element signature="e#11963#12111#0" />
           </folding>
         </state>
       </provider>
