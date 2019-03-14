@@ -1,7 +1,7 @@
-# Python_VLPR
+# Python 车牌识别
 ## 首先需要知道的
 毕业设计基于Opencv的车牌识别系统 \
-安装python3.4
+安装 python3.4
 
 ``` bash
 
@@ -18,7 +18,7 @@ pip install xlutils
 
 ```
 
-## 大概演示
+## 运行演示
 ``` bash
 # 确保python指向python3.4
 # 运行
