@@ -87,9 +87,9 @@ class Surface(ttk.Frame):
         self.roi_ct2 = ttk.Label(frame_right1)
         self.roi_ct2.grid(column=0, row=7, sticky=tk.W)
         ttk.Label(frame_right1, text='颜色定位识别结果：').grid(column=0, row=8, sticky=tk.W)
-        self.r_ct2 = ttk.Label(frame_right1, text="")
+        self.r_ct2 = ttk.Label(frame_right1, text="", font=('Times', '20'))
         self.r_ct2.grid(column=0, row=9, sticky=tk.W)
-        self.color_ct2 = ttk.Label(frame_right1, text="")
+        self.color_ct2 = ttk.Label(frame_right1, text="", width="20")
         self.color_ct2.grid(column=0, row=10, sticky=tk.W)
 
         ttk.Label(frame_right1, text='-------------------------------').grid(column=0, row=11, sticky=tk.W)
