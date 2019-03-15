@@ -13,27 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="255" column="8" selection-start-line="255" selection-start-column="8" selection-end-line="255" selection-end-column="8" />
-              <folding>
-                <element signature="e#369#892#0" />
-                <element signature="e#658#786#0" />
-                <element signature="e#1200#4170#0" />
-                <element signature="e#4238#5150#0" />
-                <element signature="e#5076#5736#0" />
-                <element signature="e#5786#6519#0" />
-                <element signature="e#6569#7303#0" />
-                <element signature="e#7340#7542#0" />
-                <element signature="e#7578#8327#0" />
-                <element signature="e#8096#9024#0" />
-                <element signature="e#9881#10091#0" />
-                <element signature="e#10171#10828#0" />
-                <element signature="e#10632#10986#0" />
-                <element signature="e#11025#11197#0" />
-                <element signature="e#11228#11771#0" />
-                <element signature="e#11800#11929#0" />
-                <element signature="e#11963#12111#0" />
-              </folding>
+            <state relative-caret-position="17">
+              <caret line="99" selection-start-line="99" selection-end-line="99" />
             </state>
           </provider>
         </entry>
@@ -44,9 +25,9 @@
     <findStrings>
       <find>train_svm</find>
       <find>deskew</find>
-      <find>get_imgtk</find>
       <find>print</find>
       <find>else</find>
+      <find>get_imgtk</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -63,7 +44,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="561" />
+    <option name="x" value="572" />
     <option name="y" value="23" />
     <option name="width" value="1348" />
     <option name="height" value="972" />
@@ -159,14 +140,14 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="561" y="23" width="1348" height="972" extended-state="0" />
+    <frame x="572" y="23" width="1348" height="972" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23210248" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23210248" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3284091" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3284091" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -211,13 +192,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/img_recognition.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="22" column="6" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.7/site-packages/xlwt/Worksheet.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
@@ -225,43 +199,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/svm.dat">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/img_math.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="161" selection-start-line="161" selection-end-line="161" />
+        <state relative-caret-position="201">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/img_function.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="280" selection-start-line="280" selection-end-line="280" />
+        <state relative-caret-position="272">
+          <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+          <folding>
+            <element signature="e#254#367#0" />
+            <element signature="e#396#854#0" />
+            <element signature="e#882#16084#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img_recognition.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="71" column="17" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../pyqt5/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="90" selection-start-line="90" selection-end-line="98" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="255" column="8" selection-start-line="255" selection-start-column="8" selection-end-line="255" selection-end-column="8" />
-          <folding>
-            <element signature="e#369#892#0" />
-            <element signature="e#658#786#0" />
-            <element signature="e#1200#4170#0" />
-            <element signature="e#4238#5150#0" />
-            <element signature="e#5076#5736#0" />
-            <element signature="e#5786#6519#0" />
-            <element signature="e#6569#7303#0" />
-            <element signature="e#7340#7542#0" />
-            <element signature="e#7578#8327#0" />
-            <element signature="e#8096#9024#0" />
-            <element signature="e#9881#10091#0" />
-            <element signature="e#10171#10828#0" />
-            <element signature="e#10632#10986#0" />
-            <element signature="e#11025#11197#0" />
-            <element signature="e#11228#11771#0" />
-            <element signature="e#11800#11929#0" />
-            <element signature="e#11963#12111#0" />
-          </folding>
+        <state relative-caret-position="17">
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
         </state>
       </provider>
     </entry>

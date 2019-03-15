@@ -16,7 +16,6 @@ import xlwt
 from xlutils import copy
 
 
-
 class ThreadWithReturnValue(Thread):
     def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, *, daemon=None):
         Thread.__init__(self, group, target, name, args, kwargs, daemon=daemon)
@@ -49,14 +48,15 @@ class Surface(ttk.Frame):
         frame_right1 = ttk.Frame(self)
         frame_right2 = ttk.Frame(self)
         win.title("车牌识别")
-        #win.state("zoomed")
         self.pack(fill=tk.BOTH, expand=tk.YES, padx="10", pady="10")
         frame_left.pack(side=LEFT, expand=1, fill=BOTH)
         frame_right1.pack(side=TOP, expand=1, fill=tk.Y)
         frame_right2.pack(side=RIGHT, expand=0)
         ttk.Label(frame_left, text='原图：').pack(anchor="nw")
-        ttk.Label(frame_right1, text='形状定位车牌位置：').grid(column=0, row=0, sticky=tk.W)
+        self.image_ctl = ttk.Label(frame_left)
+        self.image_ctl.pack(anchor="nw")
 
+        ttk.Label(frame_right1, text='形状定位车牌位置：').grid(column=0, row=0, sticky=tk.W)
         from_pic_ctl = ttk.Button(frame_right2, text="来自图片", width=20, command=self.from_pic)
         from_vedio_ctl = ttk.Button(frame_right2, text="打开/关闭摄像头", width=20, command=self.from_vedio)
         from_video_ctl = ttk.Button(frame_right2, text="拍照并识别", width=20, command=self.video_pic)
@@ -64,8 +64,6 @@ class Surface(ttk.Frame):
         clean_ctrl = ttk.Button(frame_right2, text="清除识别数据", width=20, command=self.clean)
         exit_ctrl = ttk.Button(frame_right2, text="退出", width=20, command=close_window)
         camera_ctrl = ttk.Button(frame_right2, text="开关摄像头实时识别(测试)", width=20, command=self.camera_flag)
-        self.image_ctl = ttk.Label(frame_left)
-        self.image_ctl.pack(anchor="nw")
 
         self.roi_ctl = ttk.Label(frame_right1)
         self.roi_ctl.grid(column=0, row=1, sticky=tk.W)
@@ -91,7 +89,6 @@ class Surface(ttk.Frame):
         self.r_ct2.grid(column=0, row=9, sticky=tk.W)
         self.color_ct2 = ttk.Label(frame_right1, text="", width="20")
         self.color_ct2.grid(column=0, row=10, sticky=tk.W)
-
         ttk.Label(frame_right1, text='-------------------------------').grid(column=0, row=11, sticky=tk.W)
 
         self.clean()
@@ -183,12 +180,13 @@ class Surface(ttk.Frame):
             self.color_ct2.configure(state='disabled')
 
     def camera_flag(self):
-        if self.thread_run==False:
+        if not self.thread_run:
+            tkinter.messagebox.showinfo('提示', '请点击    [打开摄像头]    按钮！')
             return
-        if (self.cameraflag==0):
-            self.cameraflag=1
+        if not self.cameraflag:
+            self.cameraflag = 1
         else:
-            self.cameraflag=0
+            self.cameraflag = 0
         print("关闭摄像头实时识别 self.cameraflag", self.cameraflag)
 
     def from_vedio(self):
@@ -288,7 +286,7 @@ class Surface(ttk.Frame):
         print("run end")
 
     def video_pic(self):
-        if (self.thread_run==False):
+        if not self.thread_run:
             tkinter.messagebox.showinfo('提示', '请点击    [打开摄像头]    按钮！')
             return
         self.thread_run = False
