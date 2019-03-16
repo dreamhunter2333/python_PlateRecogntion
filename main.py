@@ -51,7 +51,7 @@ class Surface(ttk.Frame):
         top = ttk.Frame(self)
         win.title("车牌识别")
         win.minsize(850, 550)
-        win.wm_attributes('-topmost',1)
+        # win.wm_attributes('-topmost', 1)
         self.center_window()
 
         top.pack(side=TOP, expand=1, fill=tk.Y)
@@ -348,7 +348,15 @@ class Surface(ttk.Frame):
             return
         self.thread_run = False
         filename = img_math.img_read("tmp/img_contours.jpg")
-        cv2.imshow("img_show", filename)
+        screenwidth = win.winfo_screenwidth()
+        screenheight = win.winfo_screenheight()
+        win.update()
+        width = win.winfo_width()
+        height = win.winfo_height()
+        laji1 = int((screenwidth - width)/2)
+        laji2 = int((screenheight - height)/2)
+        cv2.imshow("preimg", filename)
+        cv2.moveWindow("preimg", laji1+100, laji2)
 
     def clean(self):
         if self.thread_run:
