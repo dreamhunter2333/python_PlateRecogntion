@@ -13,23 +13,26 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="322" column="8" selection-start-line="322" selection-start-column="8" selection-end-line="322" selection-end-column="8" />
+            <state relative-caret-position="165">
+              <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
               <folding>
                 <element signature="e#25#41#0" expanded="true" />
-                <element signature="e#368#891#0" />
-                <element signature="e#5164#5824#0" />
-                <element signature="e#5874#6607#0" />
-                <element signature="e#6657#7391#0" />
-                <element signature="e#7428#7711#0" />
-                <element signature="e#7747#8733#0" />
-                <element signature="e#8772#9674#0" />
-                <element signature="e#9720#10554#0" />
-                <element signature="e#10588#10798#0" />
-                <element signature="e#10841#11452#0" />
-                <element signature="e#11875#12047#0" />
-                <element signature="e#12078#12621#0" />
-                <element signature="e#12650#12779#0" />
+                <element signature="e#4691#5603#0" />
+                <element signature="e#5647#6307#0" />
+                <element signature="e#6357#7090#0" />
+                <element signature="e#7140#7874#0" />
+                <element signature="e#7911#8194#0" />
+                <element signature="e#8230#9216#0" />
+                <element signature="e#9644#10575#0" />
+                <element signature="e#10203#11037#0" />
+                <element signature="e#11071#11281#0" />
+                <element signature="e#11324#11935#0" />
+                <element signature="e#11970#12319#0" />
+                <element signature="e#12352#12664#0" />
+                <element signature="e#12705#12719#0" />
+                <element signature="e#12752#12808#0" />
+                <element signature="e#12846#13018#0" />
+                <element signature="e#13461#14060#0" />
               </folding>
             </state>
           </provider>
@@ -52,7 +55,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/img_recognition.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
+            <state relative-caret-position="1173">
               <caret line="71" column="17" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
             </state>
           </provider>
@@ -179,14 +182,14 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="625" y="23" width="1348" height="972" extended-state="0" />
+    <frame x="572" y="23" width="1348" height="972" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23210248" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3284091" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3284091" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -258,6 +261,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+          <folding>
+            <element signature="e#25#41#0" expanded="true" />
+            <element signature="e#4691#5603#0" />
+            <element signature="e#5647#6307#0" />
+            <element signature="e#6357#7090#0" />
+            <element signature="e#7140#7874#0" />
+            <element signature="e#7911#8194#0" />
+            <element signature="e#8230#9216#0" />
+            <element signature="e#9644#10575#0" />
+            <element signature="e#10203#11037#0" />
+            <element signature="e#11071#11281#0" />
+            <element signature="e#11324#11935#0" />
+            <element signature="e#11970#12319#0" />
+            <element signature="e#12352#12664#0" />
+            <element signature="e#12705#12719#0" />
+            <element signature="e#12752#12808#0" />
+            <element signature="e#12846#13018#0" />
+            <element signature="e#13461#14060#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/img_function.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -272,31 +301,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/img_recognition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
+        <state relative-caret-position="1173">
           <caret line="71" column="17" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="322" column="8" selection-start-line="322" selection-start-column="8" selection-end-line="322" selection-end-column="8" />
-          <folding>
-            <element signature="e#25#41#0" expanded="true" />
-            <element signature="e#368#891#0" />
-            <element signature="e#5164#5824#0" />
-            <element signature="e#5874#6607#0" />
-            <element signature="e#6657#7391#0" />
-            <element signature="e#7428#7711#0" />
-            <element signature="e#7747#8733#0" />
-            <element signature="e#8772#9674#0" />
-            <element signature="e#9720#10554#0" />
-            <element signature="e#10588#10798#0" />
-            <element signature="e#10841#11452#0" />
-            <element signature="e#11875#12047#0" />
-            <element signature="e#12078#12621#0" />
-            <element signature="e#12650#12779#0" />
-          </folding>
         </state>
       </provider>
     </entry>

@@ -50,12 +50,14 @@ class Surface(ttk.Frame):
         frame_right2 = ttk.Frame(self)
         top = ttk.Frame(self)
         win.title("车牌识别")
-
-        self.p1 = StringVar()
+        win.minsize(850, 550)
+        win.wm_attributes('-topmost',1)
+        self.center_window()
 
         top.pack(side=TOP, expand=1, fill=tk.Y)
         L1 = Label(top, text='网络地址:')
         L1.pack(side = LEFT)
+        self.p1 = StringVar()
         self.user_text = ttk.Entry(top, textvariable=self.p1, width=50)
         self.user_text.pack(side = LEFT)
         self.user_text.bind('<Key-Return>', self.url_pic2)
@@ -63,7 +65,7 @@ class Surface(ttk.Frame):
         url_ctl.pack(side = RIGHT)
 
         self.pack(fill=tk.BOTH, expand=tk.YES, padx="10", pady="10")
-        frame_left.pack(side=LEFT, expand=1, fill=BOTH)
+        frame_left.pack(side=LEFT, expand=1)
         frame_right1.pack(side=TOP, expand=1, fill=tk.Y)
         frame_right2.pack(side=RIGHT, expand=0)
         #ttk.Label(frame_left, text='地址：').pack(anchor="nw")
@@ -111,6 +113,16 @@ class Surface(ttk.Frame):
 
         self.predictor = predict.CardPredictor()
         self.predictor.train_svm()
+
+    def center_window(self):
+        screenwidth = win.winfo_screenwidth()
+        screenheight = win.winfo_screenheight()
+        win.update()
+        width = win.winfo_width()
+        height = win.winfo_height()
+        size = '+%d+%d' % ((screenwidth - width)/2, (screenheight - height)/2)
+        #print(size)
+        win.geometry(size)
 
     def excel(self):
         self.row = 0
@@ -252,6 +264,7 @@ class Surface(ttk.Frame):
         print(localtime, color_c, r_c, color_color, r_color)
         self.show_roi2(r_color, roi_color, color_color)
         self.show_roi1(r_c, roi_c, color_c)
+        self.center_window()
 
     def excel_add(self, the_value):
         excel_path = "data.xls"
@@ -342,6 +355,7 @@ class Surface(ttk.Frame):
             self.cameraflag=0
             return
         self.thread_run = False
+        self.center_window()
         self.p1.set("")
         img_bgr3 = img_math.img_read("pic/hy.png")
         self.imgtk2 = self.get_imgtk(img_bgr3)
