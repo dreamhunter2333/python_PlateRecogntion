@@ -1,7 +1,7 @@
 # Python 车牌识别
 ## 首先需要知道的
 毕业设计基于Opencv的车牌识别系统 \
-安装 python3.4
+安装 python3.4(macos下python3.7测试是可以的，摄像头卡卡的，win10+python3.7下摄像头狂闪)
 
 ``` bash
 
