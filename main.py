@@ -14,6 +14,7 @@ import tkinter.messagebox
 import xlrd
 import xlwt
 from xlutils import copy
+import requests
 
 
 class ThreadWithReturnValue(Thread):
@@ -47,12 +48,26 @@ class Surface(ttk.Frame):
         frame_left = ttk.Frame(self)
         frame_right1 = ttk.Frame(self)
         frame_right2 = ttk.Frame(self)
+        top = ttk.Frame(self)
         win.title("车牌识别")
+
+        self.p1 = StringVar()
+
+        top.pack(side=TOP, expand=1, fill=tk.Y)
+        L1 = Label(top, text='网络地址:')
+        L1.pack(side = LEFT)
+        self.user_text = ttk.Entry(top, textvariable=self.p1, width=50)
+        self.user_text.pack(side = LEFT)
+        self.user_text.bind('<Key-Return>', self.url_pic2)
+        url_ctl = ttk.Button(top, text="识别网络图片", width=20, command=self.url_pic)
+        url_ctl.pack(side = RIGHT)
+
         self.pack(fill=tk.BOTH, expand=tk.YES, padx="10", pady="10")
         frame_left.pack(side=LEFT, expand=1, fill=BOTH)
         frame_right1.pack(side=TOP, expand=1, fill=tk.Y)
         frame_right2.pack(side=RIGHT, expand=0)
-        ttk.Label(frame_left, text='原图：').pack(anchor="nw")
+        #ttk.Label(frame_left, text='地址：').pack(anchor="nw")
+
         self.image_ctl = ttk.Label(frame_left)
         self.image_ctl.pack(anchor="nw")
 
@@ -122,7 +137,6 @@ class Surface(ttk.Frame):
         first_row = w_sheet.row(self.row)
         first_row.set_style(tall_style)
         w.save(excel_path2)
-
 
     def get_imgtk(self, img_bgr):
         img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
@@ -297,6 +311,24 @@ class Surface(ttk.Frame):
         self.pic(self.pic_path)
         print("video_pic")
 
+    def url_pic(self):
+        IMAGE_URL = self.getuser()
+        r = requests.get(IMAGE_URL)
+        with open("tmp/url.png", 'wb') as f:
+            f.write(r.content)
+        print(IMAGE_URL)
+        self.thread_run = False
+        self.cameraflag=0
+        self.pic_path = "tmp/url.png"
+        #self.clean()
+        self.pic(self.pic_path)
+
+    def url_pic2(self, self2):
+        self.url_pic()
+
+    def getuser(self):
+        user = self.user_text.get() #获取文本框内容
+        return user
 
     def show_img_pre(self):
         if self.thread_run:
@@ -310,6 +342,7 @@ class Surface(ttk.Frame):
             self.cameraflag=0
             return
         self.thread_run = False
+        self.p1.set("")
         img_bgr3 = img_math.img_read("pic/hy.png")
         self.imgtk2 = self.get_imgtk(img_bgr3)
         self.image_ctl.configure(image=self.imgtk2)
@@ -322,8 +355,6 @@ class Surface(ttk.Frame):
 
         self.roi_ctl.configure(state='disabled')
         self.roi_ct2.configure(state='disabled')
-
-
 
 
 def close_window():

@@ -13,8 +13,47 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="99" selection-start-line="99" selection-end-line="99" />
+            <state relative-caret-position="217">
+              <caret line="339" column="20" selection-start-line="339" selection-start-column="20" selection-end-line="339" selection-end-column="20" />
+              <folding>
+                <element signature="e#25#41#0" expanded="true" />
+                <element signature="e#368#891#0" />
+                <element signature="e#5164#5824#0" />
+                <element signature="e#5874#6607#0" />
+                <element signature="e#6657#7391#0" />
+                <element signature="e#7428#7711#0" />
+                <element signature="e#7747#8733#0" />
+                <element signature="e#8772#9674#0" />
+                <element signature="e#9720#10554#0" />
+                <element signature="e#10588#10798#0" />
+                <element signature="e#10841#11452#0" />
+                <element signature="e#11875#12047#0" />
+                <element signature="e#12078#12621#0" />
+                <element signature="e#12650#12779#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/img_function.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+              <folding>
+                <element signature="e#254#367#0" />
+                <element signature="e#396#854#0" />
+                <element signature="e#882#16084#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/img_recognition.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="532">
+              <caret line="71" column="17" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -44,7 +83,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="572" />
+    <option name="x" value="625" />
     <option name="y" value="23" />
     <option name="width" value="1348" />
     <option name="height" value="972" />
@@ -140,14 +179,14 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="572" y="23" width="1348" height="972" extended-state="0" />
+    <frame x="625" y="23" width="1348" height="972" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23210248" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23210248" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3284091" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3284091" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -212,6 +251,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../pyqt5/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="90" selection-start-line="90" selection-end-line="98" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/img_function.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -226,22 +272,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/img_recognition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
+        <state relative-caret-position="532">
           <caret line="71" column="17" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../pyqt5/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="90" selection-start-line="90" selection-end-line="98" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="99" selection-start-line="99" selection-end-line="99" />
+        <state relative-caret-position="217">
+          <caret line="339" column="20" selection-start-line="339" selection-start-column="20" selection-end-line="339" selection-end-column="20" />
+          <folding>
+            <element signature="e#25#41#0" expanded="true" />
+            <element signature="e#368#891#0" />
+            <element signature="e#5164#5824#0" />
+            <element signature="e#5874#6607#0" />
+            <element signature="e#6657#7391#0" />
+            <element signature="e#7428#7711#0" />
+            <element signature="e#7747#8733#0" />
+            <element signature="e#8772#9674#0" />
+            <element signature="e#9720#10554#0" />
+            <element signature="e#10588#10798#0" />
+            <element signature="e#10841#11452#0" />
+            <element signature="e#11875#12047#0" />
+            <element signature="e#12078#12621#0" />
+            <element signature="e#12650#12779#0" />
+          </folding>
         </state>
       </provider>
     </entry>
