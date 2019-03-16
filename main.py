@@ -320,7 +320,7 @@ class Surface(ttk.Frame):
         self.thread_run = False
         self.cameraflag=0
         self.pic_path = "tmp/url.png"
-        #self.clean()
+        self.clean()
         self.pic(self.pic_path)
 
     def url_pic2(self, self2):
