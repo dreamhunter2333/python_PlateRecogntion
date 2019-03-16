@@ -30,5 +30,6 @@ python main.py
 ![演示](pic/3.png)
 ## 本次运行数据写入excel (data.xls)
 ![界面](pic/1.png)
+![界面](pic/4.png)
 ## 欢迎界面
 ![欢迎界面](pic/2.png)
