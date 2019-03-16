@@ -13,26 +13,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="357" column="26" selection-start-line="357" selection-start-column="20" selection-end-line="357" selection-end-column="26" />
+            <state relative-caret-position="260">
+              <caret line="343" lean-forward="true" selection-start-line="343" selection-end-line="343" />
               <folding>
                 <element signature="e#25#41#0" expanded="true" />
-                <element signature="e#4777#5084#0" />
-                <element signature="e#4691#5603#0" />
-                <element signature="e#5647#6307#0" />
-                <element signature="e#6357#7090#0" />
-                <element signature="e#7140#7874#0" />
-                <element signature="e#7911#8194#0" />
-                <element signature="e#8230#9216#0" />
-                <element signature="e#9644#10575#0" />
-                <element signature="e#10203#11037#0" />
-                <element signature="e#11071#11281#0" />
-                <element signature="e#11324#11935#0" />
-                <element signature="e#11970#12319#0" />
-                <element signature="e#12352#12664#0" />
-                <element signature="e#12705#12719#0" />
-                <element signature="e#12752#12808#0" />
-                <element signature="e#13461#14060#0" />
+                <element signature="e#12813#13225#0" />
+                <element signature="e#13307#13805#0" />
+                <element signature="e#13836#14432#0" />
               </folding>
             </state>
           </provider>
@@ -97,6 +84,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Course" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -108,7 +96,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Course" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -263,26 +250,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="357" column="26" selection-start-line="357" selection-start-column="20" selection-end-line="357" selection-end-column="26" />
+        <state relative-caret-position="260">
+          <caret line="343" lean-forward="true" selection-start-line="343" selection-end-line="343" />
           <folding>
             <element signature="e#25#41#0" expanded="true" />
-            <element signature="e#4777#5084#0" />
-            <element signature="e#4691#5603#0" />
-            <element signature="e#5647#6307#0" />
-            <element signature="e#6357#7090#0" />
-            <element signature="e#7140#7874#0" />
-            <element signature="e#7911#8194#0" />
-            <element signature="e#8230#9216#0" />
-            <element signature="e#9644#10575#0" />
-            <element signature="e#10203#11037#0" />
-            <element signature="e#11071#11281#0" />
-            <element signature="e#11324#11935#0" />
-            <element signature="e#11970#12319#0" />
-            <element signature="e#12352#12664#0" />
-            <element signature="e#12705#12719#0" />
-            <element signature="e#12752#12808#0" />
-            <element signature="e#13461#14060#0" />
+            <element signature="e#12813#13225#0" />
+            <element signature="e#13307#13805#0" />
+            <element signature="e#13836#14432#0" />
           </folding>
         </state>
       </provider>
