@@ -159,8 +159,12 @@ def img_color(card_imgs):
     for card_index, card_img in enumerate(card_imgs):
 
         green = yello = blue = black = white = 0
-        card_img_hsv = cv2.cvtColor(card_img, cv2.COLOR_BGR2HSV)
+        try:
+            card_img_hsv = cv2.cvtColor(card_img, cv2.COLOR_BGR2HSV)
+        except:
+            print("矫正矩形出错, 转换失败")
         # 有转换失败的可能，原因来自于上面矫正矩形出错
+
         if card_img_hsv is None:
             continue
         row_num, col_num = card_img_hsv.shape[:2]

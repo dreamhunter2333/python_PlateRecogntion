@@ -292,7 +292,10 @@ class CardPredictor:
             if color in ("blue", "yello", "green"):
                 card_img = card_imgs[i]
 
-                gray_img = cv2.cvtColor(card_img, cv2.COLOR_BGR2GRAY)
+                try:
+                    gray_img = cv2.cvtColor(card_img, cv2.COLOR_BGR2GRAY)
+                except:
+                    print("gray转换失败")
 
                 # 黄、绿车牌字符比背景暗、与蓝车牌刚好相反，所以黄、绿车牌需要反向
                 if color == "green" or color == "yello":

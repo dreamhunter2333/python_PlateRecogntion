@@ -10,26 +10,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-506">
-              <caret line="237" column="12" selection-start-line="237" selection-start-column="12" selection-end-line="237" selection-end-column="12" />
+            <state relative-caret-position="228">
+              <caret line="232" column="52" lean-forward="true" selection-start-line="232" selection-start-column="52" selection-end-line="232" selection-end-column="52" />
               <folding>
-                <element signature="e#25#41#0" expanded="true" />
                 <element signature="e#1230#4765#0" />
                 <element signature="e#4804#5107#0" />
                 <element signature="e#6094#6754#0" />
                 <element signature="e#6804#7537#0" />
                 <element signature="e#7587#8321#0" />
                 <element signature="e#8358#8641#0" />
-                <element signature="e#8677#9663#0" />
-                <element signature="e#12064#12274#0" />
                 <element signature="e#12317#12928#0" />
                 <element signature="e#12963#13312#0" />
-                <element signature="e#13345#13762#0" />
+                <element signature="e#13682#13696#0" />
+                <element signature="e#13729#13785#0" />
                 <element signature="e#13944#14442#0" />
+                <element signature="e#14352#14948#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/img_sql.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="41" column="34" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -59,11 +67,12 @@
         <option value="$PROJECT_DIR$/main_VLPR.py" />
         <option value="$PROJECT_DIR$/img_recognition.py" />
         <option value="$PROJECT_DIR$/sql.py" />
-        <option value="$PROJECT_DIR$/img_function.py" />
         <option value="$PROJECT_DIR$/create_sql.py" />
-        <option value="$PROJECT_DIR$/img_sql.py" />
         <option value="$PROJECT_DIR$/img_excel.py" />
+        <option value="$PROJECT_DIR$/img_math.py" />
+        <option value="$PROJECT_DIR$/img_function.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/img_sql.py" />
       </list>
     </option>
   </component>
@@ -266,20 +275,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/img_math.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="161" selection-start-line="161" selection-end-line="161" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/img_function.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="282" selection-start-line="282" selection-end-line="282" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../mysql/sql.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-102" />
@@ -302,32 +297,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/img_sql.py">
+    <entry file="file://$PROJECT_DIR$/img_math.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="19" lean-forward="true" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+        <state relative-caret-position="227">
+          <caret line="164" column="27" selection-start-line="164" selection-start-column="27" selection-end-line="164" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img_function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="583">
+          <caret line="304" lean-forward="true" selection-start-line="304" selection-end-line="304" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-506">
-          <caret line="237" column="12" selection-start-line="237" selection-start-column="12" selection-end-line="237" selection-end-column="12" />
+        <state relative-caret-position="228">
+          <caret line="232" column="52" lean-forward="true" selection-start-line="232" selection-start-column="52" selection-end-line="232" selection-end-column="52" />
           <folding>
-            <element signature="e#25#41#0" expanded="true" />
             <element signature="e#1230#4765#0" />
             <element signature="e#4804#5107#0" />
             <element signature="e#6094#6754#0" />
             <element signature="e#6804#7537#0" />
             <element signature="e#7587#8321#0" />
             <element signature="e#8358#8641#0" />
-            <element signature="e#8677#9663#0" />
-            <element signature="e#12064#12274#0" />
             <element signature="e#12317#12928#0" />
             <element signature="e#12963#13312#0" />
-            <element signature="e#13345#13762#0" />
+            <element signature="e#13682#13696#0" />
+            <element signature="e#13729#13785#0" />
             <element signature="e#13944#14442#0" />
+            <element signature="e#14352#14948#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img_sql.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="41" column="34" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
         </state>
       </provider>
     </entry>

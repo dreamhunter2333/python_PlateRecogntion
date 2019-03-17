@@ -40,6 +40,7 @@ class Surface(ttk.Frame):
     thread = None
     thread_run = False
     camera = None
+    pic_source = ""
     color_transform = {"green": ("绿牌", "#55FF55"), "yello": ("黄牌", "#FFFF00"), "blue": ("蓝牌", "#6666FF")}
 
     def __init__(self, win):
@@ -212,6 +213,7 @@ class Surface(ttk.Frame):
                     print("打开内置摄像头")
             else:
                 print("打开外置摄像头")
+        self.pic_source = "摄像头"
         self.cameraflag=0
         self.thread = threading.Thread(target=self.vedio_thread, args=(self,))
         self.thread.setDaemon(True)
@@ -234,9 +236,9 @@ class Surface(ttk.Frame):
         value = [localtime, color_c, r_c, color_color, r_color]
         if not self.cameraflag:
             img_excel.excel_add(value)
-            img_sql.sql(value[0], value[1], value[2], value[3], value[4])
+            img_sql.sql(value[0], value[1], value[2], value[3], value[4], self.pic_source)
 
-        print(localtime, color_c, r_c, color_color, r_color)
+        print(localtime, "|", color_c, r_c, "|", color_color, r_color, "|", self.pic_source)
         self.show_roi2(r_color, roi_color, color_color)
         self.show_roi1(r_c, roi_c, color_c)
         self.center_window()
@@ -246,6 +248,7 @@ class Surface(ttk.Frame):
         self.cameraflag=0
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpg图片", "*.jpg"), ("png图片", "*.png")])
         self.clean()
+        self.pic_source = "本地文件：" + self.pic_path
         self.pic(self.pic_path)
 
     def vedio_thread(delf,self):
@@ -284,11 +287,12 @@ class Surface(ttk.Frame):
         r = requests.get(IMAGE_URL)
         with open("tmp/url.png", 'wb') as f:
             f.write(r.content)
-        print(IMAGE_URL)
+        #print(IMAGE_URL)
         self.thread_run = False
         self.cameraflag=0
         self.pic_path = "tmp/url.png"
         self.clean()
+        self.pic_source = "网络地址：" + IMAGE_URL
         self.pic(self.pic_path)
 
     def url_pic2(self, self2):

@@ -3,7 +3,7 @@
 import pymysql
 
 
-def sql(TIME, COLOR1, TEXT1, COLOR2, TEXT2):
+def sql(TIME, COLOR1, TEXT1, COLOR2, TEXT2, SOURCE):
     # 打开数据库连接
     db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
 
@@ -11,10 +11,10 @@ def sql(TIME, COLOR1, TEXT1, COLOR2, TEXT2):
     cursor = db.cursor()
 
     # SQL 插入语句
-    sql = "INSERT INTO CARINFO(TIME, \
-       COLOR1, TEXT1, COLOR2, TEXT2) \
-       VALUES ('%s', '%s', '%s', '%s', '%s')" % \
-        (TIME, COLOR1, TEXT1, COLOR2, TEXT2)
+    sql = "INSERT INTO CARINFO2(TIME, \
+       COLOR1, TEXT1, COLOR2, TEXT2, SOURCE) \
+       VALUES ('%s', '%s', '%s', '%s', '%s', '%s')" % \
+        (TIME, COLOR1, TEXT1, COLOR2, TEXT2, SOURCE)
 
     try:
         # 执行sql语句
@@ -39,12 +39,13 @@ def create_sql():
     cursor = db.cursor()
 
     # 使用预处理语句创建表
-    sql = """CREATE TABLE CARINFO (
+    sql = """CREATE TABLE CARINFO2 (
             TIME VARCHAR(100),
             COLOR1 VARCHAR(100), 
             TEXT1 VARCHAR(100), 
             COLOR2 VARCHAR(100), 
-            TEXT2 VARCHAR(100))"""
+            TEXT2 VARCHAR(100), 
+            SOURCE VARCHAR(100))"""
 
     try:
         # 执行sql语句
