@@ -6,23 +6,23 @@
 ``` bash
 
 # 按顺序安装
-pip install -U pip
+pip3 install -U pip
 
-python -m pip install numpy==1.14.6
+python3 -m pip install numpy==1.14.6
 
-pip install opencv-python==3.4.5.20
+pip3 install opencv-python==3.4.5.20
 
-pip install pillow
+pip3 install pillow
 
-pip install xlutils
+pip3 install xlutils
 
-pip install pymysql
+pip3 install pymysql
 
 ```
 
 ## 运行演示
 ``` bash
-# 确保python指向python3.4
+
 # 运行
 # 查看两个sql py文件 数据库相关改为自己的(地址，用户名。密码，数据库名字)
 # db = pymysql.connect("localhost", "root", "qqqqqqqq1", "chepai")
@@ -30,7 +30,7 @@ pip install pymysql
 # 创建表 手动创建忽略此步
 # python create_sql.py
 
-python main.py
+python3 main.py
 
 ```
 
