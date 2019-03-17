@@ -24,6 +24,12 @@ pip install pymysql
 ``` bash
 # 确保python指向python3.4
 # 运行
+# 查看两个sql py文件 数据库相关改为自己的(地址，用户名。密码，数据库名字)
+# db = pymysql.connect("localhost", "root", "qqqqqqqq1", "chepai")
+
+# 创建表 手动创建忽略此步
+# python create_sql.py
+
 python main.py
 
 ```
