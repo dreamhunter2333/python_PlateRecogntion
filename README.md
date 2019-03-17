@@ -16,6 +16,8 @@ pip install pillow
 
 pip install xlutils
 
+pip install pymysql
+
 ```
 
 ## 运行演示
