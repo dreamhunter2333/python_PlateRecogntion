@@ -8,12 +8,14 @@ import img_function as predict
 import img_math
 import img_excel
 import img_sql
+import screencut
 from threading import Thread
 from tkinter import ttk
 from tkinter.filedialog import *
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageGrab
 import tkinter.messagebox
 import requests
+from time import sleep
 
 
 class ThreadWithReturnValue(Thread):
@@ -80,6 +82,7 @@ class Surface(ttk.Frame):
         from_img_pre = ttk.Button(frame_right2, text="查看预处理图像", width=20, command=self.show_img_pre)
         clean_ctrl = ttk.Button(frame_right2, text="清除识别数据", width=20, command=self.clean)
         exit_ctrl = ttk.Button(frame_right2, text="退出", width=20, command=close_window)
+        self.cut_ctrl = ttk.Button(frame_right2, text="截图识别", width=20, command=self.cut_pic)
         camera_ctrl = ttk.Button(frame_right2, text="开关摄像头实时识别(测试)", width=20, command=self.camera_flag)
 
         self.roi_ctl = ttk.Label(frame_right1)
@@ -89,6 +92,7 @@ class Surface(ttk.Frame):
         self.r_ctl.grid(column=0, row=3, sticky=tk.W)
         self.color_ctl = ttk.Label(frame_right1, text="", width="20")
         self.color_ctl.grid(column=0, row=4, sticky=tk.W)
+        self.cut_ctrl.pack(anchor="se", pady="5")
         camera_ctrl.pack(anchor="se", pady="5")
         from_vedio_ctl.pack(anchor="se", pady="5")
         from_video_ctl.pack(anchor="se", pady="5")
@@ -114,6 +118,27 @@ class Surface(ttk.Frame):
 
         self.predictor = predict.CardPredictor()
         self.predictor.train_svm()
+
+    def cut_pic(self):
+        #最小化主窗口
+        win.state('icon')
+        sleep(0.2)
+        filename = "tmp/cut.gif"
+        im =ImageGrab.grab()
+        im.save(filename)
+        im.close()
+        #显示全屏幕截图
+        w = screencut.MyCapture(win, filename)
+        self.cut_ctrl.wait_window(w.top)
+
+        #截图结束，恢复主窗口，并删除临时的全屏幕截图文件
+        win.state('normal')
+        os.remove(filename)
+        self.cameraflag = 0
+        self.pic_path = "tmp/cut.png"
+        self.clean()
+        self.pic_source = "来自截图"
+        self.pic(self.pic_path)
 
     def center_window(self):
         screenwidth = win.winfo_screenwidth()
@@ -245,7 +270,7 @@ class Surface(ttk.Frame):
 
     def from_pic(self):
         self.thread_run = False
-        self.cameraflag=0
+        self.cameraflag = 0
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpg图片", "*.jpg"), ("png图片", "*.png")])
         self.clean()
         self.pic_source = "本地文件：" + self.pic_path

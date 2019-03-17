@@ -13,33 +13,27 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="238" column="81" selection-start-line="238" selection-start-column="81" selection-end-line="238" selection-end-column="81" />
+            <state relative-caret-position="337">
+              <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
               <folding>
-                <element signature="e#1230#4765#0" />
+                <element signature="e#25#41#0" expanded="true" />
+                <element signature="e#399#922#0" />
                 <element signature="e#4804#5107#0" />
                 <element signature="e#6094#6754#0" />
                 <element signature="e#6804#7537#0" />
                 <element signature="e#7587#8321#0" />
                 <element signature="e#8358#8641#0" />
+                <element signature="e#8677#9663#0" />
+                <element signature="e#9702#10633#0" />
+                <element signature="e#12064#12274#0" />
                 <element signature="e#12317#12928#0" />
                 <element signature="e#12963#13312#0" />
+                <element signature="e#13345#13762#0" />
                 <element signature="e#13682#13696#0" />
                 <element signature="e#13729#13785#0" />
                 <element signature="e#13944#14442#0" />
                 <element signature="e#14352#14948#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/img_excel.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
-              <caret line="55" column="17" lean-forward="true" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#14975#15104#0" />
               </folding>
             </state>
           </provider>
@@ -59,6 +53,8 @@
       <find>img_only_color</find>
       <find>row</find>
       <find>not</find>
+      <find>AipOcr</find>
+      <find>top</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -76,11 +72,12 @@
         <option value="$PROJECT_DIR$/img_sql.py" />
         <option value="$PROJECT_DIR$/img_excel.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/screencut.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="556" />
+    <option name="x" value="596" />
     <option name="y" value="23" />
     <option name="width" value="1348" />
     <option name="height" value="972" />
@@ -186,9 +183,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="screencut" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="车牌识别" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/screencut.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.screencut" />
         <item itemvalue="Python.create_sql" />
         <item itemvalue="Python.main_VLPR" />
       </list>
@@ -198,14 +217,14 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="556" y="23" width="1348" height="972" extended-state="0" />
+    <frame x="596" y="23" width="1348" height="972" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23210248" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23210248" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3284091" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3284091" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -297,13 +316,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/img_function.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="304" lean-forward="true" selection-start-line="304" selection-end-line="304" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/img_sql.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -313,31 +325,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/img_excel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="55" column="17" lean-forward="true" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
+        <state relative-caret-position="508">
+          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/img_function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/temp.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screencut.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="238" column="81" selection-start-line="238" selection-start-column="81" selection-end-line="238" selection-end-column="81" />
+        <state relative-caret-position="337">
+          <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
           <folding>
-            <element signature="e#1230#4765#0" />
+            <element signature="e#25#41#0" expanded="true" />
+            <element signature="e#399#922#0" />
             <element signature="e#4804#5107#0" />
             <element signature="e#6094#6754#0" />
             <element signature="e#6804#7537#0" />
             <element signature="e#7587#8321#0" />
             <element signature="e#8358#8641#0" />
+            <element signature="e#8677#9663#0" />
+            <element signature="e#9702#10633#0" />
+            <element signature="e#12064#12274#0" />
             <element signature="e#12317#12928#0" />
             <element signature="e#12963#13312#0" />
+            <element signature="e#13345#13762#0" />
             <element signature="e#13682#13696#0" />
             <element signature="e#13729#13785#0" />
             <element signature="e#13944#14442#0" />
             <element signature="e#14352#14948#0" />
+            <element signature="e#14975#15104#0" />
           </folding>
         </state>
       </provider>
