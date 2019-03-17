@@ -28,8 +28,9 @@ pip3 install pymysql
 # db = pymysql.connect("localhost", "root", "qqqqqqqq1", "chepai")
 
 # 创建表 手动创建忽略此步
-# python create_sql.py
+python3 create_sql.py
 
+# 运行主界面
 python3 main.py
 
 ```
