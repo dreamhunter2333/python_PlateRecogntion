@@ -233,10 +233,10 @@ class Surface(ttk.Frame):
         r_color, roi_color, color_color = th2.join()
 
         localtime = time.asctime( time.localtime(time.time()))
-        value = [localtime, color_c, r_c, color_color, r_color]
+        value = [localtime, color_c, r_c, color_color, r_color, self.pic_source]
         if not self.cameraflag:
             img_excel.excel_add(value)
-            img_sql.sql(value[0], value[1], value[2], value[3], value[4], self.pic_source)
+            img_sql.sql(value[0], value[1], value[2], value[3], value[4], value[5])
 
         print(localtime, "|", color_c, r_c, "|", color_color, r_color, "|", self.pic_source)
         self.show_roi2(r_color, roi_color, color_color)

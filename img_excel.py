@@ -21,13 +21,14 @@ def create_excel():
     tall_style = xlwt.easyxf('font:height 720')  # 36pt
     first_row = w_sheet.row(0)
     first_row.set_style(tall_style)
-    value2 = ["时间", "形状识别车牌颜色", "形状识别车牌号", "颜色识别车牌颜色", "颜色识别车牌号"]
+    value2 = ["时间", "形状识别车牌颜色", "形状识别车牌号", "颜色识别车牌颜色", "颜色识别车牌号", "图像来源"]
     i = 0
-    while (i <= 4):
+    while (i <= 5):
         clo = i
         w_sheet.write(row, clo, value2[i], style)
         w_sheet.col(i).width = 7777
         i = i + 1
+    w_sheet.col(5).width = 30000
     row = 1
     first_row = w_sheet.row(row)
     first_row.set_style(tall_style)
@@ -50,7 +51,7 @@ def excel_add(the_value):
     first_row = w_sheet.row(row)
     first_row.set_style(tall_style)
     i = 0
-    while (i <= 4):
+    while (i <= 5):
         clo = i
         w_sheet.write(row, clo, the_value[i], style)
         i = i + 1
