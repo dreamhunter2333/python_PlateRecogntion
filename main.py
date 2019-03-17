@@ -6,15 +6,13 @@ import tkinter as tk
 import cv2
 import img_function as predict
 import img_math
+import img_excel
 import img_sql
 from threading import Thread
 from tkinter import ttk
 from tkinter.filedialog import *
 from PIL import Image, ImageTk
 import tkinter.messagebox
-import xlrd
-import xlwt
-from xlutils import copy
 import requests
 
 
@@ -110,7 +108,7 @@ class Surface(ttk.Frame):
         ttk.Label(frame_right1, text='-------------------------------').grid(column=0, row=11, sticky=tk.W)
 
         self.clean()
-        self.excel()
+        img_excel.create_excel()
         img_sql.create_sql()
 
         self.predictor = predict.CardPredictor()
@@ -125,32 +123,6 @@ class Surface(ttk.Frame):
         size = '+%d+%d' % ((screenwidth - width)/2, (screenheight - height)/2)
         #print(size)
         win.geometry(size)
-
-    def excel(self):
-        self.row = 0
-        self.i = 0
-        excel_path2 = "data.xls"
-        w = xlwt.Workbook()
-        w_sheet = w.add_sheet('1')
-        alignment = xlwt.Alignment() #创建居中
-        style = xlwt.XFStyle() # 创建样式
-        alignment.horz = xlwt.Alignment.HORZ_CENTER
-        alignment.vert = xlwt.Alignment.VERT_CENTER
-        style.alignment = alignment # 给样式添加文字居中属性
-        tall_style = xlwt.easyxf('font:height 720')  # 36pt
-        first_row = w_sheet.row(0)
-        first_row.set_style(tall_style)
-        value2 = ["时间", "形状识别车牌颜色", "形状识别车牌号", "颜色识别车牌颜色", "颜色识别车牌号"]
-        while (self.i <= 4):
-            clo = self.i
-            w_sheet.write(self.row, clo, value2[self.i], style)
-            w_sheet.col(self.i).width = 7777
-            self.i = self.i + 1
-        self.i = 0
-        self.row = 1
-        first_row = w_sheet.row(self.row)
-        first_row.set_style(tall_style)
-        w.save(excel_path2)
 
     def get_imgtk(self, img_bgr):
         img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
@@ -260,37 +232,14 @@ class Surface(ttk.Frame):
 
         localtime = time.asctime( time.localtime(time.time()))
         value = [localtime, color_c, r_c, color_color, r_color]
-        if (self.cameraflag==0):
-            self.excel_add(value)
+        if not self.cameraflag:
+            img_excel.excel_add(value)
+            img_sql.sql(value[0], value[1], value[2], value[3], value[4])
 
         print(localtime, color_c, r_c, color_color, r_color)
         self.show_roi2(r_color, roi_color, color_color)
         self.show_roi1(r_c, roi_c, color_c)
         self.center_window()
-
-    def excel_add(self, the_value):
-        excel_path = "data.xls"
-        rbook = xlrd.open_workbook(excel_path, formatting_info=True)
-        wbook = copy.copy(rbook)
-        w_sheet = wbook.get_sheet(0)
-        alignment = xlwt.Alignment() #创建居中
-        style = xlwt.XFStyle() # 创建样式
-        alignment.horz = xlwt.Alignment.HORZ_CENTER
-        alignment.vert = xlwt.Alignment.VERT_CENTER
-        style.alignment = alignment # 给样式添加文字居中属性
-        tall_style = xlwt.easyxf('font:height 720')  # 36pt
-        first_row = w_sheet.row(self.row)
-        first_row.set_style(tall_style)
-        img_sql.sql(the_value[0], the_value[1], the_value[2], the_value[3], the_value[4])
-        while (self.i <= 4):
-            clo = self.i
-            w_sheet.write(self.row, clo, the_value[self.i], style)
-            self.i = self.i + 1
-        if (self.i == 5):
-            self.i = 0
-            self.row = self.row + 1
-            print("excel写入成功")
-        wbook.save(excel_path)
 
     def from_pic(self):
         self.thread_run = False

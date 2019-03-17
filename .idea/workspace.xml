@@ -13,33 +13,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="113" column="28" selection-start-line="113" selection-start-column="28" selection-end-line="113" selection-end-column="28" />
+            <state relative-caret-position="-506">
+              <caret line="237" column="12" selection-start-line="237" selection-start-column="12" selection-end-line="237" selection-end-column="12" />
               <folding>
                 <element signature="e#25#41#0" expanded="true" />
+                <element signature="e#1230#4765#0" />
                 <element signature="e#4804#5107#0" />
-                <element signature="e#5138#6050#0" />
                 <element signature="e#6094#6754#0" />
                 <element signature="e#6804#7537#0" />
                 <element signature="e#7587#8321#0" />
                 <element signature="e#8358#8641#0" />
                 <element signature="e#8677#9663#0" />
-                <element signature="e#9702#10633#0" />
                 <element signature="e#12064#12274#0" />
                 <element signature="e#12317#12928#0" />
                 <element signature="e#12963#13312#0" />
                 <element signature="e#13345#13762#0" />
                 <element signature="e#13944#14442#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/img_sql.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -56,6 +46,8 @@
       <find>img_color_contours</find>
       <find>predict_result</find>
       <find>img_only_color</find>
+      <find>row</find>
+      <find>not</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -70,6 +62,7 @@
         <option value="$PROJECT_DIR$/img_function.py" />
         <option value="$PROJECT_DIR$/create_sql.py" />
         <option value="$PROJECT_DIR$/img_sql.py" />
+        <option value="$PROJECT_DIR$/img_excel.py" />
         <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
@@ -196,11 +189,11 @@
     <frame x="556" y="23" width="1348" height="972" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23210248" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23210248" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3284091" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3284091" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -299,27 +292,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/img_excel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="55" lean-forward="true" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/img_sql.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+        <state relative-caret-position="374">
+          <caret line="22" column="19" lean-forward="true" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="113" column="28" selection-start-line="113" selection-start-column="28" selection-end-line="113" selection-end-column="28" />
+        <state relative-caret-position="-506">
+          <caret line="237" column="12" selection-start-line="237" selection-start-column="12" selection-end-line="237" selection-end-column="12" />
           <folding>
             <element signature="e#25#41#0" expanded="true" />
+            <element signature="e#1230#4765#0" />
             <element signature="e#4804#5107#0" />
-            <element signature="e#5138#6050#0" />
             <element signature="e#6094#6754#0" />
             <element signature="e#6804#7537#0" />
             <element signature="e#7587#8321#0" />
             <element signature="e#8358#8641#0" />
             <element signature="e#8677#9663#0" />
-            <element signature="e#9702#10633#0" />
             <element signature="e#12064#12274#0" />
             <element signature="e#12317#12928#0" />
             <element signature="e#12963#13312#0" />
