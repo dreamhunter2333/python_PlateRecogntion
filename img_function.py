@@ -157,6 +157,7 @@ class CardPredictor:
         card_imgs = img_math.img_Transform(card_contours, oldimg, pic_width, pic_hight)
         colors, car_imgs = img_math.img_color(card_imgs)
         predict_result = []
+        predict_str = ""
         roi = None
         card_color = None
 
@@ -282,6 +283,7 @@ class CardPredictor:
         colors, car_imgs = img_math.img_color(card_imgs)
 
         predict_result = []
+        predict_str = ""
         roi = None
         card_color = None
 

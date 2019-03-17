@@ -4,7 +4,6 @@ import pymysql
 
 
 def sql(TIME, COLOR1, TEXT1, COLOR2, TEXT2):
-    print(TIME, COLOR1, TEXT1, COLOR2, TEXT2)
     # 打开数据库连接
     db = pymysql.connect("localhost", "root", "qqqqqqqq1", "chepai")
 
