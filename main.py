@@ -111,6 +111,7 @@ class Surface(ttk.Frame):
 
         self.clean()
         self.excel()
+        img_sql.create_sql()
 
         self.predictor = predict.CardPredictor()
         self.predictor.train_svm()
