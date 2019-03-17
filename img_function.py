@@ -244,12 +244,13 @@ class CardPredictor:
                         if part_card_old.shape[0] / part_card_old.shape[1] >= 7:  # 1太细，认为是边缘
                             continue
                     predict_result.append(charactor)
+                    predict_str = "".join(predict_result)
 
                 roi = card_img
                 card_color = color
                 break
 
-        return predict_result, roi, card_color  # 识别到的字符、定位的车牌图像、车牌颜色
+        return predict_str, roi, card_color  # 识别到的字符、定位的车牌图像、车牌颜色
 
     def img_only_color(self, filename, oldimg, img_contours):
         """
@@ -373,11 +374,12 @@ class CardPredictor:
                         if part_card_old.shape[0] / part_card_old.shape[1] >= 7:  # 1太细，认为是边缘
                             continue
                     predict_result.append(charactor)
+                    predict_str = "".join(predict_result)
 
                 roi = card_img
                 card_color = color
                 break
-        return predict_result, roi, card_color  # 识别到的字符、定位的车牌图像、车牌颜色
+        return predict_str, roi, card_color  # 识别到的字符、定位的车牌图像、车牌颜色
 
     def img_mser(self, filename):
         if type(filename) == type(""):

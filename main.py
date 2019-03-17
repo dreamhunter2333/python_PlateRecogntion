@@ -6,6 +6,7 @@ import tkinter as tk
 import cv2
 import img_function as predict
 import img_math
+import img_sql
 from threading import Thread
 from tkinter import ttk
 from tkinter.filedialog import *
@@ -279,6 +280,7 @@ class Surface(ttk.Frame):
         tall_style = xlwt.easyxf('font:height 720')  # 36pt
         first_row = w_sheet.row(self.row)
         first_row.set_style(tall_style)
+        img_sql.sql(the_value[0], the_value[1], the_value[2], the_value[3], the_value[4])
         while (self.i <= 4):
             clo = self.i
             w_sheet.write(self.row, clo, the_value[self.i], style)
@@ -286,7 +288,7 @@ class Surface(ttk.Frame):
         if (self.i == 5):
             self.i = 0
             self.row = self.row + 1
-            print("写入成功")
+            print("excel写入成功")
         wbook.save(excel_path)
 
     def from_pic(self):
