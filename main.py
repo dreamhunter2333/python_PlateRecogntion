@@ -8,6 +8,7 @@ import img_function as predict
 import img_math
 import img_excel
 import img_sql
+import img_api
 import screencut
 from threading import Thread
 from tkinter import ttk
@@ -266,6 +267,7 @@ class Surface(ttk.Frame):
         print(localtime, "|", color_c, r_c, "|", color_color, r_color, "|", self.pic_source)
         self.show_roi2(r_color, roi_color, color_color)
         self.show_roi1(r_c, roi_c, color_c)
+        #img_api.api_pic(pic_path)
         self.center_window()
 
     def from_pic(self):
