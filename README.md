@@ -35,7 +35,7 @@ python3 main.py
 由于样本数据来自网络，因此识别率只是看看而已。但清楚的图片还是可以识别出来的。  \
 ![演示](pic/3.png)
 ## 运行数据写入数据库
-![sql](pic/sql.jpg)
+![sql](pic/sql.png)
 ## 本次运行数据写入excel (data.xls)
 ![界面](pic/1.png)
 ![界面](pic/4.png)
