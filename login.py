@@ -6,10 +6,12 @@ from tkinter.filedialog import *
 import tkinter.messagebox
 from PIL import Image, ImageTk
 import os
+import img_sql
 
 
 class Login(ttk.Frame):
     thread_run = False
+    img_sql.create_signsql()
 
     def __init__(self, win):
         ttk.Frame.__init__(self, win)
@@ -60,20 +62,32 @@ class Login(ttk.Frame):
         log.geometry(size)
 
     def signup_interface(self):
-        tkinter.messagebox.showinfo(title='车牌识别管理系统', message='请联系管理员进行注册')
+        account = self.input_account.get()
+        password = self.input_password.get()
+        if (account == ""):
+            tkinter.messagebox.showinfo(title='车牌识别管理系统', message='账号不能为空')
+            return
+        if (password == ""):
+            tkinter.messagebox.showinfo(title='车牌识别管理系统', message='密码不能为空')
+            return
+        if img_sql.select_sql(account):
+            tkinter.messagebox.showinfo(title='车牌识别管理系统', message='用户名已注册')
+            return
+        img_sql.sign_sql(account, password)
+        tkinter.messagebox.showinfo(title='车牌识别管理系统', message='注册成功，请登录')
 
     def backstage_interface(self):
         account = self.input_account.get()
         password = self.input_password.get()
-        if (account == "admin"):
-            if (password == "admin"):
-                tkinter.messagebox.showinfo(title='车牌识别管理系统', message='登录成功')
-                close_window()
-                os.system("python3 ./main.py")
-            else:
-                tkinter.messagebox.showinfo(title='车牌识别管理系统', message='密码错误')
+        if not img_sql.select_sql(account):
+            tkinter.messagebox.showinfo(title='车牌识别管理系统', message='用户名未注册')
+            return
+        if (password == img_sql.select_sql(account)):
+            tkinter.messagebox.showinfo(title='车牌识别管理系统', message='登录成功')
+            close_window()
+            os.system("python3 ./main.py")
         else:
-                tkinter.messagebox.showinfo(title='车牌识别管理系统', message='用户名错误')
+            tkinter.messagebox.showinfo(title='车牌识别管理系统', message='密码错误')
 
 
 def close_window():
