@@ -183,7 +183,6 @@ class Surface(ttk.Frame):
             self.update_time = time.time()
             try:
                 c = self.color_transform[color]
-                print(c[0])
                 self.color_ctl.configure(text=c[0], state='enable')
             except:
                 self.color_ctl.configure(state='disabled')
