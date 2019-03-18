@@ -27,6 +27,9 @@ pip3 install pymysql
 # 查看img_sql.py文件 数据库相关改为自己的(地址，用户名。密码，数据库名字)
 # db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
 
+# 运行登录界面
+python3 login.py
+
 # 运行主界面
 python3 main.py
 
