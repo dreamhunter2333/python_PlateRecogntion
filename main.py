@@ -82,7 +82,7 @@ class Surface(ttk.Frame):
         from_video_ctl = ttk.Button(frame_right2, text="拍照并识别", width=20, command=self.video_pic)
         from_img_pre = ttk.Button(frame_right2, text="查看预处理图像", width=20, command=self.show_img_pre)
         clean_ctrl = ttk.Button(frame_right2, text="清除识别数据", width=20, command=self.clean)
-        exit_ctrl = ttk.Button(frame_right2, text="退出", width=20, command=close_window)
+        exit_ctrl = ttk.Button(frame_right2, text="api再次识别", width=20, command=self.api_ctl)
         self.cut_ctrl = ttk.Button(frame_right2, text="截图识别", width=20, command=self.cut_pic)
         camera_ctrl = ttk.Button(frame_right2, text="开关摄像头实时识别(测试)", width=20, command=self.camera_flag)
 
@@ -114,6 +114,7 @@ class Surface(ttk.Frame):
         ttk.Label(frame_right1, text='-------------------------------').grid(column=0, row=11, sticky=tk.W)
 
         self.clean()
+        self.apistr = None
         img_excel.create_excel()
         img_sql.create_sql()
 
@@ -171,10 +172,13 @@ class Surface(ttk.Frame):
 
     def show_roi1(self, r, roi, color):
         if r:
-            roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
-            roi = Image.fromarray(roi)
-            self.imgtk_roi1 = ImageTk.PhotoImage(image=roi)
-            self.roi_ctl.configure(image=self.imgtk_roi1, state='enable')
+            try:
+                roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
+                roi = Image.fromarray(roi)
+                self.imgtk_roi1 = ImageTk.PhotoImage(image=roi)
+                self.roi_ctl.configure(image=self.imgtk_roi1, state='enable')
+            except:
+                pass
             self.r_ctl.configure(text=str(r))
             self.update_time = time.time()
             try:
@@ -189,10 +193,13 @@ class Surface(ttk.Frame):
 
     def show_roi2(self, r, roi, color):
         if r:
-            roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
-            roi = Image.fromarray(roi)
-            self.imgtk_roi2 = ImageTk.PhotoImage(image=roi)
-            self.roi_ct2.configure(image=self.imgtk_roi2, state='enable')
+            try:
+                roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
+                roi = Image.fromarray(roi)
+                self.imgtk_roi2 = ImageTk.PhotoImage(image=roi)
+                self.roi_ct2.configure(image=self.imgtk_roi2, state='enable')
+            except:
+                pass
             self.r_ct2.configure(text=str(r))
             self.update_time = time.time()
             try:
@@ -240,7 +247,7 @@ class Surface(ttk.Frame):
             else:
                 print("打开外置摄像头")
         self.pic_source = "摄像头"
-        self.cameraflag=0
+        self.cameraflag = 0
         self.thread = threading.Thread(target=self.vedio_thread, args=(self,))
         self.thread.setDaemon(True)
         self.thread.start()
@@ -258,17 +265,17 @@ class Surface(ttk.Frame):
         r_c, roi_c, color_c = th1.join()
         r_color, roi_color, color_color = th2.join()
 
-        localtime = time.asctime( time.localtime(time.time()))
-        value = [localtime, color_c, r_c, color_color, r_color, self.pic_source]
-        if not self.cameraflag:
-            img_excel.excel_add(value)
-            img_sql.sql(value[0], value[1], value[2], value[3], value[4], value[5])
-
-        print(localtime, "|", color_c, r_c, "|", color_color, r_color, "|", self.pic_source)
         self.show_roi2(r_color, roi_color, color_color)
         self.show_roi1(r_c, roi_c, color_c)
-        #img_api.api_pic(pic_path)
         self.center_window()
+        localtime = time.asctime(time.localtime(time.time()))
+        if not self.cameraflag:
+            if not (r_color or color_color or r_c or color_c):
+                self.api_ctl()
+            value = [localtime, color_c, r_c, color_color, r_color, self.apistr, self.pic_source]
+            img_excel.excel_add(value)
+            img_sql.sql(value[0], value[1], value[2], value[3], value[4], value[5], value[6])
+        print(localtime, "|", color_c, r_c, "|", color_color, r_color, "| ", self.apistr, "|", self.pic_source)
 
     def from_pic(self):
         self.thread_run = False
@@ -328,6 +335,19 @@ class Surface(ttk.Frame):
     def getuser(self):
         user = self.user_text.get() #获取文本框内容
         return user
+
+    def api_ctl(self):
+        if self.thread_run:
+            return
+        self.thread_run = False
+        colorstr, textstr = img_api.api_pic(self.pic_path)
+        self.apistr = colorstr + textstr
+        self.show_roi1(textstr, None, colorstr)
+        self.show_roi2(textstr, None, colorstr)
+        localtime = time.asctime(time.localtime(time.time()))
+        value = [localtime, None, None, None, None, self.apistr, self.pic_source]
+        img_excel.excel_add(value)
+        img_sql.sql(value[0], value[1], value[2], value[3], value[4], value[5], value[6])
 
     def show_img_pre(self):
         if self.thread_run:

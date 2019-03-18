@@ -3,18 +3,21 @@
 import pymysql
 
 
-def sql(TIME, COLOR1, TEXT1, COLOR2, TEXT2, SOURCE):
-    # 打开数据库连接
-    db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
-
+def sql(TIME, COLOR1, TEXT1, COLOR2, TEXT2, API, SOURCE):
+    try:
+        # 打开数据库连接
+        db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
+    except:
+        print("数据库连接失败")
+        return
     # 使用cursor()方法获取操作游标
     cursor = db.cursor()
 
     # SQL 插入语句
-    sql = "INSERT INTO CARINFO2(TIME, \
-       COLOR1, TEXT1, COLOR2, TEXT2, SOURCE) \
-       VALUES ('%s', '%s', '%s', '%s', '%s', '%s')" % \
-        (TIME, COLOR1, TEXT1, COLOR2, TEXT2, SOURCE)
+    sql = "INSERT INTO CARINFO(TIME, \
+       COLOR1, TEXT1, COLOR2, TEXT2, API, SOURCE) \
+       VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')" % \
+        (TIME, COLOR1, TEXT1, COLOR2, TEXT2, API, SOURCE)
 
     try:
         # 执行sql语句
@@ -32,20 +35,24 @@ def sql(TIME, COLOR1, TEXT1, COLOR2, TEXT2, SOURCE):
 
 
 def create_sql():
-    # 打开数据库连接
-    db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
-
+    try:
+        # 打开数据库连接
+        db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
+    except:
+        print("数据库连接失败")
+        return
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = db.cursor()
 
     # 使用预处理语句创建表
-    sql = """CREATE TABLE CARINFO2 (
+    sql = """CREATE TABLE CARINFO (
             TIME VARCHAR(100),
             COLOR1 VARCHAR(100), 
             TEXT1 VARCHAR(100), 
             COLOR2 VARCHAR(100), 
             TEXT2 VARCHAR(100), 
-            SOURCE VARCHAR(100))"""
+            API VARCHAR(100),
+            SOURCE VARCHAR(500))"""
 
     try:
         # 执行sql语句

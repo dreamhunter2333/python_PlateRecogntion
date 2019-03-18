@@ -3,6 +3,7 @@ import requests
 import os
 import base64
 import json
+import jsonpath
 
 ACCESS_TOKEN = ''
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -81,4 +82,11 @@ def api_pic(CPH):
     # 车牌号识别
     testLicensePlate = LicensePlate(image=CPH)
     testLicensePlatejson = testLicensePlate.postLicensePlate()
-    print('车牌号识别：', testLicensePlate.postLicensePlate())
+
+    testcolor =jsonpath.jsonpath(testLicensePlatejson, '$..color')
+    testtext =jsonpath.jsonpath(testLicensePlatejson, '$..number')
+
+    testcolorstr = "".join(testcolor)
+    testtextstr = "".join(testtext)
+    #print('车牌号api识别：', testcolorstr, testtextstr)
+    return testcolorstr, testtextstr
