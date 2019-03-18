@@ -43,6 +43,7 @@ class Login(ttk.Frame):
         # 创建一个密码输入框,并设置尺寸  
         self.input_password = ttk.Entry(frame2, show='*', width=30)
         self.input_password.pack(side=RIGHT)
+        self.input_password.bind('<Key-Return>', self.login)
         # 创建一个注册系统的按钮  
         self.signup_button = ttk.Button(frame3, text="注册", width=15, command=self.signup_interface)
         self.signup_button.pack(side=LEFT)
@@ -89,6 +90,8 @@ class Login(ttk.Frame):
         else:
             tkinter.messagebox.showinfo(title='车牌识别管理系统', message='密码错误')
 
+    def login(self, self2):
+        self.backstage_interface()
 
 def close_window():
     print("log destroy")
