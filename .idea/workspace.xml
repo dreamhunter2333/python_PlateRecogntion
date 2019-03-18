@@ -10,44 +10,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/login.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="20" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+              <folding>
+                <element signature="e#25#45#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="667">
-              <caret line="338" column="22" selection-start-line="338" selection-start-column="22" selection-end-line="338" selection-end-column="22" />
+            <state relative-caret-position="63">
+              <caret line="185" column="25" selection-start-line="185" selection-start-column="25" selection-end-line="185" selection-end-column="25" />
               <folding>
                 <element signature="e#25#41#0" expanded="true" />
-                <element signature="e#8513#9531#0" />
-                <element signature="e#10707#10969#0" />
-                <element signature="e#11012#11623#0" />
-                <element signature="e#11658#12007#0" />
-                <element signature="e#12040#12504#0" />
-                <element signature="e#12545#12559#0" />
-                <element signature="e#12592#12648#0" />
-                <element signature="e#12966#13451#0" />
-                <element signature="e#12686#13184#0" />
+                <element signature="e#13543#14041#0" />
+                <element signature="e#14072#14668#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/img_excel.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="31" column="11" lean-forward="true" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/img_sql.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="47" column="33" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -70,6 +54,8 @@
       <find>top</find>
       <find>LicensePlate</find>
       <find>postLicensePlate</find>
+      <find>center_window</find>
+      <find>thread_run</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -89,12 +75,13 @@
         <option value="$PROJECT_DIR$/img_api.py" />
         <option value="$PROJECT_DIR$/img_sql.py" />
         <option value="$PROJECT_DIR$/img_excel.py" />
+        <option value="$PROJECT_DIR$/login.py" />
         <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="625" />
+    <option name="x" value="566" />
     <option name="y" value="23" />
     <option name="width" value="1348" />
     <option name="height" value="972" />
@@ -136,7 +123,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.login">
     <configuration name="create_sql" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="车牌识别" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -150,6 +137,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/create_sql.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="login" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="车牌识别" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/login.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -223,6 +231,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.login" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.screencut" />
         <item itemvalue="Python.create_sql" />
@@ -234,14 +243,13 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="625" y="23" width="1348" height="972" extended-state="0" />
-    <editor active="true" />
+    <frame x="566" y="23" width="1348" height="972" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23210248" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23210248" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3284091" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3284091" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -299,13 +307,7 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../pyqt5/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="90" selection-start-line="90" selection-end-line="98" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../../pyqt5/main.py" />
     <entry file="file://$PROJECT_DIR$/sql.py" />
     <entry file="file://$PROJECT_DIR$/../../mysql/sql.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -355,36 +357,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/img_sql.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
+        <state relative-caret-position="799">
           <caret line="47" column="33" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="338" column="22" selection-start-line="338" selection-start-column="22" selection-end-line="338" selection-end-column="22" />
-          <folding>
-            <element signature="e#25#41#0" expanded="true" />
-            <element signature="e#8513#9531#0" />
-            <element signature="e#10707#10969#0" />
-            <element signature="e#11012#11623#0" />
-            <element signature="e#11658#12007#0" />
-            <element signature="e#12040#12504#0" />
-            <element signature="e#12545#12559#0" />
-            <element signature="e#12592#12648#0" />
-            <element signature="e#12966#13451#0" />
-            <element signature="e#12686#13184#0" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/img_excel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="31" column="11" lean-forward="true" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+        <state relative-caret-position="289">
+          <caret line="30" column="32" lean-forward="true" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="185" column="25" selection-start-line="185" selection-start-column="25" selection-end-line="185" selection-end-column="25" />
+          <folding>
+            <element signature="e#25#41#0" expanded="true" />
+            <element signature="e#13543#14041#0" />
+            <element signature="e#14072#14668#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="20" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+          <folding>
+            <element signature="e#25#45#0" expanded="true" />
           </folding>
         </state>
       </provider>

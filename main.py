@@ -53,12 +53,12 @@ class Surface(ttk.Frame):
         frame_right2 = ttk.Frame(self)
         top = ttk.Frame(self)
         win.title("车牌识别")
-        win.minsize(850, 550)
+        win.minsize(850, 600)
         # win.wm_attributes('-topmost', 1)
         self.center_window()
 
         top.pack(side=TOP, expand=1, fill=tk.Y)
-        L1 = Label(top, text='网络地址:')
+        L1 = ttk.Label(top, text='网络地址:')
         L1.pack(side = LEFT)
         self.p1 = StringVar()
         self.user_text = ttk.Entry(top, textvariable=self.p1, width=50)
@@ -183,6 +183,7 @@ class Surface(ttk.Frame):
             self.update_time = time.time()
             try:
                 c = self.color_transform[color]
+                print(c[0])
                 self.color_ctl.configure(text=c[0], state='enable')
             except:
                 self.color_ctl.configure(state='disabled')
