@@ -145,8 +145,13 @@ class Surface(ttk.Frame):
         self.pic(self.pic_path)
 
     def reset(self):
+        self.reset2()
+        self.reset2()
+
+    def reset2(self):
         win.geometry("850x700")
         self.clean()
+        self.center_window()
 
     def center_window(self):
         screenwidth = win.winfo_screenwidth()
