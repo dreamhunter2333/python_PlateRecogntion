@@ -44,7 +44,7 @@ mysql.server start
 python3 login.py
 
 # 运行人脸(img/lock.jpg)登录界面
-python3 login.py
+python3 face.py
 
 # 运行主界面
 python3 main.py
