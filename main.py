@@ -58,14 +58,16 @@ class Surface(ttk.Frame):
         self.center_window()
 
         top.pack(side=TOP, expand=1, fill=tk.Y)
+        reset_ctl = ttk.Button(top, text="重置窗口", width=10, command=self.reset)
+        reset_ctl.pack(side=LEFT)
         L1 = ttk.Label(top, text='网络地址:')
-        L1.pack(side = LEFT)
+        L1.pack(side=LEFT)
         self.p1 = StringVar()
-        self.user_text = ttk.Entry(top, textvariable=self.p1, width=50)
+        self.user_text = ttk.Entry(top, textvariable=self.p1, width=45)
         self.user_text.pack(side = LEFT)
         self.user_text.bind('<Key-Return>', self.url_pic2)
         url_ctl = ttk.Button(top, text="识别网络图片", width=20, command=self.url_pic)
-        url_ctl.pack(side = RIGHT)
+        url_ctl.pack(side=RIGHT)
 
         self.pack(fill=tk.BOTH, expand=tk.YES, padx="10", pady="10")
         frame_left.pack(side=LEFT, expand=1)
@@ -142,6 +144,10 @@ class Surface(ttk.Frame):
         self.pic_source = "来自截图"
         self.pic(self.pic_path)
 
+    def reset(self):
+        win.geometry("850x700")
+        self.clean()
+
     def center_window(self):
         screenwidth = win.winfo_screenwidth()
         screenheight = win.winfo_screenheight()
@@ -155,24 +161,26 @@ class Surface(ttk.Frame):
     def get_imgtk(self, img_bgr):
         img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
         im = Image.fromarray(img)
-        imgtk = ImageTk.PhotoImage(image=im)
-        wide = imgtk.width()
-        high = imgtk.height()
-        if wide > self.viewwide or high > self.viewhigh:
-            wide_factor = self.viewwide / wide
-            high_factor = self.viewhigh / high
-            factor = min(wide_factor, high_factor)
-            wide = int(wide * factor)
-            if wide <= 0: wide = 1
-            high = int(high * factor)
-            if high <= 0: high = 1
-            im = im.resize((wide, high), Image.ANTIALIAS)
-            imgtk = ImageTk.PhotoImage(image=im)
+        w, h = im.size
+        pil_image_resized = self.resize2(w, h, im)
+        imgtk = ImageTk.PhotoImage(image=pil_image_resized)
         return imgtk
 
     def resize(self, w, h, pil_image):
         w_box = 200
         h_box = 50
+        f1 = 1.0*w_box/w
+        f2 = 1.0*h_box/h
+        factor = min([f1, f2])
+        width = int(w*factor)
+        height = int(h*factor)
+        return pil_image.resize((width, height), Image.ANTIALIAS)
+
+    def resize2(self, w, h, pil_image):
+        width = win.winfo_width()
+        height = win.winfo_height()
+        w_box = width - 250
+        h_box = height - 100
         f1 = 1.0*w_box/w
         f2 = 1.0*h_box/h
         factor = min([f1, f2])
@@ -283,7 +291,7 @@ class Surface(ttk.Frame):
 
         self.show_roi2(r_color, roi_color, color_color)
         self.show_roi1(r_c, roi_c, color_c)
-        self.center_window()
+        # self.center_window()
         localtime = time.asctime(time.localtime(time.time()))
         if not self.cameraflag:
             if not (r_color or color_color or r_c or color_c):
@@ -308,7 +316,8 @@ class Surface(ttk.Frame):
             _, img_bgr = self.camera.read()
             self.imgtk = self.get_imgtk(img_bgr)
             self.image_ctl.configure(image=self.imgtk)
-            if self.cameraflag :
+
+            if self.cameraflag:
                 if time.time() - predict_time > 2:
                     print("实时识别中self.cameraflag", self.cameraflag)
                     cv2.imwrite("tmp/test.jpg", img_bgr)
@@ -385,7 +394,7 @@ class Surface(ttk.Frame):
             self.cameraflag=0
             return
         self.thread_run = False
-        self.center_window()
+        # self.center_window()
         self.p1.set("")
         img_bgr3 = img_math.img_read("pic/hy.png")
         self.imgtk2 = self.get_imgtk(img_bgr3)

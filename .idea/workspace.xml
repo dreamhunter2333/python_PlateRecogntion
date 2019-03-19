@@ -13,10 +13,24 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="399" column="37" selection-start-line="399" selection-start-column="37" selection-end-line="399" selection-end-column="37" />
+            <state relative-caret-position="-1197">
+              <caret line="55" column="23" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="23" />
               <folding>
                 <element signature="e#25#41#0" expanded="true" />
+                <element signature="e#5073#5580#0" />
+                <element signature="e#5966#6227#0" />
+                <element signature="e#6674#6913#0" />
+                <element signature="e#6963#7914#0" />
+                <element signature="e#7987#8962#0" />
+                <element signature="e#8378#8661#0" />
+                <element signature="e#8697#9717#0" />
+                <element signature="e#9756#10962#0" />
+                <element signature="e#10996#11258#0" />
+                <element signature="e#12571#13468#0" />
+                <element signature="e#11947#12296#0" />
+                <element signature="e#12329#12793#0" />
+                <element signature="e#12834#12848#0" />
+                <element signature="e#12881#12937#0" />
                 <element signature="e#12970#13505#0" />
                 <element signature="e#13543#14041#0" />
               </folding>
@@ -32,7 +46,6 @@
       <find>deskew</find>
       <find>print</find>
       <find>else</find>
-      <find>get_imgtk</find>
       <find>img_color_contours</find>
       <find>predict_result</find>
       <find>img_only_color</find>
@@ -42,8 +55,9 @@
       <find>top</find>
       <find>LicensePlate</find>
       <find>postLicensePlate</find>
-      <find>center_window</find>
       <find>thread_run</find>
+      <find>center_window</find>
+      <find>get_imgtk</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -373,10 +387,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="399" column="37" selection-start-line="399" selection-start-column="37" selection-end-line="399" selection-end-column="37" />
+        <state relative-caret-position="-1197">
+          <caret line="55" column="23" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="23" />
           <folding>
             <element signature="e#25#41#0" expanded="true" />
+            <element signature="e#5073#5580#0" />
+            <element signature="e#5966#6227#0" />
+            <element signature="e#6674#6913#0" />
+            <element signature="e#6963#7914#0" />
+            <element signature="e#7987#8962#0" />
+            <element signature="e#8378#8661#0" />
+            <element signature="e#8697#9717#0" />
+            <element signature="e#9756#10962#0" />
+            <element signature="e#10996#11258#0" />
+            <element signature="e#12571#13468#0" />
+            <element signature="e#11947#12296#0" />
+            <element signature="e#12329#12793#0" />
+            <element signature="e#12834#12848#0" />
+            <element signature="e#12881#12937#0" />
             <element signature="e#12970#13505#0" />
             <element signature="e#13543#14041#0" />
           </folding>
