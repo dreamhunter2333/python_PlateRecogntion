@@ -117,7 +117,11 @@ class Login(ttk.Frame):
 
     def file_pic(self):
         self.pic_path2 = "img/lock.jpg"
-        facestr, result = img_api2.facef(self.pic_path, self.pic_path2)
+        try:
+            facestr, result = img_api2.facef(self.pic_path, self.pic_path2)
+        except:
+            tkinter.messagebox.showinfo('提示', '登录失败，请重试！')
+            return
         self.facer.configure(text=str(facestr))
         self.pic()
         if result > 80:

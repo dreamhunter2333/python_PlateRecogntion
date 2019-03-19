@@ -93,6 +93,7 @@ class Login(ttk.Frame):
     def login(self, self2):
         self.backstage_interface()
 
+
 def close_window():
     print("log destroy")
     if login.thread_run:

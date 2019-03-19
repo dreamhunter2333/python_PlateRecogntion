@@ -288,6 +288,7 @@ class Surface(ttk.Frame):
         self.thread_run = True
 
     def pic(self, pic_path):
+        self.apistr = None
         img_bgr = img_math.img_read(pic_path)
         first_img, oldimg = self.predictor.img_first_pre(img_bgr)
         if not self.cameraflag:
@@ -395,6 +396,7 @@ class Surface(ttk.Frame):
         self.show_roi2(textstr, None, colorstr)
         localtime = time.asctime(time.localtime(time.time()))
         value = [localtime, None, None, None, None, self.apistr, self.pic_source]
+        print(localtime, "|", "|", "| ", self.apistr, "|", self.pic_source)
         img_excel.excel_add(value)
         img_sql.sql(value[0], value[1], value[2], value[3], value[4], value[5], value[6])
 
