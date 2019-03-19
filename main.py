@@ -340,13 +340,17 @@ class Surface(ttk.Frame):
 
     def url_pic(self):
         IMAGE_URL = self.getuser()
+        URL_len = len(IMAGE_URL)
         if (IMAGE_URL == ""):
             tkinter.messagebox.showinfo('提示', '请输入网址！')
+            return
+        if (URL_len > 150):
+            tkinter.messagebox.showinfo('提示', '网址过长！')
             return
         r = requests.get(IMAGE_URL)
         with open("tmp/url.png", 'wb') as f:
             f.write(r.content)
-        #print(IMAGE_URL)
+        # print(IMAGE_URL)
         self.thread_run = False
         self.cameraflag=0
         self.pic_path = "tmp/url.png"

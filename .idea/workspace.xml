@@ -13,8 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1197">
-              <caret line="55" column="23" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="23" />
+            <state relative-caret-position="316">
+              <caret line="347" column="51" selection-start-line="347" selection-start-column="51" selection-end-line="347" selection-end-column="51" />
               <folding>
                 <element signature="e#25#41#0" expanded="true" />
                 <element signature="e#5073#5580#0" />
@@ -28,7 +28,6 @@
                 <element signature="e#10996#11258#0" />
                 <element signature="e#12571#13468#0" />
                 <element signature="e#11947#12296#0" />
-                <element signature="e#12329#12793#0" />
                 <element signature="e#12834#12848#0" />
                 <element signature="e#12881#12937#0" />
                 <element signature="e#12970#13505#0" />
@@ -83,7 +82,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="558" />
+    <option name="x" value="514" />
     <option name="y" value="23" />
     <option name="width" value="1348" />
     <option name="height" value="972" />
@@ -245,7 +244,7 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="558" y="23" width="1348" height="972" extended-state="0" />
+    <frame x="514" y="23" width="1348" height="972" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23210248" />
@@ -387,8 +386,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1197">
-          <caret line="55" column="23" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="23" />
+        <state relative-caret-position="316">
+          <caret line="347" column="51" selection-start-line="347" selection-start-column="51" selection-end-line="347" selection-end-column="51" />
           <folding>
             <element signature="e#25#41#0" expanded="true" />
             <element signature="e#5073#5580#0" />
@@ -402,7 +401,6 @@
             <element signature="e#10996#11258#0" />
             <element signature="e#12571#13468#0" />
             <element signature="e#11947#12296#0" />
-            <element signature="e#12329#12793#0" />
             <element signature="e#12834#12848#0" />
             <element signature="e#12881#12937#0" />
             <element signature="e#12970#13505#0" />
