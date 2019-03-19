@@ -397,8 +397,14 @@ class Surface(ttk.Frame):
         self.r_ct2.configure(text="")
         self.color_ct2.configure(text="", state='enable')
 
-        self.roi_ctl.configure(state='disabled')
-        self.roi_ct2.configure(state='disabled')
+        self.pilImage3 = Image.open("pic/locate.png")
+        w, h = self.pilImage3.size
+        pil_image_resized = self.resize(w, h, self.pilImage3)
+        self.tkImage3 = ImageTk.PhotoImage(image=pil_image_resized)
+        self.roi_ctl.configure(image=self.tkImage3, state='enable')
+        self.roi_ct2.configure(image=self.tkImage3, state='enable')
+        # self.roi_ctl.configure(state='disabled')
+        # self.roi_ct2.configure(state='disabled')
 
 
 def close_window():

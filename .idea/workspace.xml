@@ -13,12 +13,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
+            <state relative-caret-position="333">
+              <caret line="399" column="37" selection-start-line="399" selection-start-column="37" selection-end-line="399" selection-end-column="37" />
               <folding>
                 <element signature="e#25#41#0" expanded="true" />
+                <element signature="e#12970#13505#0" />
                 <element signature="e#13543#14041#0" />
-                <element signature="e#14072#14668#0" />
               </folding>
             </state>
           </provider>
@@ -373,12 +373,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
+        <state relative-caret-position="333">
+          <caret line="399" column="37" selection-start-line="399" selection-start-column="37" selection-end-line="399" selection-end-column="37" />
           <folding>
             <element signature="e#25#41#0" expanded="true" />
+            <element signature="e#12970#13505#0" />
             <element signature="e#13543#14041#0" />
-            <element signature="e#14072#14668#0" />
           </folding>
         </state>
       </provider>
