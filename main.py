@@ -53,7 +53,7 @@ class Surface(ttk.Frame):
         frame_right2 = ttk.Frame(self)
         top = ttk.Frame(self)
         win.title("车牌识别")
-        win.minsize(850, 600)
+        win.minsize(850, 700)
         # win.wm_attributes('-topmost', 1)
         self.center_window()
 
@@ -170,13 +170,26 @@ class Surface(ttk.Frame):
             imgtk = ImageTk.PhotoImage(image=im)
         return imgtk
 
+    def resize(self, w, h, pil_image):
+        w_box = 200
+        h_box = 50
+        f1 = 1.0*w_box/w
+        f2 = 1.0*h_box/h
+        factor = min([f1, f2])
+        width = int(w*factor)
+        height = int(h*factor)
+        return pil_image.resize((width, height), Image.ANTIALIAS)
+
     def show_roi1(self, r, roi, color):
         if r:
             try:
                 roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
                 roi = Image.fromarray(roi)
-                self.imgtk_roi1 = ImageTk.PhotoImage(image=roi)
-                self.roi_ctl.configure(image=self.imgtk_roi1, state='enable')
+                w, h = roi.size
+                pil_image_resized = self.resize(w, h, roi)
+                self.tkImage1 = ImageTk.PhotoImage(image=pil_image_resized)
+                # self.imgtk_roi1 = ImageTk.PhotoImage(image=roi)
+                self.roi_ctl.configure(image=self.tkImage1, state='enable')
             except:
                 pass
             self.r_ctl.configure(text=str(r))
@@ -196,8 +209,11 @@ class Surface(ttk.Frame):
             try:
                 roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)
                 roi = Image.fromarray(roi)
-                self.imgtk_roi2 = ImageTk.PhotoImage(image=roi)
-                self.roi_ct2.configure(image=self.imgtk_roi2, state='enable')
+                w, h = roi.size
+                pil_image_resized = self.resize(w, h, roi)
+                self.tkImage2 = ImageTk.PhotoImage(image=pil_image_resized)
+                #self.imgtk_roi2 = ImageTk.PhotoImage(image=roi)
+                self.roi_ct2.configure(image=self.tkImage2, state='enable')
             except:
                 pass
             self.r_ct2.configure(text=str(r))
