@@ -248,9 +248,14 @@ class Surface(ttk.Frame):
             return
         if not self.cameraflag:
             self.cameraflag = 1
+            self.thread2 = threading.Thread(target=self.video_pic2)
+            self.thread2.setDaemon(True)
+            self.thread2.start()
+            self.thread_run2 = True
         else:
             self.cameraflag = 0
-        print("关闭摄像头实时识别 self.cameraflag", self.cameraflag)
+            self.thread_run2 = False
+            print("关闭摄像头实时识别 self.cameraflag", self.cameraflag)
 
     def from_vedio(self):
         if self.thread_run:
@@ -285,8 +290,9 @@ class Surface(ttk.Frame):
     def pic(self, pic_path):
         img_bgr = img_math.img_read(pic_path)
         first_img, oldimg = self.predictor.img_first_pre(img_bgr)
-        self.imgtk = self.get_imgtk(img_bgr)
-        self.image_ctl.configure(image=self.imgtk)
+        if not self.cameraflag:
+            self.imgtk = self.get_imgtk(img_bgr)
+            self.image_ctl.configure(image=self.imgtk)
         th1 = ThreadWithReturnValue(target=self.predictor.img_color_contours, args=(first_img, oldimg))
         th2 = ThreadWithReturnValue(target=self.predictor.img_only_color, args=(oldimg, oldimg, first_img))
         th1.start()
@@ -308,6 +314,7 @@ class Surface(ttk.Frame):
 
     def from_pic(self):
         self.thread_run = False
+        self.thread_run2 = False
         self.cameraflag = 0
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpg图片", "*.jpg"), ("png图片", "*.png")])
         self.clean()
@@ -316,16 +323,21 @@ class Surface(ttk.Frame):
 
     def vedio_thread(delf,self):
         self.thread_run = True
-        predict_time = time.time()
         while self.thread_run:
             _, img_bgr = self.camera.read()
+            self.img_bg = img_bgr
             self.imgtk = self.get_imgtk(img_bgr)
             self.image_ctl.configure(image=self.imgtk)
+        print("run end")
 
+    def video_pic2(self):
+        self.thread_run2 = True
+        predict_time = time.time()
+        while self.thread_run2:
             if self.cameraflag:
                 if time.time() - predict_time > 2:
                     print("实时识别中self.cameraflag", self.cameraflag)
-                    cv2.imwrite("tmp/test.jpg", img_bgr)
+                    cv2.imwrite("tmp/test.jpg", self.img_bg)
                     self.pic_path = "tmp/test.jpg"
                     self.pic(self.pic_path)
                     predict_time = time.time()
@@ -336,6 +348,7 @@ class Surface(ttk.Frame):
             tkinter.messagebox.showinfo('提示', '请点击    [打开摄像头]    按钮！')
             return
         self.thread_run = False
+        self.thread_run2 = False
         _, img_bgr = self.camera.read()
         cv2.imwrite("tmp/test.jpg", img_bgr)
         self.pic_path = "tmp/test.jpg"
@@ -357,6 +370,7 @@ class Surface(ttk.Frame):
             f.write(r.content)
         # print(IMAGE_URL)
         self.thread_run = False
+        self.thread_run2 = False
         self.cameraflag=0
         self.pic_path = "tmp/url.png"
         self.clean()
@@ -374,6 +388,7 @@ class Surface(ttk.Frame):
         if self.thread_run:
             return
         self.thread_run = False
+        self.thread_run2 = False
         colorstr, textstr = img_api.api_pic(self.pic_path)
         self.apistr = colorstr + textstr
         self.show_roi1(textstr, None, colorstr)
@@ -387,6 +402,7 @@ class Surface(ttk.Frame):
         if self.thread_run:
             return
         self.thread_run = False
+        self.thread_run2 = False
         filename = img_math.img_read("tmp/img_contours.jpg")
         screenwidth = win.winfo_screenwidth()
         screenheight = win.winfo_screenheight()
@@ -403,6 +419,7 @@ class Surface(ttk.Frame):
             self.cameraflag=0
             return
         self.thread_run = False
+        self.thread_run2 = False
         # self.center_window()
         self.p1.set("")
         img_bgr3 = img_math.img_read("pic/hy.png")

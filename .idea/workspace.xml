@@ -9,29 +9,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="147" column="21" selection-start-line="147" selection-start-column="21" selection-end-line="147" selection-end-column="21" />
+            <state relative-caret-position="207">
+              <caret line="250" column="46" selection-start-line="250" selection-start-column="46" selection-end-line="250" selection-end-column="46" />
               <folding>
                 <element signature="e#25#41#0" expanded="true" />
-                <element signature="e#5073#5580#0" />
-                <element signature="e#5966#6227#0" />
-                <element signature="e#6674#6913#0" />
-                <element signature="e#6963#7914#0" />
-                <element signature="e#7987#8962#0" />
-                <element signature="e#8378#8661#0" />
-                <element signature="e#8697#9717#0" />
-                <element signature="e#9756#10962#0" />
-                <element signature="e#10996#11258#0" />
-                <element signature="e#12571#13468#0" />
-                <element signature="e#11947#12296#0" />
-                <element signature="e#12834#12848#0" />
-                <element signature="e#12881#12937#0" />
-                <element signature="e#12970#13505#0" />
-                <element signature="e#13543#14041#0" />
               </folding>
             </state>
           </provider>
@@ -57,6 +42,8 @@
       <find>thread_run</find>
       <find>center_window</find>
       <find>get_imgtk</find>
+      <find>self.thread_run2</find>
+      <find>self.cameraflag</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -82,7 +69,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="589" />
+    <option name="x" value="564" />
     <option name="y" value="23" />
     <option name="width" value="1348" />
     <option name="height" value="972" />
@@ -93,7 +80,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Course" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -105,6 +91,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Course" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -244,14 +231,14 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="589" y="23" width="1348" height="972" extended-state="0" />
+    <frame x="564" y="23" width="1348" height="972" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23210248" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23210248" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3284091" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3284091" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -384,27 +371,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/Cellar/python/3.7.2_2/Frameworks/Python.framework/Versions/3.7/lib/python3.7/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="916" selection-start-line="916" selection-end-line="916" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharmEdu2018.3/python_stubs/-1199943126/time.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="143" column="4" selection-start-line="143" selection-start-column="4" selection-end-line="143" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="147" column="21" selection-start-line="147" selection-start-column="21" selection-end-line="147" selection-end-column="21" />
+        <state relative-caret-position="207">
+          <caret line="250" column="46" selection-start-line="250" selection-start-column="46" selection-end-line="250" selection-end-column="46" />
           <folding>
             <element signature="e#25#41#0" expanded="true" />
-            <element signature="e#5073#5580#0" />
-            <element signature="e#5966#6227#0" />
-            <element signature="e#6674#6913#0" />
-            <element signature="e#6963#7914#0" />
-            <element signature="e#7987#8962#0" />
-            <element signature="e#8378#8661#0" />
-            <element signature="e#8697#9717#0" />
-            <element signature="e#9756#10962#0" />
-            <element signature="e#10996#11258#0" />
-            <element signature="e#12571#13468#0" />
-            <element signature="e#11947#12296#0" />
-            <element signature="e#12834#12848#0" />
-            <element signature="e#12881#12937#0" />
-            <element signature="e#12970#13505#0" />
-            <element signature="e#13543#14041#0" />
           </folding>
         </state>
       </provider>
