@@ -52,7 +52,8 @@ python3 login.py
 python3 main.py
 
 ```
-
+## 车牌对比识别前后是否一致
+![演示](pic/duibi.png)
 由于样本数据来自网络，使用hyperlpr提高识别率。但清楚的图片还是可以识别出来的。  \
 ![演示](pic/3.png)
 ## 两种方法都无法识别时百度api(手动按钮)

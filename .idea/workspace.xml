@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f61cb66b-28df-4de1-a347-1b82a4394409" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.xls" beforeDir="false" afterPath="$PROJECT_DIR$/data.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/img_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/img_function.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/match.py" beforeDir="false" afterPath="$PROJECT_DIR$/match.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/cut.png" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/cut.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/img_contours.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/img_contours.jpg" afterDir="false" />
-    </list>
+    <list default="true" id="f61cb66b-28df-4de1-a347-1b82a4394409" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,23 +11,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="319" column="62" selection-start-line="319" selection-start-column="62" selection-end-line="319" selection-end-column="62" />
-              <folding>
-                <element signature="e#25#41#0" expanded="true" />
-                <element signature="e#542#1065#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/match.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="150" column="14" selection-start-line="150" selection-start-column="14" selection-end-line="150" selection-end-column="14" />
+            <state relative-caret-position="-174">
+              <caret line="192" column="18" lean-forward="true" selection-start-line="192" selection-start-column="18" selection-end-line="192" selection-end-column="18" />
               <folding>
                 <element signature="e#25#45#0" expanded="true" />
               </folding>
@@ -130,7 +109,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.login">
     <configuration name="1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="车型识别" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -238,9 +217,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.login" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.match" />
-        <item itemvalue="Python.login" />
         <item itemvalue="Python.1" />
         <item itemvalue="Python.img_api" />
       </list>
@@ -251,7 +230,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="568" y="23" width="1348" height="972" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24943481" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -270,6 +248,10 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add match.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="add match.py" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file:///usr/local/lib/python3.7/site-packages/requests/api.py">
@@ -377,23 +359,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/match.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="150" column="14" selection-start-line="150" selection-start-column="14" selection-end-line="150" selection-end-column="14" />
+        <state relative-caret-position="570">
+          <caret line="308" column="15" lean-forward="true" selection-start-line="308" selection-start-column="15" selection-end-line="308" selection-end-column="15" />
           <folding>
-            <element signature="e#25#45#0" expanded="true" />
+            <element signature="e#25#41#0" expanded="true" />
+            <element signature="e#542#1065#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/match.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="319" column="62" selection-start-line="319" selection-start-column="62" selection-end-line="319" selection-end-column="62" />
+        <state relative-caret-position="-174">
+          <caret line="192" column="18" lean-forward="true" selection-start-line="192" selection-start-column="18" selection-end-line="192" selection-end-column="18" />
           <folding>
-            <element signature="e#25#41#0" expanded="true" />
-            <element signature="e#542#1065#0" />
+            <element signature="e#25#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
