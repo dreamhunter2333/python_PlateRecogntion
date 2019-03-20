@@ -42,9 +42,6 @@ class CardPredictor:
     def __init__(self):
         pass
 
-    def __del__(self):
-        self.save_traindata()
-
     def train_svm(self):
         # 识别英文字母和数字
         self.model = SVM(C=1, gamma=0.5)
@@ -52,57 +49,9 @@ class CardPredictor:
         self.modelchinese = SVM(C=1, gamma=0.5)
         if os.path.exists("svm.dat"):
             self.model.load("svm.dat")
-        else:
-            chars_train = []
-            chars_label = []
-
-            for root, dirs, files in os.walk("train\\chars2"):
-                if len(os.path.basename(root)) > 1:
-                    continue
-                root_int = ord(os.path.basename(root))
-                for filename in files:
-                    filepath = os.path.join(root, filename)
-                    digit_img = cv2.imread(filepath)
-                    digit_img = cv2.cvtColor(digit_img, cv2.COLOR_BGR2GRAY)
-                    chars_train.append(digit_img)
-                    # chars_label.append(1)
-                    chars_label.append(root_int)
-
-            chars_train = list(map(deskew, chars_train))
-            chars_train = img_recognition.preprocess_hog(chars_train)
-            # chars_train = chars_train.reshape(-1, 20, 20).astype(np.float32)
-            chars_label = np.array(chars_label)
-            print(chars_train.shape)
-            self.model.train(chars_train, chars_label)
         if os.path.exists("svmchinese.dat"):
             self.modelchinese.load("svmchinese.dat")
-        else:
-            chars_train = []
-            chars_label = []
-            for root, dirs, files in os.walk("train\\charsChinese"):
-                if not os.path.basename(root).startswith("zh_"):
-                    continue
-                pinyin = os.path.basename(root)
-                index = img_recognition.provinces.index(pinyin) + PROVINCE_START + 1  # 1是拼音对应的汉字
-                for filename in files:
-                    filepath = os.path.join(root, filename)
-                    digit_img = cv2.imread(filepath)
-                    digit_img = cv2.cvtColor(digit_img, cv2.COLOR_BGR2GRAY)
-                    chars_train.append(digit_img)
-                    # chars_label.append(1)
-                    chars_label.append(index)
-            chars_train = list(map(deskew, chars_train))
-            chars_train = img_recognition.preprocess_hog(chars_train)
-            # chars_train = chars_train.reshape(-1, 20, 20).astype(np.float32)
-            chars_label = np.array(chars_label)
-            print(chars_train.shape)
-            self.modelchinese.train(chars_train, chars_label)
 
-    def save_traindata(self):
-        if not os.path.exists("svm.dat"):
-            self.model.save("svm.dat")
-        if not os.path.exists("svmchinese.dat"):
-            self.modelchinese.save("svmchinese.dat")
 
     def img_first_pre(self, car_pic_file):
         """
