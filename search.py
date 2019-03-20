@@ -15,6 +15,7 @@ import lib.screencut as screencut
 from time import sleep
 
 
+
 class ThreadWithReturnValue(Thread):
     def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, *, daemon=None):
         Thread.__init__(self, group, target, name, args, kwargs, daemon=daemon)
@@ -44,6 +45,7 @@ class Login(ttk.Frame):
         self.center_window()
         self.s1 = StringVar()
         self.s2 = StringVar()
+        self.matchflag = 0
 
         self.pilImage = Image.open("pic/searchl.png")
         self.tkImage = ImageTk.PhotoImage(image=self.pilImage)
@@ -143,6 +145,27 @@ class Login(ttk.Frame):
         size = '+%d+%d' % ((screenwidth - width)/2, (screenheight - height)/2)
         log.geometry(size)
 
+    def get_img_list(self, images_path):
+        # array_of_img = []
+        for filename in os.listdir(images_path):
+            #print(filename)
+            try:
+                # img = cv2.imread(images_path + "/" + filename)
+                # array_of_img.append(images_path + "/" + filename)
+                images_path2 = images_path + "/" + filename
+                self.pilImage4 = Image.open(images_path2)
+                w, h = self.pilImage4.size
+                pil_image_resized2 = self.resize(w, h, self.pilImage4)
+                self.tkImage4 = ImageTk.PhotoImage(image=pil_image_resized2)
+                self.image_ctl2.configure(image=self.tkImage4)
+                self.pic_path2 = images_path2
+                self.match_pic()
+                if self.matchflag == 1:
+                    return
+            except:
+                pass
+        # print(array_of_img)
+
     def file1(self):
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpeg图片", "*.jpeg"), ("jpg图片", "*.jpg"), ("png图片", "*.png")])
         self.s1.set(self.pic_path)
@@ -153,13 +176,8 @@ class Login(ttk.Frame):
         self.image_ctl.configure(image=self.tkImage3)
 
     def file2(self):
-        self.pic_path2 = askopenfilename(title="选择识别图片", filetypes=[("jpeg图片", "*.jpeg"), ("jpg图片", "*.jpg"), ("png图片", "*.png")])
-        self.s2.set(self.pic_path2)
-        self.pilImage4 = Image.open(self.pic_path2)
-        w, h = self.pilImage4.size
-        pil_image_resized2 = self.resize(w, h, self.pilImage4)
-        self.tkImage4 = ImageTk.PhotoImage(image=pil_image_resized2)
-        self.image_ctl2.configure(image=self.tkImage4)
+        self.pic_path3 = askdirectory(title="选择识别路径")
+        self.s2.set(self.pic_path3)
 
     def url_p(self):
         url1 = self.input1.get()
@@ -176,14 +194,7 @@ class Login(ttk.Frame):
             imagepath1 = os.path.exists(self.pic_path)
             if imagepath1 == None:
                 tkinter.messagebox.showinfo(title='车牌对比识别系统', message='图片1路径错误')
-        if self.pic_path2 == "":
-            tkinter.messagebox.showinfo(title='车牌对比识别系统', message='图片2不能为空')
-            return
-        else:
-            imagepath2 = os.path.exists(self.pic_path2)
-            if imagepath2 == None:
-                tkinter.messagebox.showinfo(title='车牌对比识别系统', message='图片2路径错误')
-        self.match_pic()
+        self.get_img_list(self.pic_path3)
 
     def match_pic(self):
         matchstr1 = self.match_path(self.pic_path)
@@ -195,16 +206,12 @@ class Login(ttk.Frame):
         # print(Plate2[0][0])
         matchstr2 = Plate2[0][0]'''
         if matchstr1==matchstr2:
+            self.matchflag = 1
             matchstr3 = "        车牌相符        "
         else:
             matchstr3 = "        车牌不符        "
         matchstr = matchstr1 + matchstr3 + matchstr2
-
         self.match.configure(text=str(matchstr))
-        self.s1.set("")
-        self.s2.set("")
-        self.pic_path = ""
-        self.pic_path2 = ""
 
     def match_path(self, pic_path):
         r_c = None
