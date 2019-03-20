@@ -77,6 +77,8 @@ class Login(ttk.Frame):
         self.face_button2.pack(side=RIGHT)
         self.cut_ctrl3 = ttk.Button(frame2, text="截图选取", width=15, command=self.cut_pic2)
         self.cut_ctrl3.pack(side=RIGHT)
+        self.clean_button = ttk.Button(frame3, text="清楚显示信息", width=15, command=self.cut_clean)
+        self.clean_button.pack(side=LEFT)
         self.url_face_button = ttk.Button(frame3, text="网络地址识别", width=15, command=self.url_p)
         self.url_face_button.pack(side=LEFT)
         self.file_pic_button = ttk.Button(frame3, text="本地文件识别", width=15, command=self.file_pic)
@@ -265,6 +267,19 @@ class Login(ttk.Frame):
         width = int(w*factor)
         height = int(h*factor)
         return pil_image.resize((width, height), Image.ANTIALIAS)
+
+    def cut_clean(self):
+        self.pilImage3 = Image.open("pic/left.png")
+        self.tkImage3 = ImageTk.PhotoImage(image=self.pilImage3)
+        self.image_ctl.configure(image=self.tkImage3)
+        self.pilImage4 = Image.open("pic/right.png")
+        self.tkImage4 = ImageTk.PhotoImage(image=self.pilImage4)
+        self.image_ctl2.configure(image=self.tkImage4)
+        self.s1.set("")
+        self.s2.set("")
+        self.pic_path = ""
+        self.pic_path2 = ""
+        self.match.configure(text="")
 
 
 def close_window():

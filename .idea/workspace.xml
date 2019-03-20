@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f61cb66b-28df-4de1-a347-1b82a4394409" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/data.xls" beforeDir="false" afterPath="$PROJECT_DIR$/data.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/match.py" beforeDir="false" afterPath="$PROJECT_DIR$/match.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/cut.png" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/cut.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/img_contours.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/img_contours.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/url.png" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/url.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/url1.png" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/url1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/url2.png" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/url2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pic/duibi.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,37 +14,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" selection-start-line="18" selection-end-line="18" selection-end-column="22" />
-              <folding>
-                <element signature="e#542#1065#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/match.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="107" column="34" selection-start-line="107" selection-start-column="34" selection-end-line="107" selection-end-column="34" />
+            <state relative-caret-position="309">
+              <caret line="276" column="23" selection-start-line="276" selection-start-column="23" selection-end-line="276" selection-end-column="23" />
               <folding>
                 <element signature="e#25#45#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/screencut.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="73" column="39" lean-forward="true" selection-start-line="73" selection-start-column="39" selection-end-line="73" selection-end-column="39" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -80,6 +52,7 @@
       <find>Login</find>
       <find>cut_ctrl</find>
       <find>cut_pic</find>
+      <find>clean_button</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -102,7 +75,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="896" />
+    <option name="x" value="439" />
     <option name="y" value="23" />
     <option name="width" value="1348" />
     <option name="height" value="972" />
@@ -268,8 +241,7 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="568" y="23" width="1348" height="972" extended-state="0" />
-    <editor active="true" />
+    <frame x="439" y="23" width="1348" height="972" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24943481" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -390,16 +362,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" selection-start-line="18" selection-end-line="18" selection-end-column="22" />
-          <folding>
-            <element signature="e#542#1065#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/screencut.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="419">
@@ -410,10 +372,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="436" column="23" lean-forward="true" selection-start-line="430" selection-start-column="4" selection-end-line="436" selection-end-column="23" />
+          <folding>
+            <element signature="e#25#41#0" expanded="true" />
+            <element signature="e#542#1065#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/match.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="107" column="34" selection-start-line="107" selection-start-column="34" selection-end-line="107" selection-end-column="34" />
+        <state relative-caret-position="309">
+          <caret line="276" column="23" selection-start-line="276" selection-start-column="23" selection-end-line="276" selection-end-column="23" />
           <folding>
             <element signature="e#25#45#0" expanded="true" />
           </folding>
