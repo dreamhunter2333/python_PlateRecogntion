@@ -8,7 +8,7 @@ import img_function as predict
 import img_math
 import img_excel
 import img_sql
-import img_api
+from img_api import api_pic
 import screencut
 from threading import Thread
 from tkinter import ttk
@@ -17,6 +17,7 @@ from PIL import Image, ImageTk, ImageGrab
 import tkinter.messagebox
 import requests
 from time import sleep
+from hyperlpr import *
 
 
 class ThreadWithReturnValue(Thread):
@@ -300,14 +301,25 @@ class Surface(ttk.Frame):
         th2.start()
         r_c, roi_c, color_c = th1.join()
         r_color, roi_color, color_color = th2.join()
-
+        try:
+            Plate = HyperLPR_PlateRecogntion(img_bgr)
+            print(Plate[0][0])
+            r_c = Plate[0][0]
+            r_color = Plate[0][0]
+        except:
+            pass
+        if not color_color:
+            color_color = color_c
+        if not color_c:
+            color_c = color_color
         self.show_roi2(r_color, roi_color, color_color)
         self.show_roi1(r_c, roi_c, color_c)
         # self.center_window()
         localtime = time.asctime(time.localtime(time.time()))
         if not self.cameraflag:
             if not (r_color or color_color or r_c or color_c):
-                self.api_ctl()
+                pass
+                # self.api_ctl()
             value = [localtime, color_c, r_c, color_color, r_color, self.apistr, self.pic_source]
             img_excel.excel_add(value)
             img_sql.sql(value[0], value[1], value[2], value[3], value[4], value[5], value[6])
@@ -390,7 +402,7 @@ class Surface(ttk.Frame):
             return
         self.thread_run = False
         self.thread_run2 = False
-        colorstr, textstr = img_api.api_pic(self.pic_path)
+        colorstr, textstr = api_pic(self.pic_path)
         self.apistr = colorstr + textstr
         self.show_roi1(textstr, None, colorstr)
         self.show_roi2(textstr, None, colorstr)

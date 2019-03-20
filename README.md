@@ -16,6 +16,8 @@
 # 按顺序安装
 pip3 install -U pip
 
+pip3 install hyperlpr
+
 python3 -m pip install numpy==1.14.6
 
 pip3 install opencv-python==3.4.5.20
@@ -51,9 +53,9 @@ python3 main.py
 
 ```
 
-由于样本数据来自网络，因此识别率只是看看而已。但清楚的图片还是可以识别出来的。  \
+由于样本数据来自网络，使用hyperlpr提高识别率。但清楚的图片还是可以识别出来的。  \
 ![演示](pic/3.png)
-## 两种方法都无法识别时调用百度api(有手动按钮)
+## 两种方法都无法识别时百度api(手动按钮)
 ![log](pic/api.png)
 ## 登录注册页面
 ![log](pic/log.png)
