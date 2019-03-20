@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import threading
 import tkinter as tk
 from tkinter import ttk
 from tkinter.filedialog import *
@@ -13,6 +13,7 @@ import lib.img_function as predict
 from lib.img_api import api_pic
 import lib.screencut as screencut
 from time import sleep
+import time
 
 
 
@@ -46,6 +47,8 @@ class Login(ttk.Frame):
         self.s1 = StringVar()
         self.s2 = StringVar()
         self.matchflag = 0
+        self.stopflag = 0
+        self.pic_path = ""
 
         self.pilImage = Image.open("pic/searchl.png")
         self.tkImage = ImageTk.PhotoImage(image=self.pilImage)
@@ -71,15 +74,15 @@ class Login(ttk.Frame):
         self.face_button1.pack(side=RIGHT)
         self.cut_ctrl2 = ttk.Button(frame1, text="截图选取", width=15, command=self.cut_pic1)
         self.cut_ctrl2.pack(side=RIGHT)
-        self.label2 = ttk.Label(frame2, text='图片2(右): ')
+        self.label2 = ttk.Label(frame2, text='查找路径: ')
         self.label2.pack(side=LEFT)
         self.input2 = ttk.Entry(frame2, textvariable=self.s2, width=30)
         self.input2.pack(side=LEFT)
         self.face_button2 = ttk.Button(frame2, text="选择文件夹", width=15, command=self.file2)
         self.face_button2.pack(side=RIGHT)
-        self.clean_button = ttk.Button(frame3, text="清楚显示信息", width=15, command=self.cut_clean)
+        self.clean_button = ttk.Button(frame3, text="重置显示信息", width=15, command=self.cut_clean)
         self.clean_button.pack(side=LEFT)
-        self.url_face_button = ttk.Button(frame3, text="停止识别", width=15, command=self.url_p)
+        self.url_face_button = ttk.Button(frame3, text="停止识别", width=15, command=self.stop)
         self.url_face_button.pack(side=LEFT)
         self.file_pic_button = ttk.Button(frame3, text="开始识别", width=15, command=self.file_pic)
         self.file_pic_button.pack(side=RIGHT)
@@ -114,28 +117,6 @@ class Login(ttk.Frame):
         self.tkImage3 = ImageTk.PhotoImage(image=pil_image_resized)
         self.image_ctl.configure(image=self.tkImage3)
 
-    def cut_pic2(self):
-        log.state('icon')
-        sleep(0.2)
-        filename = "tmp/cut2.gif"
-        im =ImageGrab.grab()
-        im.save(filename)
-        im.close()
-        w = screencut.MyCapture(log, filename)
-        self.cut_ctrl3.wait_window(w.top)
-        log.state('normal')
-        os.remove(filename)
-        self.pic_path2 = "tmp/cut.png"
-        self.pic_cut = Image.open(self.pic_path2)
-        self.pic_cut.save("tmp/cut2.png")
-        self.pic_path2 = "tmp/cut2.png"
-        self.s2.set(self.pic_path2)
-        self.pilImage4 = Image.open(self.pic_path2)
-        w, h = self.pilImage4.size
-        pil_image_resized2 = self.resize(w, h, self.pilImage4)
-        self.tkImage4 = ImageTk.PhotoImage(image=pil_image_resized2)
-        self.image_ctl2.configure(image=self.tkImage4)
-
     def center_window(self):
         screenwidth = log.winfo_screenwidth()
         screenheight = log.winfo_screenheight()
@@ -146,25 +127,21 @@ class Login(ttk.Frame):
         log.geometry(size)
 
     def get_img_list(self, images_path):
-        # array_of_img = []
+        self.count = 0
+        self.array_of_img = []
         for filename in os.listdir(images_path):
             #print(filename)
             try:
-                # img = cv2.imread(images_path + "/" + filename)
-                # array_of_img.append(images_path + "/" + filename)
-                images_path2 = images_path + "/" + filename
-                self.pilImage4 = Image.open(images_path2)
-                w, h = self.pilImage4.size
-                pil_image_resized2 = self.resize(w, h, self.pilImage4)
-                self.tkImage4 = ImageTk.PhotoImage(image=pil_image_resized2)
-                self.image_ctl2.configure(image=self.tkImage4)
-                self.pic_path2 = images_path2
-                self.match_pic()
-                if self.matchflag == 1:
-                    return
+                img = cv2.imread(images_path + "/" + filename)
+                self.pilImage3 = Image.open(images_path + "/" + filename)
+                self.array_of_img.append(images_path + "/" + filename)
+                self.count = self.count + 1
+                # images_path2 = images_path + "/" + filename
+                # self.pic_path2 = images_path2
             except:
                 pass
-        # print(array_of_img)
+        self.count = self.count - 1
+        print(self.array_of_img)
 
     def file1(self):
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpeg图片", "*.jpeg"), ("jpg图片", "*.jpg"), ("png图片", "*.png")])
@@ -178,39 +155,92 @@ class Login(ttk.Frame):
     def file2(self):
         self.pic_path3 = askdirectory(title="选择识别路径")
         self.s2.set(self.pic_path3)
+        self.get_img_list(self.pic_path3)
+        self.thread2 = threading.Thread(target=self.pic_show)
+        self.thread2.setDaemon(True)
+        self.thread2.start()
+        self.thread_run2 = True
 
-    def url_p(self):
-        url1 = self.input1.get()
-        url2 = self.input2.get()
-        self.url_dpic1(url1)
-        self.url_dpic2(url2)
-        self.match_pic()
+    def stop(self):
+        self.stopflag = 0
+        print("stop")
 
     def file_pic(self):
-        if self.pic_path == "":
-            tkinter.messagebox.showinfo(title='车牌对比识别系统', message='图片1不能为空')
-            return
+        # print("file_pic")
+        if (self.pic_path == ""):
+            if self.input1.get()=="":
+                tkinter.messagebox.showinfo(title='车牌对比识别系统', message='图片1不能为空')
+                return
+            else:
+                self.matchstr1 = self.input1.get()
+                print(self.matchstr1)
         else:
             imagepath1 = os.path.exists(self.pic_path)
-            if imagepath1 == None:
-                tkinter.messagebox.showinfo(title='车牌对比识别系统', message='图片1路径错误')
-        self.get_img_list(self.pic_path3)
+            # print(imagepath1)
+            if not imagepath1:
+                return
+            else:
+                self.matchstr1 = self.match_path(self.pic_path)
+        # print("file_pic off")
+        self.matchflag = 0
+        self.stopflag = 1
+        self.thread = threading.Thread(target=self.pic_search, args=(self,))
+        self.thread.setDaemon(True)
+        self.thread.start()
+        self.thread_run = True
+
+    def pic_search(self, self2):
+        self.thread_run = True
+        print("开始查找")
+        wait_time = time.time()
+        while self.thread_run:
+            while self.count:
+                if self.stopflag==1:
+                    self.pic_path2 = self.array_of_img[self.count]
+                    try:
+                        self.match_pic()
+                    except:
+                        pass
+                    print("正在查找", self.count)
+                    print(self.pic_path2)
+                    if time.time()-wait_time > 2:
+                        self.count = self.count - 1
+                        wait_time = time.time()
+                    if self.matchflag == 1:
+                        print(self.pic_path2)
+                        self.thread_run = False
+        print("查找结束")
+
+    def pic_show(self):
+        self.thread_run2 = True
+        while self.thread_run2:
+            while self.count:
+                self.pic_path2 = self.array_of_img[self.count]
+                self.pilImage4 = Image.open(self.pic_path2)
+                w, h = self.pilImage4.size
+                pil_image_resized2 = self.resize(w, h, self.pilImage4)
+                self.tkImage4 = ImageTk.PhotoImage(image=pil_image_resized2)
+                self.image_ctl2.configure(image=self.tkImage4)
+                if self.matchflag == 1:
+                    # print(self.pic_path2)
+                    self.thread_run2 = False
+            if self.count == 0:
+                self.thread_run2 = False
+        self.pilImage4 = Image.open(self.pic_path2)
+        w, h = self.pilImage4.size
+        pil_image_resized2 = self.resize(w, h, self.pilImage4)
+        self.tkImage4 = ImageTk.PhotoImage(image=pil_image_resized2)
+        self.image_ctl2.configure(image=self.tkImage4)
 
     def match_pic(self):
-        matchstr1 = self.match_path(self.pic_path)
+        # matchstr1 = self.match_path(self.pic_path)
         matchstr2 = self.match_path(self.pic_path2)
-        '''Plate1 = HyperLPR_PlateRecogntion(image1)
-        # print(Plate1[0][0])
-        matchstr1 = Plate1[0][0]
-        Plate2 = HyperLPR_PlateRecogntion(image2)
-        # print(Plate2[0][0])
-        matchstr2 = Plate2[0][0]'''
-        if matchstr1==matchstr2:
+        if self.matchstr1==matchstr2:
             self.matchflag = 1
             matchstr3 = "        车牌相符        "
         else:
             matchstr3 = "        车牌不符        "
-        matchstr = matchstr1 + matchstr3 + matchstr2
+        matchstr = self.matchstr1 + matchstr3 + matchstr2
         self.match.configure(text=str(matchstr))
 
     def match_path(self, pic_path):
@@ -245,24 +275,6 @@ class Login(ttk.Frame):
         print(colorstr, textstr)
         return textstr
 
-    def url_dpic1(self, IMAGE_URL):
-        if (IMAGE_URL == ""):
-            tkinter.messagebox.showinfo('提示', '请输入网址1！')
-            return
-        r = requests.get(IMAGE_URL)
-        with open("tmp/url1.png", 'wb') as f:
-            f.write(r.content)
-        self.pic_path = "tmp/url1.png"
-
-    def url_dpic2(self, IMAGE_URL):
-        if (IMAGE_URL == ""):
-            tkinter.messagebox.showinfo('提示', '请输入网址2！')
-            return
-        r = requests.get(IMAGE_URL)
-        with open("tmp/url2.png", 'wb') as f:
-            f.write(r.content)
-        self.pic_path2 = "tmp/url2.png"
-
     def resize(self, w, h, pil_image):
         w_box = 400
         h_box = 400
@@ -280,6 +292,10 @@ class Login(ttk.Frame):
         self.pilImage4 = Image.open("pic/searchr.png")
         self.tkImage4 = ImageTk.PhotoImage(image=self.pilImage4)
         self.image_ctl2.configure(image=self.tkImage4)
+        self.stopflag = 0
+        self.count = 0
+        self.thread_run = False
+        self.thread_run2 = False
         self.s1.set("")
         self.s2.set("")
         self.pic_path = ""
