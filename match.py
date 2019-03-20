@@ -4,13 +4,15 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter.filedialog import *
 import tkinter.messagebox
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageGrab
 import requests
 from hyperlpr import *
 import cv2
 from threading import Thread
 import lib.img_function as predict
 from lib.img_api import api_pic
+import lib.screencut as screencut
+from time import sleep
 
 
 class ThreadWithReturnValue(Thread):
@@ -65,12 +67,16 @@ class Login(ttk.Frame):
         self.input1.pack(side=LEFT)
         self.face_button1 = ttk.Button(frame1, text="选择文件", width=15, command=self.file1)
         self.face_button1.pack(side=RIGHT)
+        self.cut_ctrl2 = ttk.Button(frame1, text="截图选取", width=15, command=self.cut_pic1)
+        self.cut_ctrl2.pack(side=RIGHT)
         self.label2 = ttk.Label(frame2, text='图片2(右): ')
         self.label2.pack(side=LEFT)
         self.input2 = ttk.Entry(frame2, textvariable=self.s2, width=30)
         self.input2.pack(side=LEFT)
         self.face_button2 = ttk.Button(frame2, text="选择文件", width=15, command=self.file2)
         self.face_button2.pack(side=RIGHT)
+        self.cut_ctrl3 = ttk.Button(frame2, text="截图选取", width=15, command=self.cut_pic2)
+        self.cut_ctrl3.pack(side=RIGHT)
         self.url_face_button = ttk.Button(frame3, text="网络地址识别", width=15, command=self.url_p)
         self.url_face_button.pack(side=LEFT)
         self.file_pic_button = ttk.Button(frame3, text="本地文件识别", width=15, command=self.file_pic)
@@ -84,6 +90,50 @@ class Login(ttk.Frame):
         self.predictor = predict.CardPredictor()
         self.predictor.train_svm()
 
+    def cut_pic1(self):
+        log.state('icon')
+        sleep(0.2)
+        filename = "tmp/cut1.gif"
+        im =ImageGrab.grab()
+        im.save(filename)
+        im.close()
+        w = screencut.MyCapture(log, filename)
+        self.cut_ctrl2.wait_window(w.top)
+        log.state('normal')
+        os.remove(filename)
+        self.pic_path = "tmp/cut.png"
+        self.pic_cut = Image.open(self.pic_path)
+        self.pic_cut.save("tmp/cut1.png")
+        self.pic_path = "tmp/cut1.png"
+        self.s1.set(self.pic_path)
+        self.pilImage3 = Image.open(self.pic_path)
+        w, h = self.pilImage3.size
+        pil_image_resized = self.resize(w, h, self.pilImage3)
+        self.tkImage3 = ImageTk.PhotoImage(image=pil_image_resized)
+        self.image_ctl.configure(image=self.tkImage3)
+
+    def cut_pic2(self):
+        log.state('icon')
+        sleep(0.2)
+        filename = "tmp/cut2.gif"
+        im =ImageGrab.grab()
+        im.save(filename)
+        im.close()
+        w = screencut.MyCapture(log, filename)
+        self.cut_ctrl3.wait_window(w.top)
+        log.state('normal')
+        os.remove(filename)
+        self.pic_path2 = "tmp/cut.png"
+        self.pic_cut = Image.open(self.pic_path2)
+        self.pic_cut.save("tmp/cut2.png")
+        self.pic_path2 = "tmp/cut2.png"
+        self.s2.set(self.pic_path2)
+        self.pilImage4 = Image.open(self.pic_path2)
+        w, h = self.pilImage4.size
+        pil_image_resized2 = self.resize(w, h, self.pilImage4)
+        self.tkImage4 = ImageTk.PhotoImage(image=pil_image_resized2)
+        self.image_ctl2.configure(image=self.tkImage4)
+
     def center_window(self):
         screenwidth = log.winfo_screenwidth()
         screenheight = log.winfo_screenheight()
@@ -96,10 +146,20 @@ class Login(ttk.Frame):
     def file1(self):
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpeg图片", "*.jpeg"), ("jpg图片", "*.jpg"), ("png图片", "*.png")])
         self.s1.set(self.pic_path)
+        self.pilImage3 = Image.open(self.pic_path)
+        w, h = self.pilImage3.size
+        pil_image_resized = self.resize(w, h, self.pilImage3)
+        self.tkImage3 = ImageTk.PhotoImage(image=pil_image_resized)
+        self.image_ctl.configure(image=self.tkImage3)
 
     def file2(self):
         self.pic_path2 = askopenfilename(title="选择识别图片", filetypes=[("jpeg图片", "*.jpeg"), ("jpg图片", "*.jpg"), ("png图片", "*.png")])
         self.s2.set(self.pic_path2)
+        self.pilImage4 = Image.open(self.pic_path2)
+        w, h = self.pilImage4.size
+        pil_image_resized2 = self.resize(w, h, self.pilImage4)
+        self.tkImage4 = ImageTk.PhotoImage(image=pil_image_resized2)
+        self.image_ctl2.configure(image=self.tkImage4)
 
     def url_p(self):
         url1 = self.input1.get()
@@ -141,16 +201,6 @@ class Login(ttk.Frame):
         matchstr = matchstr1 + matchstr3 + matchstr2
 
         self.match.configure(text=str(matchstr))
-        self.pilImage3 = Image.open(self.pic_path)
-        w, h = self.pilImage3.size
-        pil_image_resized = self.resize(w, h, self.pilImage3)
-        self.tkImage3 = ImageTk.PhotoImage(image=pil_image_resized)
-        self.image_ctl.configure(image=self.tkImage3)
-        self.pilImage4 = Image.open(self.pic_path2)
-        w, h = self.pilImage4.size
-        pil_image_resized2 = self.resize(w, h, self.pilImage4)
-        self.tkImage4 = ImageTk.PhotoImage(image=pil_image_resized2)
-        self.image_ctl2.configure(image=self.tkImage4)
         self.s1.set("")
         self.s2.set("")
         self.pic_path = ""
@@ -185,6 +235,7 @@ class Login(ttk.Frame):
 
     def api_ctl(self, pic_path):
         colorstr, textstr = api_pic(pic_path)
+        print(colorstr, textstr)
         return textstr
 
     def url_dpic1(self, IMAGE_URL):
