@@ -51,6 +51,9 @@ python3 login.py
 # 运行主界面
 python3 main.py
 
+# 运行车牌对比识别主界面
+python3 match.py
+
 ```
 ## 车牌对比识别前后是否一致
 ![演示](pic/duibi.png)
