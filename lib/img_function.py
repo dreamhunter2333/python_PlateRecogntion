@@ -47,10 +47,10 @@ class CardPredictor:
         self.model = SVM(C=1, gamma=0.5)
         # 识别中文
         self.modelchinese = SVM(C=1, gamma=0.5)
-        if os.path.exists("svm.dat"):
-            self.model.load("svm.dat")
-        if os.path.exists("svmchinese.dat"):
-            self.modelchinese.load("svmchinese.dat")
+        if os.path.exists("lib/svm.dat"):
+            self.model.load("lib/svm.dat")
+        if os.path.exists("lib/svmchinese.dat"):
+            self.modelchinese.load("lib/svmchinese.dat")
 
 
     def img_first_pre(self, car_pic_file):
