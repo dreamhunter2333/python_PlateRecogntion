@@ -8,6 +8,25 @@ from PIL import Image, ImageTk
 import requests
 from hyperlpr import *
 import cv2
+from threading import Thread
+import lib.img_function as predict
+from lib.img_api import api_pic
+
+
+class ThreadWithReturnValue(Thread):
+    def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, *, daemon=None):
+        Thread.__init__(self, group, target, name, args, kwargs, daemon=daemon)
+        self._return1 = None
+        self._return2 = None
+        self._return3 = None
+
+    def run(self):
+        if self._target is not None:
+            self._return1, self._return2, self._return3 = self._target(*self._args, **self._kwargs)
+
+    def join(self):
+        Thread.join(self)
+        return self._return1, self._return2, self._return3
 
 
 class Login(ttk.Frame):
@@ -62,6 +81,9 @@ class Login(ttk.Frame):
 
         self.pack(fill=tk.BOTH, expand=tk.YES, padx="10", pady="10")
 
+        self.predictor = predict.CardPredictor()
+        self.predictor.train_svm()
+
     def center_window(self):
         screenwidth = log.winfo_screenwidth()
         screenheight = log.winfo_screenheight()
@@ -72,11 +94,11 @@ class Login(ttk.Frame):
         log.geometry(size)
 
     def file1(self):
-        self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpg图片", "*.jpg"), ("png图片", "*.png")])
+        self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpeg图片", "*.jpeg"), ("jpg图片", "*.jpg"), ("png图片", "*.png")])
         self.s1.set(self.pic_path)
 
     def file2(self):
-        self.pic_path2 = askopenfilename(title="选择识别图片", filetypes=[("jpg图片", "*.jpg"), ("png图片", "*.png")])
+        self.pic_path2 = askopenfilename(title="选择识别图片", filetypes=[("jpeg图片", "*.jpeg"), ("jpg图片", "*.jpg"), ("png图片", "*.png")])
         self.s2.set(self.pic_path2)
 
     def url_p(self):
@@ -87,17 +109,31 @@ class Login(ttk.Frame):
         self.match_pic()
 
     def file_pic(self):
+        if self.pic_path == "":
+            tkinter.messagebox.showinfo(title='车牌对比识别系统', message='图片1不能为空')
+            return
+        else:
+            imagepath1 = os.path.exists(self.pic_path)
+            if imagepath1 == None:
+                tkinter.messagebox.showinfo(title='车牌对比识别系统', message='图片1路径错误')
+        if self.pic_path2 == "":
+            tkinter.messagebox.showinfo(title='车牌对比识别系统', message='图片2不能为空')
+            return
+        else:
+            imagepath2 = os.path.exists(self.pic_path2)
+            if imagepath2 == None:
+                tkinter.messagebox.showinfo(title='车牌对比识别系统', message='图片2路径错误')
         self.match_pic()
 
     def match_pic(self):
-        image1 = cv2.imread(self.pic_path)
-        image2 = cv2.imread(self.pic_path2)
-        Plate1 = HyperLPR_PlateRecogntion(image1)
+        matchstr1 = self.match_path(self.pic_path)
+        matchstr2 = self.match_path(self.pic_path2)
+        '''Plate1 = HyperLPR_PlateRecogntion(image1)
         # print(Plate1[0][0])
         matchstr1 = Plate1[0][0]
         Plate2 = HyperLPR_PlateRecogntion(image2)
         # print(Plate2[0][0])
-        matchstr2 = Plate2[0][0]
+        matchstr2 = Plate2[0][0]'''
         if matchstr1==matchstr2:
             matchstr3 = "        车牌相符        "
         else:
@@ -117,6 +153,39 @@ class Login(ttk.Frame):
         self.image_ctl2.configure(image=self.tkImage4)
         self.s1.set("")
         self.s2.set("")
+        self.pic_path = ""
+        self.pic_path2 = ""
+
+    def match_path(self, pic_path):
+        r_c = None
+        r_color = None
+        textstr = None
+        img_bgr = cv2.imread(pic_path)
+        first_img, oldimg = self.predictor.img_first_pre(img_bgr)
+        th1 = ThreadWithReturnValue(target=self.predictor.img_color_contours, args=(first_img, oldimg))
+        th2 = ThreadWithReturnValue(target=self.predictor.img_only_color, args=(oldimg, oldimg, first_img))
+        th1.start()
+        th2.start()
+        r_c, roi_c, color_c = th1.join()
+        r_color, roi_color, color_color = th2.join()
+        try:
+            Plate = HyperLPR_PlateRecogntion(img_bgr)
+            print(Plate[0][0])
+            r_c = Plate[0][0]
+            r_color = Plate[0][0]
+        except:
+            pass
+        if r_c:
+            textstr = r_c
+        if r_color:
+            textstr = r_color
+        if not (r_color or r_c):
+            textstr = self.api_ctl(pic_path)
+        return str(textstr)
+
+    def api_ctl(self, pic_path):
+        colorstr, textstr = api_pic(pic_path)
+        return textstr
 
     def url_dpic1(self, IMAGE_URL):
         if (IMAGE_URL == ""):

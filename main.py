@@ -318,8 +318,8 @@ class Surface(ttk.Frame):
         localtime = time.asctime(time.localtime(time.time()))
         if not self.cameraflag:
             if not (r_color or color_color or r_c or color_c):
+                self.api_ctl()
                 pass
-                # self.api_ctl()
             value = [localtime, color_c, r_c, color_color, r_color, self.apistr, self.pic_source]
             img_excel.excel_add(value)
             img_sql.sql(value[0], value[1], value[2], value[3], value[4], value[5], value[6])
@@ -329,7 +329,7 @@ class Surface(ttk.Frame):
         self.thread_run = False
         self.thread_run2 = False
         self.cameraflag = 0
-        self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpg图片", "*.jpg"), ("png图片", "*.png")])
+        self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpeg图片", "*.jpeg"), ("jpg图片", "*.jpg"), ("png图片", "*.png")])
         self.clean()
         self.pic_source = "本地文件：" + self.pic_path
         self.pic(self.pic_path)

@@ -113,8 +113,11 @@ class CardPredictor:
         for i, color in enumerate(colors):
             if color in ("blue", "yello", "green"):
                 card_img = card_imgs[i]
-                gray_img = cv2.cvtColor(card_img, cv2.COLOR_BGR2GRAY)
-                # 黄、绿车牌字符比背景暗、与蓝车牌刚好相反，所以黄、绿车牌需要反向
+                try:
+                    gray_img = cv2.cvtColor(card_img, cv2.COLOR_BGR2GRAY)
+                    # 黄、绿车牌字符比背景暗、与蓝车牌刚好相反，所以黄、绿车牌需要反向
+                except:
+                    pass
                 if color == "green" or color == "yello":
                     gray_img = cv2.bitwise_not(gray_img)
                 ret, gray_img = cv2.threshold(gray_img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
@@ -125,7 +128,7 @@ class CardPredictor:
 
                 wave_peaks = img_math.find_waves(x_threshold, x_histogram)
                 if len(wave_peaks) == 0:
-                    print("peak less 0:")
+                    # print("peak less 0:")
                     continue
                 # 认为水平方向，最大的波峰为车牌区域
                 wave = max(wave_peaks, key=lambda x: x[1] - x[0])
@@ -140,7 +143,7 @@ class CardPredictor:
                 y_threshold = (y_min + y_average) / 5  # U和0要求阈值偏小，否则U和0会被分成两半
                 wave_peaks = img_math.find_waves(y_threshold, y_histogram)
                 if len(wave_peaks) <= 6:
-                    print("peak less 1:", len(wave_peaks))
+                    # print("peak less 1:", len(wave_peaks))
                     continue
 
                 wave = max(wave_peaks, key=lambda x: x[1] - x[0])
@@ -166,7 +169,7 @@ class CardPredictor:
                     wave_peaks.pop(2)
 
                 if len(wave_peaks) <= 6:
-                    print("peak less 2:", len(wave_peaks))
+                    # print("peak less 2:", len(wave_peaks))
                     continue
 
                 part_cards = img_math.seperate_card(gray_img, wave_peaks)
@@ -174,7 +177,7 @@ class CardPredictor:
                     # 可能是固定车牌的铆钉
 
                     if np.mean(part_card) < 255 / 5:
-                        print("a point")
+                        # print("a point")
                         continue
                     part_card_old = part_card
 
@@ -257,7 +260,7 @@ class CardPredictor:
                 x_threshold = (x_min + x_average) / 2
                 wave_peaks = img_math.find_waves(x_threshold, x_histogram)
                 if len(wave_peaks) == 0:
-                    print("peak less 0:")
+                    # print("peak less 0:")
                     continue
                 # 认为水平方向，最大的波峰为车牌区域
                 wave = max(wave_peaks, key=lambda x: x[1] - x[0])
@@ -272,7 +275,7 @@ class CardPredictor:
                 y_threshold = (y_min + y_average) / 5  # U和0要求阈值偏小，否则U和0会被分成两半
                 wave_peaks = img_math.find_waves(y_threshold, y_histogram)
                 if len(wave_peaks) < 6:
-                    print("peak less 1:", len(wave_peaks))
+                    # print("peak less 1:", len(wave_peaks))
                     continue
 
                 wave = max(wave_peaks, key=lambda x: x[1] - x[0])
@@ -299,7 +302,7 @@ class CardPredictor:
                     wave_peaks.pop(2)
 
                 if len(wave_peaks) <= 6:
-                    print("peak less 2:", len(wave_peaks))
+                    # print("peak less 2:", len(wave_peaks))
                     continue
 
                 part_cards = img_math.seperate_card(gray_img, wave_peaks)
@@ -308,7 +311,7 @@ class CardPredictor:
                     # 可能是固定车牌的铆钉
 
                     if np.mean(part_card) < 255 / 5:
-                        print("a point")
+                        # print("a point")
                         continue
                     part_card_old = part_card
 
