@@ -7,7 +7,7 @@
 ### 图片自适应窗口大小
 ### 摄像头拍照识别车牌
 ### 摄像头实时识别车牌(测试)
-### 使用hyperlpr提高识别率
+### 使用[hyperlpr](https://github.com/zeusees/HyperLPR)提高识别率
 毕业设计基于Opencv的车牌识别系统 \
 安装 python3.4(macos下python3.7测试是可以的，摄像头卡卡的，win10+python3.7下摄像头狂闪) \
 由于样本数据来自网络，因此识别率只是看看而已。但清楚的图片还是可以识别出来的。 \
