@@ -15,10 +15,11 @@ class Login(ttk.Frame):
 
     def __init__(self, win):
         ttk.Frame.__init__(self, win)
+        frame0 = ttk.Frame(self)
         frame1 = ttk.Frame(self)
         frame2 = ttk.Frame(self)
         frame3 = ttk.Frame(self)
-        win.title("车牌识别")
+        win.title("车牌识别登录")
         win.minsize(850, 600)
         self.center_window()
 
@@ -27,27 +28,28 @@ class Login(ttk.Frame):
         self.image233 = tk.Label(win, image=self.tkImage)
         self.image233.pack(side=TOP)
 
+        frame0.pack(side=TOP, fill=tk.Y, expand=1)
         frame1.pack(side=TOP, fill=tk.Y, expand=1)
         frame2.pack(side=TOP, fill=tk.Y, expand=1)
         frame3.pack(side=TOP, fill=tk.Y, expand=1)
 
-        # 创建一个`label`名为`Account: `  
+        self.t1 = "登录到车牌识别系统"
+        self.text_change = ttk.Label(frame0, text=self.t1)
+        self.text_change.pack(side=LEFT)
+        self.change_button = ttk.Button(frame0, text="切换系统", width=15, command=self.change)
+        self.change_button.pack(side=RIGHT)
+
         self.label_account = ttk.Label(frame1, text='账号: ')
         self.label_account.pack(side=LEFT)
-        # 创建一个账号输入框,并设置尺寸  
         self.input_account = ttk.Entry(frame1, width=30)
         self.input_account.pack(side=RIGHT)
-        # 创建一个`label`名为`Password: `  
         self.label_password = ttk.Label(frame2, text='密码: ')
         self.label_password.pack(side=LEFT)
-        # 创建一个密码输入框,并设置尺寸  
         self.input_password = ttk.Entry(frame2, show='*', width=30)
         self.input_password.pack(side=RIGHT)
         self.input_password.bind('<Key-Return>', self.login)
-        # 创建一个注册系统的按钮  
         self.signup_button = ttk.Button(frame3, text="注册", width=15, command=self.signup_interface)
         self.signup_button.pack(side=LEFT)
-        # 创建一个注册系统的按钮
         self.login_button = ttk.Button(frame3, text="登录", width=15, command=self.backstage_interface)
         self.login_button.pack(side=RIGHT)
 
@@ -61,6 +63,14 @@ class Login(ttk.Frame):
         height = log.winfo_height()
         size = '+%d+%d' % ((screenwidth - width)/2, (screenheight - height)/2)
         log.geometry(size)
+
+    def change(self):
+        if self.t1 == "登录到车牌识别系统":
+            self.t1 = "登录到车牌对比系统"
+            self.text_change.configure(text=self.t1)
+        else:
+            self.t1 = "登录到车牌识别系统"
+            self.text_change.configure(text=self.t1)
 
     def signup_interface(self):
         account = self.input_account.get()
@@ -80,13 +90,22 @@ class Login(ttk.Frame):
     def backstage_interface(self):
         account = self.input_account.get()
         password = self.input_password.get()
+        if (account == ""):
+            tkinter.messagebox.showinfo(title='车牌识别管理系统', message='账号不能为空')
+            return
+        if (password == ""):
+            tkinter.messagebox.showinfo(title='车牌识别管理系统', message='密码不能为空')
+            return
         if not img_sql.select_sql(account):
             tkinter.messagebox.showinfo(title='车牌识别管理系统', message='用户名未注册')
             return
         if (password == img_sql.select_sql(account)):
             tkinter.messagebox.showinfo(title='车牌识别管理系统', message='登录成功')
             close_window()
-            os.system("python3 ./main.py")
+            if self.t1 == "登录到车牌识别系统":
+                os.system("python3 ./main.py")
+            else:
+                os.system("python3 ./match.py")
         else:
             tkinter.messagebox.showinfo(title='车牌识别管理系统', message='密码错误')
 
