@@ -6,7 +6,7 @@ from tkinter.filedialog import *
 import tkinter.messagebox
 from PIL import Image, ImageTk
 import os
-import img_sql
+import lib.img_sql as img_sql
 
 
 class Login(ttk.Frame):

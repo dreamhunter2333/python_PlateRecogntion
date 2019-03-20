@@ -3,8 +3,8 @@
 import os
 import cv2
 import numpy as np
-import img_math
-import img_recognition
+import lib.img_math as img_math
+import lib.img_recognition as img_recognition
 
 SZ = 20  # 训练图片长宽
 MAX_WIDTH = 1000  # 原始图片最大宽度

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__author__ = '樱花落舞'
+
 import cv2
 import numpy as np
 from numpy.linalg import norm

@@ -4,12 +4,12 @@ import threading
 import time
 import tkinter as tk
 import cv2
-import img_function as predict
-import img_math
-import img_excel
-import img_sql
-from img_api import api_pic
-import screencut
+import lib.img_function as predict
+import lib.img_math as img_math
+import lib.img_excel as img_excel
+import lib.img_sql as img_sql
+from lib.img_api import api_pic
+import lib.screencut as screencut
 from threading import Thread
 from tkinter import ttk
 from tkinter.filedialog import *
@@ -303,7 +303,7 @@ class Surface(ttk.Frame):
         r_color, roi_color, color_color = th2.join()
         try:
             Plate = HyperLPR_PlateRecogntion(img_bgr)
-            print(Plate[0][0])
+            # print(Plate[0][0])
             r_c = Plate[0][0]
             r_color = Plate[0][0]
         except:
@@ -394,7 +394,7 @@ class Surface(ttk.Frame):
         self.url_pic()
 
     def getuser(self):
-        user = self.user_text.get() #获取文本框内容
+        user = self.user_text.get()
         return user
 
     def api_ctl(self):
@@ -434,7 +434,6 @@ class Surface(ttk.Frame):
             return
         self.thread_run = False
         self.thread_run2 = False
-        # self.center_window()
         self.p1.set("")
         img_bgr3 = img_math.img_read("pic/hy.png")
         self.imgtk2 = self.get_imgtk(img_bgr3)
@@ -452,8 +451,6 @@ class Surface(ttk.Frame):
         self.tkImage3 = ImageTk.PhotoImage(image=pil_image_resized)
         self.roi_ctl.configure(image=self.tkImage3, state='enable')
         self.roi_ct2.configure(image=self.tkImage3, state='enable')
-        # self.roi_ctl.configure(state='disabled')
-        # self.roi_ct2.configure(state='disabled')
 
 
 def close_window():
