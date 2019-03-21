@@ -70,7 +70,7 @@ python3 search.py
 ## 两种方法都无法识别时百度api(手动按钮)
 ![log](pic/api.png)
 ## 登录注册页面
-![log](pic/log.png)
+![log](pic/log.gif)
 ## 运行数据写入数据库
 ![sql](pic/sql.png)
 ## 本次运行数据写入excel (data.xls)
