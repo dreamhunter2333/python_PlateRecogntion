@@ -160,6 +160,7 @@ class Surface(ttk.Frame):
         win.geometry("850x700")
         self.clean()
         self.thread_run7 = False
+        self.count = 0
         self.center_window()
 
     def center_window(self):
@@ -385,6 +386,7 @@ class Surface(ttk.Frame):
             if self.count == 0:
                 self.thread_run7 = False
                 print("批量识别结束")
+                return
 
     def vedio_thread(delf,self):
         self.thread_run = True

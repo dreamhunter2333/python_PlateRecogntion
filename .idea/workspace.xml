@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f61cb66b-28df-4de1-a347-1b82a4394409" name="Default Changelist" comment="" />
+    <list default="true" id="f61cb66b-28df-4de1-a347-1b82a4394409" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.xls" beforeDir="false" afterPath="$PROJECT_DIR$/data.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/cut.png" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/cut.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/img_contours.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/img_contours.jpg" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,13 +18,12 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/search.py">
+        <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="295" column="36" selection-start-line="295" selection-start-column="36" selection-end-line="295" selection-end-column="36" />
+            <state relative-caret-position="284">
+              <caret line="158" column="21" lean-forward="true" selection-start-line="158" selection-start-column="21" selection-end-line="158" selection-end-column="21" />
               <folding>
-                <element signature="e#24#40#0" expanded="true" />
-                <element signature="e#446#1042#0" />
+                <element signature="e#25#41#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,8 +81,8 @@
         <option value="$PROJECT_DIR$/login.py" />
         <option value="$PROJECT_DIR$/lib/img_function.py" />
         <option value="$PROJECT_DIR$/lib/img_math.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/search.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -122,7 +128,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.login">
+  <component name="RunManager" selected="Python.main">
     <configuration name="1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="车型识别" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -230,9 +236,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.login" />
         <item itemvalue="Python.search" />
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.match" />
         <item itemvalue="Python.1" />
       </list>
@@ -249,7 +255,7 @@
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33067274" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33067274" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -343,17 +349,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="376" column="5" selection-start-line="376" selection-start-column="5" selection-end-line="376" selection-end-column="5" />
-          <folding>
-            <element signature="e#25#41#0" expanded="true" />
-            <element signature="e#6100#6206#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/img_math.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="313">
@@ -390,7 +385,16 @@
           <caret line="295" column="36" selection-start-line="295" selection-start-column="36" selection-end-line="295" selection-end-column="36" />
           <folding>
             <element signature="e#24#40#0" expanded="true" />
-            <element signature="e#446#1042#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="158" column="21" lean-forward="true" selection-start-line="158" selection-start-column="21" selection-end-line="158" selection-end-column="21" />
+          <folding>
+            <element signature="e#25#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
