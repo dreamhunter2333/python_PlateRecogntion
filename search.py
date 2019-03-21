@@ -52,6 +52,7 @@ class Login(ttk.Frame):
         self.stopflag = 1
         self.pic_path = ""
         self.pic_path3 = ""
+        self.thread_run2 = False
 
         self.pilImage = Image.open("pic/searchl.png")
         self.tkImage = ImageTk.PhotoImage(image=self.pilImage)
