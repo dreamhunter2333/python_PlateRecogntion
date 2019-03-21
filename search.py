@@ -232,6 +232,7 @@ class Login(ttk.Frame):
         self.image_ctl2.configure(image=self.tkImage4)
 
     def match_pic(self):
+        self.show_pic2()
         # matchstr1 = self.match_path(self.pic_path)
         matchstr2 = self.match_path(self.pic_path2)
         if self.matchstr1==matchstr2:
@@ -241,7 +242,6 @@ class Login(ttk.Frame):
             matchstr3 = "        车牌不符        "
         matchstr = self.matchstr1 + matchstr3 + matchstr2
         self.match.configure(text=str(matchstr))
-        self.show_pic2()
 
     def match_path(self, pic_path):
         r_c = None
