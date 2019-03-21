@@ -47,8 +47,9 @@ class Login(ttk.Frame):
         self.s1 = StringVar()
         self.s2 = StringVar()
         self.matchflag = 0
-        self.stopflag = 0
+        self.stopflag = 1
         self.pic_path = ""
+        self.pic_path3 = ""
 
         self.pilImage = Image.open("pic/searchl.png")
         self.tkImage = ImageTk.PhotoImage(image=self.pilImage)
@@ -140,7 +141,8 @@ class Login(ttk.Frame):
                 # self.pic_path2 = images_path2
             except:
                 pass
-        self.count = self.count - 1
+        self.pic_pathstart = self.array_of_img[self.count-1]
+        self.countstart = self.count
         print(self.array_of_img)
 
     def file1(self):
@@ -156,10 +158,12 @@ class Login(ttk.Frame):
         self.pic_path3 = askdirectory(title="选择识别路径")
         self.s2.set(self.pic_path3)
         self.get_img_list(self.pic_path3)
+        self.matchflag = 0
         self.thread2 = threading.Thread(target=self.pic_show)
         self.thread2.setDaemon(True)
         self.thread2.start()
         self.thread_run2 = True
+        self.stopflag = 1
 
     def stop(self):
         self.stopflag = 0
@@ -167,6 +171,9 @@ class Login(ttk.Frame):
 
     def file_pic(self):
         # print("file_pic")
+        if (self.pic_path3 == ""):
+            tkinter.messagebox.showinfo(title='车牌对比识别系统', message='路径不能为空')
+            return
         if (self.pic_path == ""):
             if self.input1.get()=="":
                 tkinter.messagebox.showinfo(title='车牌对比识别系统', message='图片1不能为空')
@@ -188,6 +195,8 @@ class Login(ttk.Frame):
         self.thread.setDaemon(True)
         self.thread.start()
         self.thread_run = True
+        self.pic_pathstart = self.array_of_img[self.count-1]
+        self.countstart = self.count
 
     def pic_search(self, self2):
         self.thread_run = True
@@ -196,36 +205,53 @@ class Login(ttk.Frame):
         while self.thread_run:
             while self.count:
                 if self.stopflag==1:
-                    self.pic_path2 = self.array_of_img[self.count]
-                    try:
-                        self.match_pic()
-                    except:
-                        pass
-                    print("正在查找", self.count)
-                    print(self.pic_path2)
+                    self.pic_path2 = self.array_of_img[self.count-1]
+                    # print(self.pic_path2)
                     if time.time()-wait_time > 2:
+                        print("正在查找", self.count)
+                        try:
+                            self.match_pic()
+                        except:
+                            pass
                         self.count = self.count - 1
                         wait_time = time.time()
                     if self.matchflag == 1:
                         print(self.pic_path2)
                         self.thread_run = False
-        print("查找结束")
+                        self.show_pic2()
+                        self.cut_clean2()
+                        print("查找结束")
+                        return
+                if self.stopflag==0:
+                    self.thread_run = False
+                    return
+                if self.count == 1:
+                    self.thread_run = False
+                    self.show_pic2()
+                    self.cut_clean2()
+                    print("查找结束")
+        self.show_pic2()
+
 
     def pic_show(self):
         self.thread_run2 = True
         while self.thread_run2:
             while self.count:
-                self.pic_path2 = self.array_of_img[self.count]
-                self.pilImage4 = Image.open(self.pic_path2)
-                w, h = self.pilImage4.size
-                pil_image_resized2 = self.resize(w, h, self.pilImage4)
-                self.tkImage4 = ImageTk.PhotoImage(image=pil_image_resized2)
-                self.image_ctl2.configure(image=self.tkImage4)
+                if self.countstart==self.count:
+                    self.pic_path2 = self.array_of_img[self.count-1]
+                # print(self.pic_path2)
+                self.show_pic2()
                 if self.matchflag == 1:
                     # print(self.pic_path2)
                     self.thread_run2 = False
+                    self.cut_clean2()
+                    return
             if self.count == 0:
                 self.thread_run2 = False
+                self.cut_clean2()
+                return
+
+    def show_pic2(self):
         self.pilImage4 = Image.open(self.pic_path2)
         w, h = self.pilImage4.size
         pil_image_resized2 = self.resize(w, h, self.pilImage4)
@@ -301,6 +327,14 @@ class Login(ttk.Frame):
         self.pic_path = ""
         self.pic_path2 = ""
         self.match.configure(text="")
+
+    def cut_clean2(self):
+        self.stopflag = 0
+        # self.count = 0
+        self.s1.set("")
+        self.s2.set("")
+        self.pic_path = ""
+        self.pic_path2 = ""
 
 
 def close_window():

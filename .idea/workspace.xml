@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f61cb66b-28df-4de1-a347-1b82a4394409" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/cut.png" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/cut.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/cut1.png" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/cut1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp/img_contours.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/img_contours.jpg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,18 +20,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/search.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="229" column="34" selection-start-line="229" selection-start-column="34" selection-end-line="229" selection-end-column="34" />
+            <state relative-caret-position="414">
+              <caret line="225" column="43" selection-start-line="225" selection-start-column="43" selection-end-line="225" selection-end-column="43" />
               <folding>
                 <element signature="e#24#40#0" expanded="true" />
-                <element signature="e#3676#4438#0" />
-                <element signature="e#5281#5563#0" />
-                <element signature="e#5512#5949#0" />
-                <element signature="e#6566#6863#0" />
-                <element signature="e#7503#8104#0" />
-                <element signature="e#8327#9227#0" />
-                <element signature="e#9270#9363#0" />
-                <element signature="e#10003#10242#0" />
+                <element signature="e#3652#4414#0" />
+                <element signature="e#9314#9579#0" />
+                <element signature="e#8880#9260#0" />
+                <element signature="e#9306#10206#0" />
+                <element signature="e#10249#10342#0" />
+                <element signature="e#10391#10630#0" />
               </folding>
             </state>
           </provider>
@@ -64,6 +65,7 @@
       <find>print</find>
       <find>get</find>
       <find>self.thread_run2</find>
+      <find>stopflag</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -87,8 +89,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="340" />
-    <option name="y" value="24" />
+    <option name="x" value="628" />
+    <option name="y" value="23" />
     <option name="width" value="1348" />
     <option name="height" value="969" />
   </component>
@@ -98,6 +100,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Course" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -109,7 +112,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Course" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -248,13 +250,14 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="340" y="24" width="1348" height="969" extended-state="0" />
+    <frame x="628" y="23" width="1348" height="969" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24943481" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.33067274" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33067274" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -280,9 +283,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/img_api车型.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/img_api车型.py" />
     <entry file="file://$PROJECT_DIR$/1.py" />
     <entry file="file://$PROJECT_DIR$/img_api.py" />
     <entry file="file://$PROJECT_DIR$/img_excel.py" />
@@ -315,16 +316,7 @@
     <entry file="file://$PROJECT_DIR$/lib/img_sql.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/face.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1005">
-          <caret line="90" column="49" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="49" />
-          <folding>
-            <element signature="e#25#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/face.py" />
     <entry file="file://$PROJECT_DIR$/lib/img_api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -402,18 +394,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/search.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="229" column="34" selection-start-line="229" selection-start-column="34" selection-end-line="229" selection-end-column="34" />
+        <state relative-caret-position="414">
+          <caret line="225" column="43" selection-start-line="225" selection-start-column="43" selection-end-line="225" selection-end-column="43" />
           <folding>
             <element signature="e#24#40#0" expanded="true" />
-            <element signature="e#3676#4438#0" />
-            <element signature="e#5281#5563#0" />
-            <element signature="e#5512#5949#0" />
-            <element signature="e#6566#6863#0" />
-            <element signature="e#7503#8104#0" />
-            <element signature="e#8327#9227#0" />
-            <element signature="e#9270#9363#0" />
-            <element signature="e#10003#10242#0" />
+            <element signature="e#3652#4414#0" />
+            <element signature="e#9314#9579#0" />
+            <element signature="e#8880#9260#0" />
+            <element signature="e#9306#10206#0" />
+            <element signature="e#10249#10342#0" />
+            <element signature="e#10391#10630#0" />
           </folding>
         </state>
       </provider>
