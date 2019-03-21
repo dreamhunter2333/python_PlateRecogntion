@@ -158,12 +158,6 @@ class Login(ttk.Frame):
         self.pic_path3 = askdirectory(title="选择识别路径")
         self.s2.set(self.pic_path3)
         self.get_img_list(self.pic_path3)
-        self.matchflag = 0
-        self.thread2 = threading.Thread(target=self.pic_show)
-        self.thread2.setDaemon(True)
-        self.thread2.start()
-        self.thread_run2 = True
-        self.stopflag = 1
 
     def stop(self):
         self.stopflag = 0
@@ -195,8 +189,6 @@ class Login(ttk.Frame):
         self.thread.setDaemon(True)
         self.thread.start()
         self.thread_run = True
-        self.pic_pathstart = self.array_of_img[self.count-1]
-        self.countstart = self.count
 
     def pic_search(self, self2):
         self.thread_run = True
@@ -232,25 +224,6 @@ class Login(ttk.Frame):
                     print("查找结束")
         self.show_pic2()
 
-
-    def pic_show(self):
-        self.thread_run2 = True
-        while self.thread_run2:
-            while self.count:
-                if self.countstart==self.count:
-                    self.pic_path2 = self.array_of_img[self.count-1]
-                # print(self.pic_path2)
-                self.show_pic2()
-                if self.matchflag == 1:
-                    # print(self.pic_path2)
-                    self.thread_run2 = False
-                    self.cut_clean2()
-                    return
-            if self.count == 0:
-                self.thread_run2 = False
-                self.cut_clean2()
-                return
-
     def show_pic2(self):
         self.pilImage4 = Image.open(self.pic_path2)
         w, h = self.pilImage4.size
@@ -268,6 +241,7 @@ class Login(ttk.Frame):
             matchstr3 = "        车牌不符        "
         matchstr = self.matchstr1 + matchstr3 + matchstr2
         self.match.configure(text=str(matchstr))
+        self.show_pic2()
 
     def match_path(self, pic_path):
         r_c = None
