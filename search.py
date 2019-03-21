@@ -235,6 +235,7 @@ class Login(ttk.Frame):
         self.show_pic2()
         # matchstr1 = self.match_path(self.pic_path)
         matchstr2 = self.match_path(self.pic_path2)
+        print(matchstr2)
         if self.matchstr1==matchstr2:
             self.matchflag = 1
             matchstr3 = "        车牌相符        "
@@ -257,7 +258,7 @@ class Login(ttk.Frame):
         r_color, roi_color, color_color = th2.join()
         try:
             Plate = HyperLPR_PlateRecogntion(img_bgr)
-            print(Plate[0][0])
+            # print(Plate[0][0])
             r_c = Plate[0][0]
             r_color = Plate[0][0]
         except:
@@ -272,7 +273,7 @@ class Login(ttk.Frame):
 
     def api_ctl(self, pic_path):
         colorstr, textstr = api_pic(pic_path)
-        print(colorstr, textstr)
+        # print(colorstr, textstr)
         return textstr
 
     def resize(self, w, h, pil_image):

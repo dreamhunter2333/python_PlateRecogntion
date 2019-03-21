@@ -29,7 +29,10 @@ class ThreadWithReturnValue(Thread):
 
     def run(self):
         if self._target is not None:
-            self._return1, self._return2, self._return3 = self._target(*self._args, **self._kwargs)
+            try:
+                self._return1, self._return2, self._return3 = self._target(*self._args, **self._kwargs)
+            except:
+                pass
 
     def join(self):
         Thread.join(self)
@@ -372,7 +375,7 @@ class Surface(ttk.Frame):
                 self.pic_path7 = self.array_of_img[self.count-1]
 
                 if time.time()-wait_time > 2:
-                    print(self.pic_path7)
+                    # print(self.pic_path7)
                     print("正在批量识别", self.count)
                     self.clean()
                     self.pic_source = "本地文件：" + self.pic_path7
