@@ -16,7 +16,6 @@ from time import sleep
 import time
 
 
-
 class ThreadWithReturnValue(Thread):
     def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, *, daemon=None):
         Thread.__init__(self, group, target, name, args, kwargs, daemon=daemon)
@@ -26,7 +25,10 @@ class ThreadWithReturnValue(Thread):
 
     def run(self):
         if self._target is not None:
-            self._return1, self._return2, self._return3 = self._target(*self._args, **self._kwargs)
+            try:
+                self._return1, self._return2, self._return3 = self._target(*self._args, **self._kwargs)
+            except:
+                pass
 
     def join(self):
         Thread.join(self)
@@ -83,6 +85,8 @@ class Login(ttk.Frame):
         self.face_button2.pack(side=RIGHT)
         self.clean_button = ttk.Button(frame3, text="重置显示信息", width=15, command=self.cut_clean)
         self.clean_button.pack(side=LEFT)
+        self.file_pic2_button = ttk.Button(frame3, text="快速识别", width=15, command=self.file_pic2)
+        self.file_pic2_button.pack(side=LEFT)
         self.url_face_button = ttk.Button(frame3, text="停止识别", width=15, command=self.stop)
         self.url_face_button.pack(side=LEFT)
         self.file_pic_button = ttk.Button(frame3, text="开始识别", width=15, command=self.file_pic)
@@ -224,6 +228,63 @@ class Login(ttk.Frame):
                     print("查找结束")
         self.show_pic2()
 
+    def pic_search2(self, self2):
+        self.thread_run2 = True
+        print("开始查找")
+        while self.thread_run2:
+            while self.count:
+                if self.stopflag==1:
+                    self.pic_path2 = self.array_of_img[self.count-1]
+                    # print(self.pic_path2)
+                    print("正在查找", self.count)
+                    try:
+                        self.match_pic()
+                    except:
+                        pass
+                    self.count = self.count - 1
+                    if self.matchflag == 1:
+                        print(self.pic_path2)
+                        self.thread_run2 = False
+                        self.show_pic2()
+                        self.cut_clean2()
+                        print("查找结束")
+                        return
+                if self.stopflag==0:
+                    self.thread_run2 = False
+                    return
+                if self.count == 0:
+                    self.thread_run2 = False
+                    self.show_pic2()
+                    self.cut_clean2()
+                    print("查找结束")
+
+    def file_pic2(self):
+        # print("file_pic")
+        if (self.pic_path3 == ""):
+            tkinter.messagebox.showinfo(title='车牌对比识别系统', message='路径不能为空')
+            return
+        if (self.pic_path == ""):
+            if self.input1.get()=="":
+                tkinter.messagebox.showinfo(title='车牌对比识别系统', message='图片1不能为空')
+                return
+            else:
+                self.matchstr1 = self.input1.get()
+                print(self.matchstr1)
+        else:
+            imagepath1 = os.path.exists(self.pic_path)
+            # print(imagepath1)
+            if not imagepath1:
+                return
+            else:
+                self.matchstr1 = self.match_path(self.pic_path)
+        # print("file_pic off")
+        self.matchflag = 0
+        self.stopflag = 1
+        self.thread2 = threading.Thread(target=self.pic_search2, args=(self,))
+        self.thread2.setDaemon(True)
+        self.thread2.start()
+        self.thread_run2 = True
+
     def show_pic2(self):
         self.pilImage4 = Image.open(self.pic_path2)
         w, h = self.pilImage4.size
@@ -232,7 +293,8 @@ class Login(ttk.Frame):
         self.image_ctl2.configure(image=self.tkImage4)
 
     def match_pic(self):
-        self.show_pic2()
+        if self.thread_run2 == False:
+            self.show_pic2()
         # matchstr1 = self.match_path(self.pic_path)
         matchstr2 = self.match_path(self.pic_path2)
         print(matchstr2)
