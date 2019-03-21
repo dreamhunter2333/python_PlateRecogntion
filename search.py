@@ -225,7 +225,7 @@ class Login(ttk.Frame):
                 if self.stopflag==0:
                     self.thread_run = False
                     return
-                if self.count == 1:
+                if self.count == 0:
                     self.thread_run = False
                     self.show_pic2()
                     self.cut_clean2()

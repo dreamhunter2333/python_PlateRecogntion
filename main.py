@@ -57,6 +57,8 @@ class Surface(ttk.Frame):
         win.minsize(850, 700)
         # win.wm_attributes('-topmost', 1)
         self.center_window()
+        self.pic_path3 = ""
+        self.cameraflag = 0
 
         top.pack(side=TOP, expand=1, fill=tk.Y)
         reset_ctl = ttk.Button(top, text="重置窗口", width=10, command=self.reset)
@@ -81,6 +83,7 @@ class Surface(ttk.Frame):
 
         ttk.Label(frame_right1, text='形状定位车牌位置：').grid(column=0, row=0, sticky=tk.W)
         from_pic_ctl = ttk.Button(frame_right2, text="来自图片", width=20, command=self.from_pic)
+        from_pic_ctl2 = ttk.Button(frame_right2, text="路径批量识别", width=20, command=self.from_pic2)
         from_vedio_ctl = ttk.Button(frame_right2, text="打开/关闭摄像头", width=20, command=self.from_vedio)
         from_video_ctl = ttk.Button(frame_right2, text="拍照并识别", width=20, command=self.video_pic)
         from_img_pre = ttk.Button(frame_right2, text="查看预处理图像", width=20, command=self.show_img_pre)
@@ -100,6 +103,7 @@ class Surface(ttk.Frame):
         camera_ctrl.pack(anchor="se", pady="5")
         from_vedio_ctl.pack(anchor="se", pady="5")
         from_video_ctl.pack(anchor="se", pady="5")
+        from_pic_ctl2.pack(anchor="se", pady="5")
         from_pic_ctl.pack(anchor="se", pady="5")
         from_img_pre.pack(anchor="se", pady="5")
         clean_ctrl.pack(anchor="se", pady="5")
@@ -152,6 +156,7 @@ class Surface(ttk.Frame):
     def reset2(self):
         win.geometry("850x700")
         self.clean()
+        self.thread_run7 = False
         self.center_window()
 
     def center_window(self):
@@ -318,8 +323,8 @@ class Surface(ttk.Frame):
         localtime = time.asctime(time.localtime(time.time()))
         if not self.cameraflag:
             if not (r_color or color_color or r_c or color_c):
-                self.api_ctl()
-                pass
+                self.api_ctl2(pic_path)
+                return
             value = [localtime, color_c, r_c, color_color, r_color, self.apistr, self.pic_source]
             img_excel.excel_add(value)
             img_sql.sql(value[0], value[1], value[2], value[3], value[4], value[5], value[6])
@@ -333,6 +338,50 @@ class Surface(ttk.Frame):
         self.clean()
         self.pic_source = "本地文件：" + self.pic_path
         self.pic(self.pic_path)
+
+    def from_pic2(self):
+        self.pic_path3 = askdirectory(title="选择识别路径")
+        self.get_img_list(self.pic_path3)
+        self.thread7 = threading.Thread(target=self.pic_search, args=(self,))
+        self.thread7.setDaemon(True)
+        self.thread7.start()
+        self.thread_run7 = True
+
+    def get_img_list(self, images_path):
+        self.count = 0
+        self.array_of_img = []
+        for filename in os.listdir(images_path):
+            #print(filename)
+            try:
+                img = cv2.imread(images_path + "/" + filename)
+                self.pilImage3 = Image.open(images_path + "/" + filename)
+                self.array_of_img.append(images_path + "/" + filename)
+                self.count = self.count + 1
+                # images_path2 = images_path + "/" + filename
+                # self.pic_path2 = images_path2
+            except:
+                pass
+        print(self.array_of_img)
+
+    def pic_search(self, self2):
+        self.thread_run7 = True
+        print("开始批量识别")
+        wait_time = time.time()
+        while self.thread_run7:
+            while self.count:
+                self.pic_path7 = self.array_of_img[self.count-1]
+
+                if time.time()-wait_time > 2:
+                    print(self.pic_path7)
+                    print("正在批量识别", self.count)
+                    self.clean()
+                    self.pic_source = "本地文件：" + self.pic_path7
+                    self.pic(self.pic_path7)
+                    self.count = self.count - 1
+                    wait_time = time.time()
+            if self.count == 0:
+                self.thread_run7 = False
+                print("批量识别结束")
 
     def vedio_thread(delf,self):
         self.thread_run = True
@@ -403,6 +452,21 @@ class Surface(ttk.Frame):
         self.thread_run = False
         self.thread_run2 = False
         colorstr, textstr = api_pic(self.pic_path)
+        self.apistr = colorstr + textstr
+        self.show_roi1(textstr, None, colorstr)
+        self.show_roi2(textstr, None, colorstr)
+        localtime = time.asctime(time.localtime(time.time()))
+        value = [localtime, None, None, None, None, self.apistr, self.pic_source]
+        print(localtime, "|", "|", "| ", self.apistr, "|", self.pic_source)
+        img_excel.excel_add(value)
+        img_sql.sql(value[0], value[1], value[2], value[3], value[4], value[5], value[6])
+
+    def api_ctl2(self, pic_path66):
+        if self.thread_run:
+            return
+        self.thread_run = False
+        self.thread_run2 = False
+        colorstr, textstr = api_pic(pic_path66)
         self.apistr = colorstr + textstr
         self.show_roi1(textstr, None, colorstr)
         self.show_roi2(textstr, None, colorstr)
