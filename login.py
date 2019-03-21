@@ -19,7 +19,7 @@ class Login(ttk.Frame):
         frame1 = ttk.Frame(self)
         frame2 = ttk.Frame(self)
         frame3 = ttk.Frame(self)
-        win.title("车牌识别登录")
+        win.title("登录到车牌识别系统")
         win.minsize(850, 600)
         self.center_window()
 
@@ -67,9 +67,15 @@ class Login(ttk.Frame):
     def change(self):
         if self.t1 == "登录到车牌识别系统":
             self.t1 = "登录到车牌对比系统"
+            log.title("登录到车牌对比系统")
+            self.text_change.configure(text=self.t1)
+        elif self.t1 == "登录到车牌对比系统":
+            self.t1 = "登录到车牌搜索系统"
+            log.title("登录到车牌搜索系统")
             self.text_change.configure(text=self.t1)
         else:
             self.t1 = "登录到车牌识别系统"
+            log.title("登录到车牌识别系统")
             self.text_change.configure(text=self.t1)
 
     def signup_interface(self):
@@ -101,11 +107,15 @@ class Login(ttk.Frame):
             return
         if (password == img_sql.select_sql(account)):
             tkinter.messagebox.showinfo(title='车牌识别管理系统', message='登录成功')
-            close_window()
+            # close_window()
+            log.state('icon')
             if self.t1 == "登录到车牌识别系统":
                 os.system("python3 ./main.py")
-            else:
+            elif self.t1 == "登录到车牌对比系统":
                 os.system("python3 ./match.py")
+            elif self.t1 == "登录到车牌搜索系统":
+                os.system("python3 ./search.py")
+            log.state('normal')
         else:
             tkinter.messagebox.showinfo(title='车牌识别管理系统', message='密码错误')
 
