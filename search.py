@@ -205,13 +205,14 @@ class Login(ttk.Frame):
                     self.pic_path2 = self.array_of_img[self.count-1]
                     # print(self.pic_path2)
                     if time.time()-wait_time > 2:
+                        wait_time = time.time()
                         print("正在查找", self.count)
                         try:
                             self.match_pic()
                         except:
                             pass
                         self.count = self.count - 1
-                        wait_time = time.time()
+
                     if self.matchflag == 1:
                         print(self.pic_path2)
                         self.thread_run = False

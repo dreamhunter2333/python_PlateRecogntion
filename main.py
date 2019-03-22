@@ -380,7 +380,10 @@ class Surface(ttk.Frame):
                     print("正在批量识别", self.count)
                     self.clean()
                     self.pic_source = "本地文件：" + self.pic_path7
-                    self.pic(self.pic_path7)
+                    try:
+                        self.pic(self.pic_path7)
+                    except:
+                        pass
                     self.count = self.count - 1
                     wait_time = time.time()
             if self.count == 0:
