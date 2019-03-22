@@ -33,11 +33,11 @@ class Login(ttk.Frame):
         frame2.pack(side=TOP, fill=tk.Y, expand=1)
         frame3.pack(side=TOP, fill=tk.Y, expand=1)
 
-        self.t1 = "登录到车牌识别系统"
-        self.text_change = ttk.Label(frame0, text=self.t1)
-        self.text_change.pack(side=LEFT)
+        self.t1 = "登录到车牌 识别 系统"
+        self.text_change = ttk.Label(frame0, text=self.t1, font=('Times', '20'))
+        self.text_change.pack(side=TOP)
         self.change_button = ttk.Button(frame0, text="切换系统", width=15, command=self.change)
-        self.change_button.pack(side=RIGHT)
+        self.change_button.pack(side=TOP)
 
         self.label_account = ttk.Label(frame1, text='账号: ')
         self.label_account.pack(side=LEFT)
@@ -65,16 +65,16 @@ class Login(ttk.Frame):
         log.geometry(size)
 
     def change(self):
-        if self.t1 == "登录到车牌识别系统":
-            self.t1 = "登录到车牌对比系统"
+        if self.t1 == "登录到车牌 识别 系统":
+            self.t1 = "登录到车牌 对比 系统"
             log.title("登录到车牌对比系统")
             self.text_change.configure(text=self.t1)
-        elif self.t1 == "登录到车牌对比系统":
-            self.t1 = "登录到车牌搜索系统"
+        elif self.t1 == "登录到车牌 对比 系统":
+            self.t1 = "登录到车牌 搜索 系统"
             log.title("登录到车牌搜索系统")
             self.text_change.configure(text=self.t1)
         else:
-            self.t1 = "登录到车牌识别系统"
+            self.t1 = "登录到车牌 识别 系统"
             log.title("登录到车牌识别系统")
             self.text_change.configure(text=self.t1)
 
@@ -109,11 +109,11 @@ class Login(ttk.Frame):
             tkinter.messagebox.showinfo(title='车牌识别管理系统', message='登录成功')
             # close_window()
             log.state('icon')
-            if self.t1 == "登录到车牌识别系统":
+            if self.t1 == "登录到车牌 识别 系统":
                 os.system("python3 ./main.py")
-            elif self.t1 == "登录到车牌对比系统":
+            elif self.t1 == "登录到车牌 对比 系统":
                 os.system("python3 ./match.py")
-            elif self.t1 == "登录到车牌搜索系统":
+            elif self.t1 == "登录到车牌 搜索 系统":
                 os.system("python3 ./search.py")
             log.state('normal')
         else:
