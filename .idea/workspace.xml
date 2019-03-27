@@ -5,11 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.xls" beforeDir="false" afterPath="$PROJECT_DIR$/data.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/cut.png" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/cut.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/cut1.png" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/cut1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp/img_contours.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/img_contours.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp/test.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/test.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/url.png" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/url.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,11 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/search.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="205" column="43" lean-forward="true" selection-start-line="205" selection-start-column="43" selection-end-line="205" selection-end-column="43" />
-              <folding>
-                <element signature="e#24#40#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="170">
+              <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -98,7 +92,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="546" />
+    <option name="x" value="550" />
     <option name="y" value="23" />
     <option name="width" value="1348" />
     <option name="height" value="969" />
@@ -109,6 +103,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Course" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -120,12 +115,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Course" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -139,28 +134,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.search">
-    <configuration name="1" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="车型识别" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.search_sql">
     <configuration name="login" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="车型识别" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -245,13 +219,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="search_sql" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="车型识别" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/search_sql.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.search_sql" />
         <item itemvalue="Python.search" />
-        <item itemvalue="Python.login" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.login" />
         <item itemvalue="Python.match" />
-        <item itemvalue="Python.1" />
       </list>
     </recent_temporary>
   </component>
@@ -259,7 +254,7 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="546" y="23" width="1348" height="969" extended-state="0" />
+    <frame x="550" y="23" width="1348" height="969" extended-state="0" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24943481" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -401,11 +396,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/search.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="205" column="43" lean-forward="true" selection-start-line="205" selection-start-column="43" selection-end-line="205" selection-end-column="43" />
-          <folding>
-            <element signature="e#24#40#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="170">
+          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
         </state>
       </provider>
     </entry>

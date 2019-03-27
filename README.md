@@ -59,6 +59,9 @@ python3 match.py
 # 运行车牌搜索识别主界面
 python3 search.py
 
+# 运行车牌数据库搜索主界面
+python3 search_sql.py
+
 ```
 
 
@@ -69,6 +72,8 @@ python3 search.py
 \
 由于样本数据来自网络，使用hyperlpr提高识别率。但清楚的图片还是可以识别出来的。  \
 ![演示](pic/3.png)
+## 车牌数据库搜索
+![log](pic/search_sql.png)
 ## 两种方法都无法识别时百度api(手动按钮)
 ![log](pic/api.png)
 ## 登录注册页面
