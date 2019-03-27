@@ -73,6 +73,10 @@ class Login(ttk.Frame):
             self.t1 = "登录到车牌 搜索 系统"
             log.title("登录到车牌搜索系统")
             self.text_change.configure(text=self.t1)
+        elif self.t1 == "登录到车牌 搜索 系统":
+            self.t1 = "登录到车牌 数据库搜索 系统"
+            log.title("登录到车牌数据库搜索系统")
+            self.text_change.configure(text=self.t1)
         else:
             self.t1 = "登录到车牌 识别 系统"
             log.title("登录到车牌识别系统")
@@ -115,6 +119,8 @@ class Login(ttk.Frame):
                 os.system("python3 ./match.py")
             elif self.t1 == "登录到车牌 搜索 系统":
                 os.system("python3 ./search.py")
+            elif self.t1 == "登录到车牌 数据库搜索 系统":
+                os.system("python3 ./search_sql.py")
             log.state('normal')
         else:
             tkinter.messagebox.showinfo(title='车牌识别管理系统', message='密码错误')

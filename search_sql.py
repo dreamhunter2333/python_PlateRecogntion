@@ -76,6 +76,8 @@ class Search(ttk.Frame):
 
         self.pack(fill=tk.BOTH, expand=tk.YES, padx="10", pady="10")
 
+        self.center_window()
+
     def sql(self):
         self.t.delete(1.0, END)
         NAME1 = self.input0.get() or "localhost"
@@ -181,6 +183,15 @@ class Search(ttk.Frame):
 
         # 关闭数据库连接
         db.close()
+
+    def center_window(self):
+        screenwidth = search.winfo_screenwidth()
+        screenheight = search.winfo_screenheight()
+        search.update()
+        width = search.winfo_width()
+        height = search.winfo_height()
+        size = '+%d+%d' % ((screenwidth - width)/2, (screenheight - height)/2)
+        search.geometry(size)
 
 
 def close_window():
