@@ -174,7 +174,7 @@ class Login(ttk.Frame):
             tkinter.messagebox.showinfo(title='车牌对比识别系统', message='路径不能为空')
             return
         if (self.pic_path == ""):
-            if self.input1.get()=="":
+            if self.input1.get() == "":
                 tkinter.messagebox.showinfo(title='车牌对比识别系统', message='图片1不能为空')
                 return
             else:

@@ -5,6 +5,29 @@ from tkinter.filedialog import *
 import tkinter.messagebox
 import pymysql
 from PIL import Image, ImageTk, ImageGrab
+import requests
+from hyperlpr import *
+import cv2
+from threading import Thread
+import lib.img_function as predict
+from lib.img_api import api_pic
+import tkinter.messagebox
+
+
+class ThreadWithReturnValue(Thread):
+    def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, *, daemon=None):
+        Thread.__init__(self, group, target, name, args, kwargs, daemon=daemon)
+        self._return1 = None
+        self._return2 = None
+        self._return3 = None
+
+    def run(self):
+        if self._target is not None:
+            self._return1, self._return2, self._return3 = self._target(*self._args, **self._kwargs)
+
+    def join(self):
+        Thread.join(self)
+        return self._return1, self._return2, self._return3
 
 
 class Search(ttk.Frame):
@@ -61,6 +84,11 @@ class Search(ttk.Frame):
 
         self.center_window()
 
+        self.pic_path = ""
+
+        self.predictor = predict.CardPredictor()
+        self.predictor.train_svm()
+
     def add(self):
         pass
 
@@ -82,17 +110,52 @@ class Search(ttk.Frame):
         self.tkImage3 = ImageTk.PhotoImage(image=pil_image_resized)
         self.image_ctl.configure(image=self.tkImage3)
 
+    def api_ctl(self, pic_path):
+        colorstr, text1str = api_pic(pic_path)
+        print(colorstr, text1str)
+        return text1str
+
+    def picre(self):
+        r_c = None
+        r_color = None
+        text1str = None
+        img_bgr = cv2.imread(self.pic_path)
+        first_img, oldimg = self.predictor.img_first_pre(img_bgr)
+        th1 = ThreadWithReturnValue(target=self.predictor.img_color_contours, args=(first_img, oldimg))
+        th2 = ThreadWithReturnValue(target=self.predictor.img_only_color, args=(oldimg, oldimg, first_img))
+        th1.start()
+        th2.start()
+        r_c, roi_c, color_c = th1.join()
+        r_color, roi_color, color_color = th2.join()
+        try:
+            Plate = HyperLPR_PlateRecogntion(img_bgr)
+            # print(Plate[0][0])
+            r_c = Plate[0][0]
+            r_color = Plate[0][0]
+        except:
+            pass
+        if r_c:
+            text1str = r_c
+        if r_color:
+            text1str = r_color
+        if not (r_color or r_c):
+            text1str = self.api_ctl(self.pic_path)
+        print(text1str)
+        return text1str
+
     def sql(self):
+        if (self.pic_path == ""):
+            tkinter.messagebox.showinfo(title='车牌数据库系统', message='请选择图片或打开摄像头')
+            return
+
         NAME1 = "localhost"
         USRE1 = "python"
         PASS1 = "Python12345@"
         SQLNAME1 = "chepai"
         TABLENAME1 = "CARINFO"
-        # CARPLA1 = self.input5.get()
-        CARPLA1 = "赣"
-        if (CARPLA1==""):
-            tkinter.messagebox.showinfo(title='车牌数据库系统', message='关键字不能为空')
-            return
+        CARPLA1 = self.picre()
+        # CARPLA1 = "赣"
+
         CARPLA1 = "%" + CARPLA1 + "%"
         self.select_sql(NAME1, USRE1, PASS1, SQLNAME1, TABLENAME1, CARPLA1)
 
@@ -129,9 +192,9 @@ class Search(ttk.Frame):
             for row in results:
                 p += 1
                 # print(row)
-            # print(results[p-2][0])
+            print("上次认证时间: " + str(results[p-1][0]))
             textstr = "您已认证" + str(p) + "次"
-            textstr2 = "上次认证时间: " + str(results[p-2][0])
+            textstr2 = "上次认证时间: " + str(results[p-1][0])
             self.text.configure(text=textstr)
             self.text2.configure(text=textstr2)
             # print(results)
