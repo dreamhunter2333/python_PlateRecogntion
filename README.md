@@ -77,7 +77,7 @@ python3 search_sql.py
 ![演示](pic/3.png)
 
 ## 车牌认证
-[identificationdemo](identificationdemo.png)
+![identificationdemo](pic/identificationdemo.png)
 ## 车牌数据库搜索
 ![log](pic/search_sql.png)
 ## 两种方法都无法识别时百度api(手动按钮)

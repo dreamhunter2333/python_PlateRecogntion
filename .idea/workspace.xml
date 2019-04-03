@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f61cb66b-28df-4de1-a347-1b82a4394409" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/identification.py" beforeDir="false" afterPath="$PROJECT_DIR$/identification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/img_contours.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/img_contours.jpg" afterDir="false" />
-    </list>
+    <list default="true" id="f61cb66b-28df-4de1-a347-1b82a4394409" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/identification.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="106" column="26" selection-start-line="106" selection-start-column="26" selection-end-line="106" selection-end-column="26" />
+            <state relative-caret-position="358">
+              <caret line="205" column="32" selection-start-line="205" selection-start-column="26" selection-end-line="205" selection-end-column="32" />
               <folding>
                 <element signature="e#19#39#0" expanded="true" />
               </folding>
@@ -250,7 +247,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="550" y="23" width="1348" height="969" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24943481" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -427,8 +423,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/identification.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="106" column="26" selection-start-line="106" selection-start-column="26" selection-end-line="106" selection-end-column="26" />
+        <state relative-caret-position="358">
+          <caret line="205" column="32" selection-start-line="205" selection-start-column="26" selection-end-line="205" selection-end-column="32" />
           <folding>
             <element signature="e#19#39#0" expanded="true" />
           </folding>
