@@ -19,15 +19,15 @@ class Search(ttk.Frame):
         frame5 = ttk.Frame(self)
         frame6 = ttk.Frame(self)
         win.title("车牌认证系统")
-        win.minsize(650, 550)
+        win.minsize(650, 570)
         self.s1 = StringVar()
 
         frame00.pack(side=TOP, fill=tk.Y, expand=1)
         frame0.pack(side=TOP, fill=tk.Y, expand=1)
+        frame4.pack(side=TOP, fill=tk.Y, expand=1)
         frame1.pack(side=TOP, fill=tk.Y, expand=1)
         frame2.pack(side=TOP, fill=tk.Y, expand=1)
         frame3.pack(side=TOP, fill=tk.Y, expand=1)
-        frame4.pack(side=TOP, fill=tk.Y, expand=1)
         frame6.pack(side=TOP, fill=tk.Y, expand=1)
         frame5.pack(side=TOP, fill=tk.Y, expand=1)
 
@@ -39,9 +39,12 @@ class Search(ttk.Frame):
         self.text = ttk.Label(frame0, text='', font=('Times', '20'))
         self.text.pack()
 
+        self.text2 = ttk.Label(frame4, text='', font=('Times', '20'))
+        self.text2.pack()
+
         self.clean_button0 = ttk.Button(frame1, text="打开摄像头", width=15, command=self.clean)
         self.clean_button0.pack(side=LEFT)
-        self.url_face_button0 = ttk.Button(frame1, text="选择照片", width=15, command=self.sql)
+        self.url_face_button0 = ttk.Button(frame1, text="选择照片", width=15, command=self.pic)
         self.url_face_button0.pack(side=LEFT)
 
         self.input5 = ttk.Entry(frame2, textvariable=self.s1, width=23)
@@ -71,13 +74,15 @@ class Search(ttk.Frame):
         height = int(h*factor)
         return pil_image.resize((width, height), Image.ANTIALIAS)
 
-    def sql(self):
+    def pic(self):
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpeg图片", "*.jpeg"), ("jpg图片", "*.jpg"), ("png图片", "*.png")])
         self.pilImage3 = Image.open(self.pic_path)
         w, h = self.pilImage3.size
         pil_image_resized = self.resize(w, h, self.pilImage3)
         self.tkImage3 = ImageTk.PhotoImage(image=pil_image_resized)
         self.image_ctl.configure(image=self.tkImage3)
+
+    def sql(self):
         NAME1 = "localhost"
         USRE1 = "python"
         PASS1 = "Python12345@"
@@ -93,6 +98,7 @@ class Search(ttk.Frame):
 
     def clean(self):
         self.text.configure(text="")
+        self.text2.configure(text="")
         self.pilImage = Image.open("pic/identification.png")
         self.tkImage = ImageTk.PhotoImage(image=self.pilImage)
         self.image_ctl.configure(image=self.tkImage)
@@ -122,9 +128,12 @@ class Search(ttk.Frame):
             p = 0
             for row in results:
                 p += 1
-                print(row)
+                # print(row)
+            # print(results[p-2][0])
             textstr = "您已认证" + str(p) + "次"
+            textstr2 = "上次认证时间: " + str(results[p-2][0])
             self.text.configure(text=textstr)
+            self.text2.configure(text=textstr2)
             # print(results)
         except:
             return 0
