@@ -5,9 +5,9 @@ from tkinter.filedialog import *
 import tkinter.messagebox
 import pymysql
 from PIL import Image, ImageTk, ImageGrab
-import requests
 from hyperlpr import *
 import cv2
+import threading
 from threading import Thread
 import lib.img_function as predict
 from lib.img_api import api_pic
@@ -37,10 +37,8 @@ class Search(ttk.Frame):
         frame0 = ttk.Frame(self)
         frame1 = ttk.Frame(self)
         frame2 = ttk.Frame(self)
-        frame3 = ttk.Frame(self)
         frame4 = ttk.Frame(self)
         frame5 = ttk.Frame(self)
-        frame6 = ttk.Frame(self)
         win.title("车牌认证系统")
         win.minsize(650, 570)
         self.s1 = StringVar()
@@ -50,8 +48,6 @@ class Search(ttk.Frame):
         frame4.pack(side=TOP, fill=tk.Y, expand=1)
         frame1.pack(side=TOP, fill=tk.Y, expand=1)
         frame2.pack(side=TOP, fill=tk.Y, expand=1)
-        frame3.pack(side=TOP, fill=tk.Y, expand=1)
-        frame6.pack(side=TOP, fill=tk.Y, expand=1)
         frame5.pack(side=TOP, fill=tk.Y, expand=1)
 
         self.pilImage = Image.open("pic/identification.png")
@@ -65,7 +61,7 @@ class Search(ttk.Frame):
         self.text2 = ttk.Label(frame4, text='', font=('Times', '20'))
         self.text2.pack()
 
-        self.clean_button0 = ttk.Button(frame1, text="打开摄像头", width=15, command=self.clean)
+        self.clean_button0 = ttk.Button(frame1, text="打开/关闭摄像头", width=15, command=self.video)
         self.clean_button0.pack(side=LEFT)
         self.url_face_button0 = ttk.Button(frame1, text="选择照片", width=15, command=self.pic)
         self.url_face_button0.pack(side=LEFT)
@@ -75,7 +71,7 @@ class Search(ttk.Frame):
         self.label5 = ttk.Button(frame2, text='添加认证', width=10, command=self.add)
         self.label5.pack(side=RIGHT)
 
-        self.clean_button = ttk.Button(frame5, text="清楚信息", width=15, command=self.clean)
+        self.clean_button = ttk.Button(frame5, text="清除信息", width=15, command=self.clean)
         self.clean_button.pack(side=LEFT)
         self.url_face_button = ttk.Button(frame5, text="开始查询", width=15, command=self.sql)
         self.url_face_button.pack(side=LEFT)
@@ -85,12 +81,55 @@ class Search(ttk.Frame):
         self.center_window()
 
         self.pic_path = ""
+        self.thread_run = False
+        self.camera = None
 
         self.predictor = predict.CardPredictor()
         self.predictor.train_svm()
 
     def add(self):
         pass
+
+    def video(self):
+        if self.thread_run:
+            if self.camera.isOpened():
+                self.camera.release()
+                print("关闭摄像头")
+                self.camera = None
+                self.thread_run = False
+            return
+        if self.camera is None:
+            self.camera = cv2.VideoCapture(1)
+            if not self.camera.isOpened():
+                self.camera = None
+                print("没有外置摄像头")
+                self.camera = cv2.VideoCapture(0)
+                if not self.camera.isOpened():
+                    print("没有内置摄像头")
+                    tkinter.messagebox.showinfo('警告', '摄像头打开失败！')
+                    self.camera = None
+                    return
+                else:
+                    print("打开内置摄像头")
+            else:
+                print("打开外置摄像头")
+        self.pic_source = "摄像头"
+        self.thread = threading.Thread(target=self.video_thread, args=(self,))
+        self.thread.setDaemon(True)
+        self.thread.start()
+        self.thread_run = True
+
+    def video_thread(delf,self):
+        self.thread_run = True
+        while self.thread_run:
+            _, img_bgr = self.camera.read()
+            img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
+            im = Image.fromarray(img)
+            w, h = im.size
+            pil_image_resized = self.resize(w, h, im)
+            self.imgtk = ImageTk.PhotoImage(image=pil_image_resized)
+            self.image_ctl.configure(image=self.imgtk)
+        print("run end")
 
     def resize(self, w, h, pil_image):
         w_box = 600
@@ -103,7 +142,6 @@ class Search(ttk.Frame):
         return pil_image.resize((width, height), Image.ANTIALIAS)
 
     def pic(self):
-        CARPLA1 = ""
         self.pic_path = ""
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpeg图片", "*.jpeg"), ("jpg图片", "*.jpg"), ("png图片", "*.png")])
         self.pilImage3 = Image.open(self.pic_path)
@@ -169,6 +207,7 @@ class Search(ttk.Frame):
         self.select_sql(NAME1, USRE1, PASS1, SQLNAME1, TABLENAME1, CARPLA1)
 
     def clean(self):
+        self.pic_path = ""
         self.text.configure(text="")
         self.text2.configure(text="")
         self.pilImage = Image.open("pic/identification.png")
@@ -212,7 +251,6 @@ class Search(ttk.Frame):
         except:
             textstr = str(CARPLA) + "您未认证"
             self.text.configure(text=textstr)
-            return
 
         # 关闭数据库连接
         db.close()
