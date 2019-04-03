@@ -103,8 +103,12 @@ class Search(ttk.Frame):
         return pil_image.resize((width, height), Image.ANTIALIAS)
 
     def pic(self):
+        CARPLA1 = ""
+        self.pic_path = ""
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpeg图片", "*.jpeg"), ("jpg图片", "*.jpg"), ("png图片", "*.png")])
         self.pilImage3 = Image.open(self.pic_path)
+        self.text.configure(text="")
+        self.text2.configure(text="")
         w, h = self.pilImage3.size
         pil_image_resized = self.resize(w, h, self.pilImage3)
         self.tkImage3 = ImageTk.PhotoImage(image=pil_image_resized)
@@ -121,12 +125,15 @@ class Search(ttk.Frame):
         text1str = None
         img_bgr = cv2.imread(self.pic_path)
         first_img, oldimg = self.predictor.img_first_pre(img_bgr)
-        th1 = ThreadWithReturnValue(target=self.predictor.img_color_contours, args=(first_img, oldimg))
-        th2 = ThreadWithReturnValue(target=self.predictor.img_only_color, args=(oldimg, oldimg, first_img))
-        th1.start()
-        th2.start()
-        r_c, roi_c, color_c = th1.join()
-        r_color, roi_color, color_color = th2.join()
+        try:
+            th1 = ThreadWithReturnValue(target=self.predictor.img_color_contours, args=(first_img, oldimg))
+            th2 = ThreadWithReturnValue(target=self.predictor.img_only_color, args=(oldimg, oldimg, first_img))
+            th1.start()
+            th2.start()
+            r_c, roi_c, color_c = th1.join()
+            r_color, roi_color, color_color = th2.join()
+        except:
+            pass
         try:
             Plate = HyperLPR_PlateRecogntion(img_bgr)
             # print(Plate[0][0])
@@ -154,6 +161,8 @@ class Search(ttk.Frame):
         SQLNAME1 = "chepai"
         TABLENAME1 = "CARINFO"
         CARPLA1 = self.picre()
+        if CARPLA1 == "":
+            return
         # CARPLA1 = "赣"
 
         CARPLA1 = "%" + CARPLA1 + "%"
@@ -167,6 +176,8 @@ class Search(ttk.Frame):
         self.image_ctl.configure(image=self.tkImage)
 
     def select_sql(self, NAME, USRE, PASS, SQLNAME, TABLENAME, CARPLA):
+        textstr = ""
+        textstr2 = ""
         # 打开数据库连接
         try:
             # 打开数据库连接
@@ -192,14 +203,16 @@ class Search(ttk.Frame):
             for row in results:
                 p += 1
                 # print(row)
-            print("上次认证时间: " + str(results[p-1][0]))
-            textstr = "您已认证" + str(p) + "次"
+            textstr = str(CARPLA) + "您已认证" + str(p) + "次"
             textstr2 = "上次认证时间: " + str(results[p-1][0])
+            print(textstr + "\n" + textstr2)
             self.text.configure(text=textstr)
             self.text2.configure(text=textstr2)
             # print(results)
         except:
-            return 0
+            textstr = str(CARPLA) + "您未认证"
+            self.text.configure(text=textstr)
+            return
 
         # 关闭数据库连接
         db.close()
