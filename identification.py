@@ -83,6 +83,7 @@ class Search(ttk.Frame):
         self.pic_path = ""
         self.thread_run = False
         self.camera = None
+        self.camera_flag = 0
 
         self.predictor = predict.CardPredictor()
         self.predictor.train_svm()
@@ -113,14 +114,18 @@ class Search(ttk.Frame):
                     print("打开内置摄像头")
             else:
                 print("打开外置摄像头")
-        self.pic_source = "摄像头"
-        self.thread = threading.Thread(target=self.video_thread, args=(self,))
+        self.thread = threading.Thread(target=self.video_thread)
         self.thread.setDaemon(True)
         self.thread.start()
         self.thread_run = True
+        self.camera_flag = 0
 
-    def video_thread(delf,self):
+    def video_thread(self):
         self.thread_run = True
+        self.thread2 = threading.Thread(target=self.video_pic)
+        self.thread2.setDaemon(True)
+        self.thread2.start()
+        self.thread_run2 = True
         while self.thread_run:
             _, img_bgr = self.camera.read()
             img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
@@ -130,6 +135,21 @@ class Search(ttk.Frame):
             self.imgtk = ImageTk.PhotoImage(image=pil_image_resized)
             self.image_ctl.configure(image=self.imgtk)
         print("run end")
+
+    def video_pic(self):
+        self.thread_run2 = True
+        while self.thread_run2:
+            if self.camera_flag == 1:
+                print("实时识别中")
+                _, img_bgr = self.camera.read()
+                cv2.imwrite("tmp/test.jpg", img_bgr)
+                self.pic_path = "tmp/test.jpg"
+                try:
+                    self.sql()
+                except:
+                    pass
+                print("video_pic")
+        pass
 
     def resize(self, w, h, pil_image):
         w_box = 600
@@ -142,6 +162,9 @@ class Search(ttk.Frame):
         return pil_image.resize((width, height), Image.ANTIALIAS)
 
     def pic(self):
+        if self.thread_run:
+            tkinter.messagebox.showinfo(title='车牌数据库系统', message='请关闭摄像头')
+            return
         self.pic_path = ""
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpeg图片", "*.jpeg"), ("jpg图片", "*.jpg"), ("png图片", "*.png")])
         self.pilImage3 = Image.open(self.pic_path)
@@ -189,10 +212,12 @@ class Search(ttk.Frame):
         return text1str
 
     def sql(self):
-        if (self.pic_path == ""):
-            tkinter.messagebox.showinfo(title='车牌数据库系统', message='请选择图片或打开摄像头')
-            return
+        if not self.thread_run:
+            if (self.pic_path == ""):
+                tkinter.messagebox.showinfo(title='车牌数据库系统', message='请选择图片或打开摄像头')
+                return
 
+        self.camera_flag = 1
         NAME1 = "localhost"
         USRE1 = "python"
         PASS1 = "Python12345@"
@@ -201,12 +226,16 @@ class Search(ttk.Frame):
         CARPLA1 = self.picre()
         if CARPLA1 == "":
             return
-        # CARPLA1 = "赣"
 
         CARPLA1 = "%" + CARPLA1 + "%"
         self.select_sql(NAME1, USRE1, PASS1, SQLNAME1, TABLENAME1, CARPLA1)
 
     def clean(self):
+        self.camera_flag = 0
+        self.thread_run = False
+        self.thread_run2 = False
+        self.camera = None
+        self.thread_run = False
         self.pic_path = ""
         self.text.configure(text="")
         self.text2.configure(text="")
@@ -247,6 +276,10 @@ class Search(ttk.Frame):
             print(textstr + "\n" + textstr2)
             self.text.configure(text=textstr)
             self.text2.configure(text=textstr2)
+            self.thread_run = False
+            self.thread_run2 = False
+            self.camera = None
+            self.thread_run = False
             # print(results)
         except:
             textstr = str(CARPLA) + "您未认证"
