@@ -124,10 +124,6 @@ class Search(ttk.Frame):
 
     def video_thread(self):
         self.thread_run = True
-        self.thread2 = threading.Thread(target=self.video_pic)
-        self.thread2.setDaemon(True)
-        self.thread2.start()
-        self.thread_run2 = True
         while self.thread_run:
             _, img_bgr = self.camera.read()
             img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
@@ -218,8 +214,12 @@ class Search(ttk.Frame):
             if (self.pic_path == ""):
                 tkinter.messagebox.showinfo(title='车牌数据库系统', message='请选择图片或打开摄像头')
                 return
-
-        self.camera_flag = 1
+        if self.thread_run:
+            self.camera_flag = 1
+            self.thread2 = threading.Thread(target=self.video_pic)
+            self.thread2.setDaemon(True)
+            self.thread2.start()
+            self.thread_run2 = True
         NAME1 = "localhost"
         USRE1 = "python"
         PASS1 = "Python12345@"
@@ -254,6 +254,7 @@ class Search(ttk.Frame):
         self.select_sql2(NAME1, USRE1, PASS1, SQLNAME1, TABLENAME1, NAME2)
 
     def clean(self):
+        self.s1.set("")
         self.camera_flag = 0
         self.thread_run = False
         self.thread_run2 = False
@@ -333,6 +334,7 @@ class Search(ttk.Frame):
             # 提交到数据库执行
             db.commit()
             print("认证数据库写入成功")
+            tkinter.messagebox.showinfo(title='车牌数据库系统', message='认证数据库写入成功')
         except:
             # 如果发生错误则回滚
             db.rollback()
@@ -361,14 +363,12 @@ class Search(ttk.Frame):
             cursor.execute(sql)
             # 获取所有记录列表
             results = cursor.fetchall()
-            p = 0
-            for row in results:
-                p += 1
-                # print(row)
+            p = str(results[0])
             textstr2 = "您是认证用户"
             self.text2.configure(text=textstr2)
         except:
-            pass
+            textstr2 = "您是 未认证 用户"
+            self.text2.configure(text=textstr2)
         # 关闭数据库连接
         db.close()
 
