@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+__author__ = 'jinmu333'
 
 import tkinter
 import tkinter.filedialog

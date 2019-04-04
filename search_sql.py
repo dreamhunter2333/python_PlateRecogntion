@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+__author__ = 'jinmu333'
 
 import tkinter as tk
 from tkinter import ttk
