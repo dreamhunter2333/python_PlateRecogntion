@@ -124,15 +124,19 @@ class Search(ttk.Frame):
         self.thread_run = True
         self.camera_flag = 0
 
+    def get_imgtk(self, img_bgr):
+        img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
+        im = Image.fromarray(img)
+        w, h = im.size
+        pil_image_resized = self.resize(w, h, im)
+        imgtk = ImageTk.PhotoImage(image=pil_image_resized)
+        return imgtk
+
     def video_thread(self):
         self.thread_run = True
         while self.thread_run:
             _, self.img_bgr = self.camera.read()
-            img = cv2.cvtColor(self.img_bgr, cv2.COLOR_BGR2RGB)
-            im = Image.fromarray(img)
-            w, h = im.size
-            pil_image_resized = self.resize(w, h, im)
-            self.imgtk = ImageTk.PhotoImage(image=pil_image_resized)
+            self.imgtk = self.get_imgtk(self.img_bgr)
             self.image_ctl.configure(image=self.imgtk)
         print("run end")
 
