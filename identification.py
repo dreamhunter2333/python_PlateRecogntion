@@ -135,8 +135,9 @@ class Search(ttk.Frame):
     def video_thread(self):
         self.thread_run = True
         while self.thread_run:
-            _, self.img_bgr = self.camera.read()
-            self.imgtk = self.get_imgtk(self.img_bgr)
+            _, img_bgr = self.camera.read()
+            self.img_bgr = img_bgr
+            self.imgtk = self.get_imgtk(img_bgr)
             self.image_ctl.configure(image=self.imgtk)
         print("run end")
 
