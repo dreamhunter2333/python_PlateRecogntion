@@ -15,6 +15,7 @@ from threading import Thread
 import lib.img_function as predict
 from lib.img_api import api_pic
 import tkinter.messagebox
+from time import sleep
 
 
 class ThreadWithReturnValue(Thread):
@@ -87,6 +88,7 @@ class Search(ttk.Frame):
         self.thread_run = False
         self.camera = None
         self.camera_flag = 0
+        self.thread_run2 = False
 
         self.create_sql2()
 
@@ -143,7 +145,7 @@ class Search(ttk.Frame):
                 cv2.imwrite("tmp/test.jpg", img_bgr)
                 self.pic_path = "tmp/test.jpg"
                 try:
-                    self.sql()
+                    self.sql233()
                 except:
                     pass
                 print("video_pic")
@@ -214,12 +216,34 @@ class Search(ttk.Frame):
             if (self.pic_path == ""):
                 tkinter.messagebox.showinfo(title='车牌数据库系统', message='请选择图片或打开摄像头')
                 return
+        if self.thread_run2:
+            return
         if self.thread_run:
             self.camera_flag = 1
             self.thread2 = threading.Thread(target=self.video_pic)
             self.thread2.setDaemon(True)
             self.thread2.start()
             self.thread_run2 = True
+            return
+        NAME1 = "localhost"
+        USRE1 = "python"
+        PASS1 = "Python12345@"
+        SQLNAME1 = "chepai"
+        TABLENAME1 = "CARINFO"
+        TABLENAME2 = "CARIDE"
+        CARPLA1 = self.picre()
+        if CARPLA1 == "":
+            return
+
+        CARPLA1 = "%" + CARPLA1 + "%"
+
+        self.sql_flag = 0
+
+        self.select_sql(NAME1, USRE1, PASS1, SQLNAME1, TABLENAME1, CARPLA1)
+        if self.sql_flag == 1:
+            self.select_sql3(NAME1, USRE1, PASS1, SQLNAME1, TABLENAME2, CARPLA1)
+
+    def sql233(self):
         NAME1 = "localhost"
         USRE1 = "python"
         PASS1 = "Python12345@"
@@ -304,6 +328,7 @@ class Search(ttk.Frame):
             self.thread_run2 = False
             self.camera = None
             self.thread_run = False
+            self.sql_flag = 0
             # print(results)
         except:
             textstr = str(CARPLA) + "您最近未认证过"
