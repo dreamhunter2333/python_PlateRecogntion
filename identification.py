@@ -225,12 +225,18 @@ class Search(ttk.Frame):
         PASS1 = "Python12345@"
         SQLNAME1 = "chepai"
         TABLENAME1 = "CARINFO"
+        TABLENAME2 = "CARIDE"
         CARPLA1 = self.picre()
         if CARPLA1 == "":
             return
 
         CARPLA1 = "%" + CARPLA1 + "%"
+
+        self.sql_flag = 0
+
         self.select_sql(NAME1, USRE1, PASS1, SQLNAME1, TABLENAME1, CARPLA1)
+        if self.sql_flag == 1:
+            self.select_sql3(NAME1, USRE1, PASS1, SQLNAME1, TABLENAME2, CARPLA1)
 
     def sql2(self):
         if not self.thread_run:
@@ -299,8 +305,9 @@ class Search(ttk.Frame):
             self.thread_run = False
             # print(results)
         except:
-            textstr = str(CARPLA) + "您未认证"
+            textstr = str(CARPLA) + "您最近未认证过"
             self.text.configure(text=textstr)
+            self.sql_flag = 1
 
         # 关闭数据库连接
         db.close()
@@ -311,7 +318,7 @@ class Search(ttk.Frame):
             # 打开数据库连接
             db = pymysql.connect(NAME, USRE, PASS, SQLNAME)
         except:
-            print("认证数据库连接失败")
+            print("数据库连接失败")
             return
 
         # 使用cursor()方法获取操作游标
@@ -331,6 +338,37 @@ class Search(ttk.Frame):
             db.rollback()
             print("认证数据库写入失败")
 
+        # 关闭数据库连接
+        db.close()
+
+    def select_sql3(self, NAME, USRE, PASS, SQLNAME, TABLENAME, NAME3):
+        # 打开数据库连接
+        try:
+            # 打开数据库连接
+            db = pymysql.connect(NAME, USRE, PASS, SQLNAME)
+        except:
+            print("数据库连接失败")
+            return
+
+        # 使用cursor()方法获取操作游标
+        cursor = db.cursor()
+
+        # SQL 查询语句
+        sql = "SELECT * FROM %s WHERE CAR like ('%s')" % (TABLENAME, NAME3)
+        # print(sql)
+        try:
+            # 执行SQL语句
+            cursor.execute(sql)
+            # 获取所有记录列表
+            results = cursor.fetchall()
+            p = 0
+            for row in results:
+                p += 1
+                # print(row)
+            textstr2 = "您是认证用户"
+            self.text2.configure(text=textstr2)
+        except:
+            pass
         # 关闭数据库连接
         db.close()
 
