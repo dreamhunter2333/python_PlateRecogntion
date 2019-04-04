@@ -294,7 +294,7 @@ class Surface(ttk.Frame):
                 print("打开外置摄像头")
         self.pic_source = "摄像头"
         self.cameraflag = 0
-        self.thread = threading.Thread(target=self.vedio_thread, args=(self,))
+        self.thread = threading.Thread(target=self.vedio_thread)
         self.thread.setDaemon(True)
         self.thread.start()
         self.thread_run = True
@@ -393,12 +393,11 @@ class Surface(ttk.Frame):
                 print("批量识别结束")
                 return
 
-    def vedio_thread(delf,self):
+    def vedio_thread(self):
         self.thread_run = True
         while self.thread_run:
-            _, img_bgr = self.camera.read()
-            self.img_bg = img_bgr
-            self.imgtk = self.get_imgtk(img_bgr)
+            _, self.img_bgr = self.camera.read()
+            self.imgtk = self.get_imgtk(self.img_bgr)
             self.image_ctl.configure(image=self.imgtk)
         print("run end")
 
@@ -409,7 +408,7 @@ class Surface(ttk.Frame):
             if self.cameraflag:
                 if time.time() - predict_time > 2:
                     print("实时识别中self.cameraflag", self.cameraflag)
-                    cv2.imwrite("tmp/test.jpg", self.img_bg)
+                    cv2.imwrite("tmp/test.jpg", self.img_bgr)
                     self.pic_path = "tmp/test.jpg"
                     self.pic(self.pic_path)
                     predict_time = time.time()
