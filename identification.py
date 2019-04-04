@@ -68,7 +68,7 @@ class Search(ttk.Frame):
 
         self.input5 = ttk.Entry(frame2, textvariable=self.s1, width=23)
         self.input5.pack(side=LEFT)
-        self.label5 = ttk.Button(frame2, text='添加认证', width=10, command=self.add)
+        self.label5 = ttk.Button(frame2, text='添加认证', width=10, command=self.sql2)
         self.label5.pack(side=RIGHT)
 
         self.clean_button = ttk.Button(frame5, text="清除信息", width=15, command=self.clean)
@@ -85,11 +85,10 @@ class Search(ttk.Frame):
         self.camera = None
         self.camera_flag = 0
 
+        self.create_sql2()
+
         self.predictor = predict.CardPredictor()
         self.predictor.train_svm()
-
-    def add(self):
-        pass
 
     def video(self):
         if self.thread_run:
@@ -230,6 +229,21 @@ class Search(ttk.Frame):
         CARPLA1 = "%" + CARPLA1 + "%"
         self.select_sql(NAME1, USRE1, PASS1, SQLNAME1, TABLENAME1, CARPLA1)
 
+    def sql2(self):
+        if not self.thread_run:
+            if self.input5.get() == "":
+                tkinter.messagebox.showinfo(title='车牌数据库系统', message='请输入')
+                return
+
+        NAME1 = "localhost"
+        USRE1 = "python"
+        PASS1 = "Python12345@"
+        SQLNAME1 = "chepai"
+        TABLENAME1 = "CARIDE"
+        NAME2 = self.input5.get()
+
+        self.select_sql2(NAME1, USRE1, PASS1, SQLNAME1, TABLENAME1, NAME2)
+
     def clean(self):
         self.camera_flag = 0
         self.thread_run = False
@@ -284,6 +298,63 @@ class Search(ttk.Frame):
         except:
             textstr = str(CARPLA) + "您未认证"
             self.text.configure(text=textstr)
+
+        # 关闭数据库连接
+        db.close()
+
+    def select_sql2(self, NAME, USRE, PASS, SQLNAME, TABLENAME, NAME3):
+        # 打开数据库连接
+        try:
+            # 打开数据库连接
+            db = pymysql.connect(NAME, USRE, PASS, SQLNAME)
+        except:
+            print("认证数据库连接失败")
+            return
+
+        # 使用cursor()方法获取操作游标
+        cursor = db.cursor()
+
+        # SQL 查询语句
+        sql = "INSERT INTO %s (CAR) VALUES ('%s')" % (TABLENAME, NAME3)
+        # print(sql)
+        try:
+            # 执行sql语句
+            cursor.execute(sql)
+            # 提交到数据库执行
+            db.commit()
+            print("认证数据库写入成功")
+        except:
+            # 如果发生错误则回滚
+            db.rollback()
+            print("认证数据库写入失败")
+
+        # 关闭数据库连接
+        db.close()
+
+    def create_sql2(self):
+        try:
+            # 打开数据库连接
+            db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
+        except:
+            print("数据库连接失败")
+            return
+        # 使用 cursor() 方法创建一个游标对象 cursor
+        cursor = db.cursor()
+
+        # 使用预处理语句创建表
+        sql = """CREATE TABLE CARIDE (
+                CAR VARCHAR(100))"""
+
+        try:
+            # 执行sql语句
+            cursor.execute(sql)
+            # 提交到数据库执行
+            db.commit()
+            print("认证数据库创建成功")
+        except:
+            # 如果发生错误则回滚
+            db.rollback()
+            print("认证数据库已存在")
 
         # 关闭数据库连接
         db.close()
