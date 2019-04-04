@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f61cb66b-28df-4de1-a347-1b82a4394409" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/identification.py" beforeDir="false" afterPath="$PROJECT_DIR$/identification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/img_contours.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/img_contours.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/test.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/test.jpg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,29 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/login.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="49" column="67" lean-forward="true" selection-start-line="49" selection-start-column="67" selection-end-line="49" selection-end-column="67" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/match.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="279" selection-start-line="279" selection-end-line="280" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/identification.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="145" column="46" lean-forward="true" selection-start-line="145" selection-start-column="46" selection-end-line="145" selection-end-column="46" />
+            <state relative-caret-position="411">
+              <caret line="146" column="33" lean-forward="true" selection-start-line="146" selection-start-column="33" selection-end-line="146" selection-end-column="33" />
               <folding>
                 <element signature="e#68#88#0" expanded="true" />
               </folding>
@@ -47,8 +27,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" selection-start-line="20" selection-end-line="20" selection-end-column="22" />
+            <state relative-caret-position="166">
+              <caret line="411" column="59" selection-start-line="411" selection-start-column="48" selection-end-line="411" selection-end-column="59" />
+              <folding>
+                <element signature="e#72#88#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -57,7 +40,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>color</find>
       <find>deskew</find>
       <find>img_mser</find>
       <find>predictor</find>
@@ -87,6 +69,7 @@
       <find>excel</find>
       <find>s1</find>
       <find>sql_flag</find>
+      <find>self.img_bg</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -431,10 +414,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/login.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="49" column="67" lean-forward="true" selection-start-line="49" selection-start-column="67" selection-end-line="49" selection-end-column="67" />
+        <state relative-caret-position="166">
+          <caret line="411" column="59" selection-start-line="411" selection-start-column="48" selection-end-line="411" selection-end-column="59" />
+          <folding>
+            <element signature="e#72#88#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -445,17 +431,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/login.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" selection-start-line="20" selection-end-line="20" selection-end-column="22" />
+        <state relative-caret-position="156">
+          <caret line="49" column="67" lean-forward="true" selection-start-line="49" selection-start-column="67" selection-end-line="49" selection-end-column="67" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/identification.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="145" column="46" lean-forward="true" selection-start-line="145" selection-start-column="46" selection-end-line="145" selection-end-column="46" />
+        <state relative-caret-position="411">
+          <caret line="146" column="33" lean-forward="true" selection-start-line="146" selection-start-column="33" selection-end-line="146" selection-end-column="33" />
           <folding>
             <element signature="e#68#88#0" expanded="true" />
           </folding>

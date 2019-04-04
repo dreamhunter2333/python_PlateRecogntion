@@ -127,8 +127,8 @@ class Search(ttk.Frame):
     def video_thread(self):
         self.thread_run = True
         while self.thread_run:
-            _, img_bgr = self.camera.read()
-            img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
+            _, self.img_bgr = self.camera.read()
+            img = cv2.cvtColor(self.img_bgr, cv2.COLOR_BGR2RGB)
             im = Image.fromarray(img)
             w, h = im.size
             pil_image_resized = self.resize(w, h, im)
@@ -141,8 +141,7 @@ class Search(ttk.Frame):
         while self.thread_run2:
             if self.camera_flag == 1:
                 print("实时识别中")
-                _, img_bgr = self.camera.read()
-                cv2.imwrite("tmp/test.jpg", img_bgr)
+                cv2.imwrite("tmp/test.jpg", self.img_bgr)
                 self.pic_path = "tmp/test.jpg"
                 try:
                     self.sql233()
