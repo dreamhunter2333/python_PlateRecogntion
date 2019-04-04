@@ -56,7 +56,7 @@ class Search(ttk.Frame):
 
         self.pilImage = Image.open("pic/identification.png")
         self.tkImage = ImageTk.PhotoImage(image=self.pilImage)
-        self.image_ctl = tk.Label(frame00, image=self.tkImage)
+        self.image_ctl = ttk.Label(frame00, image=self.tkImage)
         self.image_ctl.pack(side=LEFT)
 
         self.text = ttk.Label(frame0, text='', font=('Times', '20'))
@@ -118,7 +118,7 @@ class Search(ttk.Frame):
                     print("打开内置摄像头")
             else:
                 print("打开外置摄像头")
-        self.thread = threading.Thread(target=self.video_thread, args=(self,))
+        self.thread = threading.Thread(target=self.video_thread)
         self.thread.setDaemon(True)
         self.thread.start()
         self.thread_run = True
@@ -132,7 +132,7 @@ class Search(ttk.Frame):
         imgtk = ImageTk.PhotoImage(image=pil_image_resized)
         return imgtk
 
-    def video_thread(delf, self):
+    def video_thread(self):
         self.thread_run = True
         while self.thread_run:
             _, img_bgr = self.camera.read()
