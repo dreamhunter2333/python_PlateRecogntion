@@ -118,6 +118,8 @@ class Search(ttk.Frame):
                     print("打开内置摄像头")
             else:
                 print("打开外置摄像头")
+        self.text.configure(text="")
+        self.text2.configure(text="")
         self.thread = threading.Thread(target=self.video_thread)
         self.thread.setDaemon(True)
         self.thread.start()
