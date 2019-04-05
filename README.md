@@ -11,7 +11,7 @@
 * 实时截图识别车牌
 * 图片自适应窗口大小
 * 摄像头拍照识别车牌
-* 使用[hyperlpr](https://github.com/zeusees/HyperLPR)提高识别率
+* 使用`[hyperlpr](https://github.com/zeusees/HyperLPR)`提高识别率
 
 ****
 
