@@ -76,26 +76,26 @@ python3 search_sql.py
 
 ```
 
-
-## 车牌搜索识别找出某个车牌号
+## 图片展示
+### 车牌搜索识别找出某个车牌号
 ![演示](pic/searchpic.png)
-## 车牌对比识别前后是否一致
+### 车牌对比识别前后是否一致
 ![演示](pic/duibi.gif)
-## 主界面
+### 主界面
 ![界面](pic/4.png)
-## 网络图片识别
+### 网络图片识别
 ![演示](pic/3.png)
-## 车牌认证
+### 车牌认证
 ![identificationdemo](pic/identificationdemo.png)
-## 车牌数据库搜索
+### 车牌数据库搜索
 ![log](pic/search_sql.png)
-## 两种方法都无法识别时百度api(手动按钮)
+### 两种方法都无法识别时百度api(手动按钮)
 ![log](pic/api.png)
-## 登录注册页面
+### 登录注册页面
 ![log](pic/log.gif)
-## 运行数据写入数据库
+### 运行数据写入数据库
 ![sql](pic/sql.png)
-## 本次运行数据写入excel (data.xls)
+### 本次运行数据写入excel (data.xls)
 ![界面](pic/1.png)
-## 欢迎界面
+### 欢迎界面
 ![欢迎界面](pic/2.png)
