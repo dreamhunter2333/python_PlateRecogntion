@@ -89,7 +89,7 @@ python3 search_sql.py
 ![identificationdemo](pic/identificationdemo.png)
 ### 车牌数据库搜索
 ![log](pic/search_sql.png)
-### 两种方法都无法识别时百度api(手动按钮)
+### 两种方法都无法识别时百度api(有手动按钮)
 ![log](pic/api.png)
 ### 登录注册页面
 ![log](pic/log.gif)
