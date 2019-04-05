@@ -81,10 +81,10 @@ python3 search_sql.py
 ![演示](pic/searchpic.png)
 ## 车牌对比识别前后是否一致
 ![演示](pic/duibi.gif)
-\
-由于样本数据来自网络，使用hyperlpr提高识别率。但清楚的图片还是可以识别出来的。  \
+## 主界面
+![界面](pic/4.png)
+## 网络图片识别
 ![演示](pic/3.png)
-
 ## 车牌认证
 ![identificationdemo](pic/identificationdemo.png)
 ## 车牌数据库搜索
@@ -97,6 +97,5 @@ python3 search_sql.py
 ![sql](pic/sql.png)
 ## 本次运行数据写入excel (data.xls)
 ![界面](pic/1.png)
-![界面](pic/4.png)
 ## 欢迎界面
 ![欢迎界面](pic/2.png)
