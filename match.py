@@ -79,7 +79,7 @@ class Login(ttk.Frame):
         self.face_button2.pack(side=RIGHT)
         self.cut_ctrl3 = ttk.Button(frame2, text="截图选取", width=15, command=self.cut_pic2)
         self.cut_ctrl3.pack(side=RIGHT)
-        self.clean_button = ttk.Button(frame3, text="清楚显示信息", width=15, command=self.cut_clean)
+        self.clean_button = ttk.Button(frame3, text="清除显示信息", width=15, command=self.cut_clean)
         self.clean_button.pack(side=LEFT)
         self.url_face_button = ttk.Button(frame3, text="网络地址识别", width=15, command=self.url_p)
         self.url_face_button.pack(side=LEFT)
