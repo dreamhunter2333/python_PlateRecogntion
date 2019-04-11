@@ -33,7 +33,7 @@ pip3 install -U pip
 
 pip3 install hyperlpr
 
-python3 -m pip install numpy
+pip3 install numpy
 
 pip3 install opencv-python
 
