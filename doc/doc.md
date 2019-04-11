@@ -105,7 +105,7 @@ class CardPredictor:
 
 * 已经定位好的车牌图像
 
-![img_card](/pic/img_card/card_img.jpg)  
+![img_card](../pic/img_card/card_img.jpg)  
 ![img_card](/pic/img_card/card_gray_img.jpg)  
 ![img_card](/pic/img_card/card_gray_img3.jpg)  
 ![img_card](/pic/img_card/card_gray_img4.jpg)  
