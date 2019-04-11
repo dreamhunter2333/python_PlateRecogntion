@@ -63,8 +63,12 @@ class CardPredictor:
 
 ### 一. 车牌图像预处理
 * 1.将彩色图像转化为灰度图，并采用20*20模版对图像进行高斯模糊来缓解由照相机或其他环境噪声（如果不这么做，我们会得到很多垂直边缘，导致错误检测。）
+![img_gray](/pic/img_pre/img_gray.jpg)
+![img_opening](/pic/img_pre/img_opening.jpg)
 * 2.使用Otsu自适应阈值算法获得图像二值化的阈值，并由此得到一副二值化图片
+![img_edge](/pic/img_pre/img_edge.jpg)
 * 3.采用闭操作，去除每个垂直边缘线之间的空白空格，并连接所有包含 大量边缘的区域（这步过后，我们将有许多包含车牌的候选区域）
+![img_contours](/pic/img_pre/img_contours.jpg)
 * 4.由于大多数区域并不包含车牌，我们使用轮廓外接矩形的纵横比和区域面积，对这些区域进行区分。
     * a.首先使用findContours找到外部轮廓
     * b.使用minAreaRect获得这些轮廓的最小外接矩形，存储在vector向量中
