@@ -19,7 +19,7 @@
 ****
 
 * 毕业设计基于Opencv的车牌识别系统 
-* 安装 python3.4(macos下python3.7测试是可以的，摄像头卡卡的，win10+python3.7下摄像头狂闪) 
+* 安装 python3.7
 * 由于样本数据来自网络，因此识别率只是看看而已。但清楚的图片还是可以识别出来的。 
 * 使用hyperlpr提高识别率 
 * 两种方法都无法识别时调用百度api(有手动按钮)
@@ -34,9 +34,9 @@ pip3 install -U pip
 
 pip3 install hyperlpr
 
-python3 -m pip install numpy==1.14.6
+python3 -m pip install numpy
 
-pip3 install opencv-python==3.4.5.20
+pip3 install opencv-python
 
 pip3 install pillow
 
