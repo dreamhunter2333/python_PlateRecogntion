@@ -80,6 +80,8 @@ python3 search_sql.py
 
 ```
 
+* [android数据库查询软件](https://github.com/jinmu333/android_sql)
+
 ## 图片展示
 ### 车牌搜索识别找出某个车牌号
 ![演示](pic/searchpic.png)
