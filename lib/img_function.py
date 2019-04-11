@@ -4,6 +4,7 @@ __author__ = 'jinmu333'
 
 import os
 import cv2
+from PIL import Image
 import numpy as np
 import lib.img_math as img_math
 import lib.img_recognition as img_recognition
@@ -118,14 +119,21 @@ class CardPredictor:
         for i, color in enumerate(colors):
             if color in ("blue", "yello", "green"):
                 card_img = card_imgs[i]
+                # cv2.imwrite("tmp/card_img.jpg", card_img)
                 try:
                     gray_img = cv2.cvtColor(card_img, cv2.COLOR_BGR2GRAY)
+                    # cv2.imwrite("tmp/card_gray_img.jpg", gray_img)
+
                     # 黄、绿车牌字符比背景暗、与蓝车牌刚好相反，所以黄、绿车牌需要反向
                 except:
                     pass
                 if color == "green" or color == "yello":
                     gray_img = cv2.bitwise_not(gray_img)
+                    # cv2.imwrite("tmp/card_gray_img2.jpg", gray_img)
+
                 ret, gray_img = cv2.threshold(gray_img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+                # cv2.imwrite("tmp/card_gray_img3.jpg", gray_img)
+
                 x_histogram = np.sum(gray_img, axis=1)
                 x_min = np.min(x_histogram)
                 x_average = np.sum(x_histogram) / x_histogram.shape[0]
@@ -138,10 +146,14 @@ class CardPredictor:
                 # 认为水平方向，最大的波峰为车牌区域
                 wave = max(wave_peaks, key=lambda x: x[1] - x[0])
                 gray_img = gray_img[wave[0]:wave[1]]
+                # cv2.imwrite("tmp/card_gray_img4.jpg", gray_img)
+
                 # 查找垂直直方图波峰
                 row_num, col_num = gray_img.shape[:2]
                 # 去掉车牌上下边缘1个像素，避免白边影响阈值判断
                 gray_img = gray_img[1:row_num - 1]
+                # cv2.imwrite("tmp/card_gray_img5.jpg", gray_img)
+
                 y_histogram = np.sum(gray_img, axis=0)
                 y_min = np.min(y_histogram)
                 y_average = np.sum(y_histogram) / y_histogram.shape[0]
@@ -178,6 +190,11 @@ class CardPredictor:
                     continue
 
                 part_cards = img_math.seperate_card(gray_img, wave_peaks)
+                # i = 0
+                # for wave in wave_peaks:
+                #     cv2.imwrite("tmp/part_cards" + str(i) + ".jpg", part_cards[i])
+                #     i += 1
+
                 for i, part_card in enumerate(part_cards):
                     # 可能是固定车牌的铆钉
 
