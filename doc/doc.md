@@ -109,9 +109,9 @@ class CardPredictor:
 ![img_card](/pic/img_card/card_gray_img4.jpg)  
 ![img_card](/pic/img_card/card_gray_img5.jpg)  
 ![img_card](/pic/img_card/card_gray_img6.jpg)  
-![img_card](/pic/img_card/part_cards0.jpg)
-![img_card](/pic/img_card/part_cards1.jpg)
-![img_card](/pic/img_card/part_cards3.jpg)
-![img_card](/pic/img_card/part_cards4.jpg)
-![img_card](/pic/img_card/part_cards5.jpg)
+![img_card](/pic/img_card/part_cards0.jpg) +
+![img_card](/pic/img_card/part_cards1.jpg) +
+![img_card](/pic/img_card/part_cards3.jpg) +
+![img_card](/pic/img_card/part_cards4.jpg) +
+![img_card](/pic/img_card/part_cards5.jpg) +
 ![img_card](/pic/img_card/part_cards6.jpg)
