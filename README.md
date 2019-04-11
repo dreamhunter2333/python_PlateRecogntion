@@ -1,6 +1,6 @@
 # Python opencv 车牌识别
 
-## 简介
+## 简介 [原理简介](doc/doc.md)
 
 ****
 
