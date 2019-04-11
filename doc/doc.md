@@ -2,7 +2,8 @@
 
 ## 原理简介
 
-* 车牌字符识别使用的算法是opencv的SVM，opencv的SVM使用代码来自于opencv附带的sample，StatModel类和SVM类都是sample中的代码
+* 车牌字符识别使用的算法是opencv的SVM
+* opencv的SVM使用代码来自于opencv附带的sample，StatModel类和SVM类都是sample中的代码
 
 * 训练数据文件`svm.dat`和`svmchinese.dat`
 
