@@ -75,15 +75,18 @@ class CardPredictor:
         img = cv2.GaussianBlur(img, (blur, blur), 0)
         oldimg = img
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        # cv2.imwrite("tmp/img_gray.jpg", img)
         # 转化成灰度图像
 
         Matrix = np.ones((20, 20), np.uint8)
         img_opening = cv2.morphologyEx(img, cv2.MORPH_OPEN, Matrix)
         img_opening = cv2.addWeighted(img, 1, img_opening, -1, 0)
+        # cv2.imwrite("tmp/img_opening.jpg", img_opening)
         # 创建20*20的元素为1的矩阵 开操作，并和img重合
 
         ret, img_thresh = cv2.threshold(img_opening, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
         img_edge = cv2.Canny(img_thresh, 100, 200)
+        # cv2.imwrite("tmp/img_edge.jpg", img_edge)
         # Otsu’s二值化 找到图像边缘
 
         Matrix = np.ones((4, 19), np.uint8)
