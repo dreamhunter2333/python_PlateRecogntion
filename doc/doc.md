@@ -95,7 +95,18 @@ class CardPredictor:
 
 为了代码实现上的方便，我采用的是基于边缘检测的分割方法和基于颜色的分割方法。
 
-### 二. 车牌图像矩形矫正
+### 三. 车牌图像矩形矫正
 
 因为摄像头和车辆车牌之间的角度有不同的变化, 一般所拍摄的车牌图像都不是理想状态下的矩形, 如果这样将会给后面的字符分割带来不利的影响, 增加了字符分割的难度, 更增加了后续的字符识别的困难, 造成识别率下降。因此, 在字符分割之前, 我们需要进行对倾斜的矩形车牌进行校正。
 
+### 四. 车牌字符分割
+
+要识别车牌字符，前提是先进行车牌字符的正确分割与提取。字符分割的任务是把多列或多行字符图像中的每个字符从整个图像中切割出来成为单个字符。车牌字符的正确分割对字符的识别是很关键的。传统的字符分割算法可以归纳为以下三类：直接分割法、基于识别基础上的分割法、自适应分割线类聚法。直接分割法简单，但它的局限是分割点的确定需要较高的准确性；基于识别基础上的分割法是把识别和分割结合起来，但是需要识别的高准确性，它根据分类和识别的耦合程度又有不同的划分；自适应分割线聚类法是要建立一个分类器，用它来判断图像的每一列是否是分割线，它是根据训练样本来进行自适应学习的神经网络分类器，但对于粘连字符训练困难。也有直接把字符组成的单词当作一个整体来识别的，诸如运用马尔科夫数学模型等方法进行处理，这些算法主要应用于印刷体文本识别。
+
+![img_card](/pic/img_card/card_img.jpg)
+![img_card](/pic/img_card/card_gray_img.jpg)
+![img_card](/pic/img_card/card_gray_img3.jpg)
+![img_card](/pic/img_card/card_gray_img4.jpg)
+![img_card](/pic/img_card/card_gray_img5.jpg)
+![img_card](/pic/img_card/card_gray_img6.jpg)
+![img_card](/pic/img_card/part_cards0.jpg) ![img_card](/pic/img_card/part_cards1.jpg) ![img_card](/pic/img_card/part_cards3.jpg) ![img_card](/pic/img_card/part_cards4.jpg) ![img_card](/pic/img_card/part_cards5.jpg) ![img_card](/pic/img_card/part_cards6.jpg)
