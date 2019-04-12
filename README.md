@@ -1,5 +1,8 @@
 # Python opencv 车牌识别
-
+[![img](https://img.shields.io/github/stars/jinmu333/python_PlateRecogntion.svg?logoColor=blue&style=for-the-badge)
+![img](https://img.shields.io/github/forks/jinmu333/python_PlateRecogntion.svg?logoColor=blue&style=for-the-badge)
+![img](https://img.shields.io/github/last-commit/jinmu333/python_PlateRecogntion.svg?color=blue&style=for-the-badge)](https://github.com/jinmu333/python_PlateRecogntion)
+[![img](https://img.shields.io/badge/link-996.icu-red.svg?style=for-the-badge&logo=appveyor)](https://github.com/996icu/996.ICU)
 ## 简介 
 
 ### [原理简介](doc/doc.md)
