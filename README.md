@@ -51,7 +51,14 @@ pip3 install xlutils
 ```
 
 ## 运行演示
+
 ``` bash
+# 首次运行修改 img_api.py中的 ID,KEY的配置信息为自己百度api信息
+INFO_CONFIG = {
+    'ID': ' ',
+    'API_KEY': ' ',
+    'SECRET_KEY': ' '
+}
 
 # 运行
 # 查看img_sql.py文件 数据库相关改为自己的(地址，用户名。密码，数据库名字)
