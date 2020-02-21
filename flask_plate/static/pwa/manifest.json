@@ -1,0 +1,15 @@
+{
+    "name" : "车牌识别" ,
+    "short_name" : "车牌识别" ,
+    "display" : "standalone" ,
+    "start_url" : "/" ,
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "icons" : [
+      {
+        "src": "/static/icon/flask.png",
+        "sizes": "500x500",
+        "type": "image/png"
+      }
+     ]
+}

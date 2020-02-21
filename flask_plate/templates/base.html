@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <title>{% block title %}{% endblock %} - 车牌识别</title>
+        <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+        <link rel="icon" href="/static/icon/favicon.ico"/>
+        <link rel="manifest" href="/static/pwa/manifest.json">
+        <meta name="theme-color" content="#ffffff"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+        <meta name="apple-mobile-web-app-title" content="车牌识别">
+        <link rel="apple-touch-icon" href="/static/icon/flask.png"/>
+        <meta name="application-name" content="车牌识别"/>
+        <meta name="msapplication-TileColor" content="#ffffff"/>
+        <meta name="msapplication-square612x612logo" content="/static/icon/flask.png"/>
+        <script type="text/javascript" src="/static/js/jquery-3.4.1.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/static/bootstrap/js/bootstrap.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/static/bootstrap/js/bootstrap.bundle.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/static/js/bs-custom-file-input.js" charset="UTF-8"></script>
+        <script type="text/javascript" charset="UTF-8">
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function () {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(function (registration) {
+                            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                        })
+                        .catch(function (err) {
+                            console.log('ServiceWorker registration failed: ', err);
+                        });
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <nav class="navbar bg-primary">
+            <a href="{{ url_for('main.index') }}" class="btn btn-primary" role="button" aria-pressed="true">首页</a>
+          </div>
+        </nav>
+        <section class="content">
+            <header>
+                <div class="nav-scroller bg-white shadow-sm">
+                    <nav class="nav nav-underline">
+                        {% block header %}{% endblock %}
+                    </nav>
+                </div>
+                <br/>
+            </header>
+            <main role="main" class="container">
+                {% for message in get_flashed_messages() %}
+                <div class="flash text-center rounded shadow-sm">
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+                </div>
+                {% endfor %}
+                {% block content %}{% endblock %}
+            </main>
+        </section>
+    </body>
+</html>

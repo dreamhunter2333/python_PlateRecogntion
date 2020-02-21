@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}主页{% endblock %}
+
+
+{% block content %}
+<form method="post" enctype=multipart/form-data class="was-validated">
+  <div class="d-flex align-items-center p-3 my-3 bg-purple rounded shadow-sm">
+    <div class="lh-100">
+      <h6 class="mb-0 lh-100">Flask Bootstrap 车牌识别</h6>
+      <small>powered by jinmu333</small>
+    </div>
+  </div>
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    {% if result %}
+    <div class="card-group text-center">
+      <div class="card">
+        <img src="{{ result['img_color_contours_path'] }}" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ result['img_color_contours'] }}</h5>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ result['result'] }}</h5>
+        </div>
+      </div>
+      <div class="card">
+        <img src="{{ result['img_only_color_path'] }}" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ result['img_only_color'] }}</h5>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <h6 class="border-bottom border-gray pb-2 mb-0">开始识别</h6>
+    {% endif %}
+    <br/>
+    <div class="form-group">
+      <select class="custom-select" name="recon_option" required>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+      <div class="invalid-feedback">请选择识别类型</div>
+    </div>
+    <div class="input-group mb-3">
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" name="car_image" id="car_image" required>
+        <label class="custom-file-label" for="car_image" data-browse="选择">选择图片</label>
+      </div>
+      <button type="submit" class="btn btn-primary btn-sm float-right">识别</button>
+    </div>
+    {% if filepath %}
+    <img src="{{ filepath }}" class="img-fluid" alt="Responsive image">
+    {% endif %}
+  </div>
+</form>
+{% endblock %}
