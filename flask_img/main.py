@@ -105,8 +105,12 @@ def car_pic(filename):
         color_color = color_c
     if not color_c:
         color_c = color_color
-    roi_c = cv2.cv2.cvtColor(roi_c, cv2.cv2.COLOR_BGR2RGB)
-    roi_color = cv2.cv2.cvtColor(roi_color, cv2.cv2.COLOR_BGR2RGB)
+    if roi_c is None and roi_color is None:
+        raise ValueError('没有找到车牌')
+    if roi_c is not None:
+        roi_c = cv2.cv2.cvtColor(roi_c, cv2.cv2.COLOR_BGR2RGB)
+    if roi_color is not None:
+        roi_color = cv2.cv2.cvtColor(roi_color, cv2.cv2.COLOR_BGR2RGB)
     cv2.cv2.imwrite(TMP_FOLDER+"img_color_contours.png", roi_c)
     cv2.cv2.imwrite(TMP_FOLDER+"img_only_color.png", roi_color)
     print(color_c, r_c, "|", color_color, r_color)
