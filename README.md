@@ -5,15 +5,17 @@
 
 ## 简介
 
+* Flask Bootstrap 网页实现
+* 基于Opencv的车牌识别系统 二维码条形码识别系统
+
+## [原理简介](doc/doc.md)
+
 ![demo](README/demo.png)
 
 ![demo2](README/demo2.png)
 
-* Flask Bootstrap 网页实现
-* 毕业设计基于Opencv的车牌识别系统 二维码条形码识别系统
-* 安装 python3
+![demo3](README/demo3.png)
 
-## [原理简介](doc/doc.md)
 
 ## docker 依赖安装
 

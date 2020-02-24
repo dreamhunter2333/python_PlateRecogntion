@@ -25,6 +25,11 @@ bp = Blueprint('main', __name__)
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 IMAGE_FOLDER = bp.root_path + '/../images/'
 TMP_FOLDER = bp.root_path + '/tmp/'
+CARD_COLOR = {
+    "blue": "蓝色",
+    "yello": "黄色",
+    "green": "绿色"
+}
 
 try:
     shutil.rmtree(IMAGE_FOLDER)
@@ -47,22 +52,19 @@ def allowed_file(filename):
 def index():
     if request.method == 'POST':
         if 'car_image' not in request.files:
-            flash('No car image')
+            flash('请选择识别文件')
             return redirect(request.url)
         image = request.files['car_image']
         if image.filename == '':
-            flash('No selected file')
+            flash('请选择识别文件')
             return redirect(request.url)
         if 'recon_option' not in request.form:
-            flash('No recon option')
+            flash('请选择识别类型')
             return redirect(request.url)
         recon_option = request.form['recon_option']
         image = request.files['car_image']
-        if image.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
         if not image or not allowed_file(image.filename):
-            flash('No selected file')
+            flash('文件不存在或后缀不合法')
             return redirect(request.url)
         image_uuid = uuid.uuid4().hex
         filename = ''.join([image_uuid, '.', image.filename.rsplit('.', 1)[1]])
@@ -101,25 +103,17 @@ def car_pic(filename):
     first_img, oldimg = predictor.img_first_pre(img_bgr)
     r_c, roi_c, color_c = predictor.img_color_contours(first_img, oldimg)
     r_color, roi_color, color_color = predictor.img_only_color(oldimg, oldimg, first_img)
-    if not color_color:
-        color_color = color_c
-    if not color_c:
-        color_c = color_color
     if roi_c is None and roi_color is None:
         raise ValueError('没有找到车牌')
-    if roi_c is not None:
-        roi_c = cv2.cv2.cvtColor(roi_c, cv2.cv2.COLOR_BGR2RGB)
-    if roi_color is not None:
-        roi_color = cv2.cv2.cvtColor(roi_color, cv2.cv2.COLOR_BGR2RGB)
-    cv2.cv2.imwrite(TMP_FOLDER+"img_color_contours.png", roi_c)
-    cv2.cv2.imwrite(TMP_FOLDER+"img_only_color.png", roi_color)
-    print(color_c, r_c, "|", color_color, r_color)
+    cv2.cv2.imwrite(TMP_FOLDER+"img_color_contours_"+filename, roi_c)
+    cv2.cv2.imwrite(TMP_FOLDER+"img_only_color_"+filename, roi_color)
+    # print(color_c, r_c, "|", color_color, r_color)
     return {
         'car': True,
-        'img_color_contours': '颜色形状识别结果: ' + color_c + ' ' + r_c,
-        'img_color_contours_path': '/tmp/img_color_contours.png',
-        'img_only_color': '颜色识别结果: ' + color_c + ' ' + r_c,
-        'img_only_color_path': '/tmp/img_only_color.png',
+        'img_color_contours': '颜色形状识别结果: ' + CARD_COLOR.get(color_c) + ' ' + r_c,
+        'img_color_contours_path': '/tmp/img_color_contours_'+filename,
+        'img_only_color': '颜色识别结果: ' + CARD_COLOR.get(color_color) + ' ' + r_color,
+        'img_only_color_path': '/tmp/img_only_color_'+filename,
         'filepath': '/image/'+filename,
     }
 
