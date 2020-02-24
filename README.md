@@ -42,6 +42,7 @@ brew install zbar
 ```
 
 ```bash
+cd docker
 python3 -m pip install -r requirements.txt
 ```
 
