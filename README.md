@@ -1,4 +1,4 @@
-# Python Flask Bootstrap opencv 车牌识别
+# Python Flask Bootstrap opencv 车牌识别 二维码条形码识别
 
 [![img](https://img.shields.io/github/stars/jinmu333/python_PlateRecogntion.svg?logoColor=blue&style=for-the-badge) ![img](https://img.shields.io/github/forks/jinmu333/python_PlateRecogntion.svg?logoColor=blue&style=for-the-badge) ![img](https://img.shields.io/github/last-commit/jinmu333/python_PlateRecogntion.svg?color=blue&style=for-the-badge) ![img](https://img.shields.io/badge/python-3-blue.svg?style=for-the-badge)](https://github.com/jinmu333/python_PlateRecogntion)
 [![img](https://img.shields.io/badge/link-996.icu-red.svg?style=for-the-badge)](https://github.com/996icu/996.ICU)
@@ -10,7 +10,7 @@
 ![demo2](README/demo2.png)
 
 * Flask Bootstrap 网页实现
-* 毕业设计基于Opencv的车牌识别系统
+* 毕业设计基于Opencv的车牌识别系统 二维码条形码识别系统
 * 安装 python3
 
 ## [原理简介](doc/doc.md)
