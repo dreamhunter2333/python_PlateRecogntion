@@ -125,7 +125,7 @@ class CardPredictor:
 
                     # 黄、绿车牌字符比背景暗、与蓝车牌刚好相反，所以黄、绿车牌需要反向
                 except:
-                    pass
+                    raise ValueError('黄、绿车牌反向失败')
                 if color == "green" or color == "yello":
                     gray_img = cv2.bitwise_not(gray_img)
                     # cv2.imwrite("tmp/card_gray_img2.jpg", gray_img)
@@ -268,7 +268,7 @@ class CardPredictor:
                 try:
                     gray_img = cv2.cvtColor(card_img, cv2.COLOR_BGR2GRAY)
                 except:
-                    print("gray转换失败")
+                    raise ValueError("gray转换失败")
 
                 # 黄、绿车牌字符比背景暗、与蓝车牌刚好相反，所以黄、绿车牌需要反向
                 if color == "green" or color == "yello":
