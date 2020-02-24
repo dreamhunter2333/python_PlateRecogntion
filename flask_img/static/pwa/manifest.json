@@ -1,6 +1,6 @@
 {
-    "name" : "车牌识别" ,
-    "short_name" : "车牌识别" ,
+    "name" : "图像识别" ,
+    "short_name" : "图像识别" ,
     "display" : "standalone" ,
     "start_url" : "/" ,
     "background_color": "#ffffff",
