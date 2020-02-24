@@ -32,7 +32,7 @@ def init_db(app):
     )
     g.db.row_factory = sqlite3.Row
     db = g.db
-    with current_app.open_resource('flask_plate.sql') as f:
+    with current_app.open_resource('flask_img.sql') as f:
         db.executescript(f.read().decode('utf8'))
         print('Initialized the database.')
 

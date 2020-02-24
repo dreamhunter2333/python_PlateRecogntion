@@ -4,7 +4,6 @@ __author__ = 'jinmu333'
 
 import os
 import cv2
-from PIL import Image
 import numpy as np
 from . import img_math as img_math
 from . import img_recognition as img_recognition
@@ -50,10 +49,10 @@ class CardPredictor:
         self.model = SVM(C=1, gamma=0.5)
         # 识别中文
         self.modelchinese = SVM(C=1, gamma=0.5)
-        if os.path.exists("flask_plate/lib/svm.dat"):
-            self.model.load("flask_plate/lib/svm.dat")
-        if os.path.exists("flask_plate/lib/svmchinese.dat"):
-            self.modelchinese.load("flask_plate/lib/svmchinese.dat")
+        if os.path.exists("flask_img/lib/svm.dat"):
+            self.model.load("flask_img/lib/svm.dat")
+        if os.path.exists("flask_img/lib/svmchinese.dat"):
+            self.modelchinese.load("flask_img/lib/svmchinese.dat")
 
 
     def img_first_pre(self, car_pic_file):
