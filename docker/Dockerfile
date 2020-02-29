@@ -1,4 +1,4 @@
-FROM  codercom/code-server:latest
+FROM  ubuntu:latest
 LABEL author=jinmu333
 
 USER root

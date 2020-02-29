@@ -4,12 +4,10 @@ services:
     flask_container:
         image: flask_image:1.0
         container_name: flask_container
-        command: code-server /opt/flask_project/ --user-data-dir /opt/coder-data
+        command: python3 /opt/flask_project/start
         environment:
             - PASSWORD=admin
         ports:
-            - "8080:8080"
             - "9999:9999"
         volumes:
             - ../:/opt/flask_project
-            - /Users/dreamhunter/Documents/coder-data:/opt/coder-data
