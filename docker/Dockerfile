@@ -24,6 +24,6 @@ RUN apt-get update -y && apt-get upgrade -y
 RUN apt-get install libzbar0 libsm6 libxrender1 -y
 RUN apt-get update -y && apt-get upgrade -y
 RUN rm -rf /root/.cache/ /opt/install
-ENTRYPOINT []
+ENTRYPOINT ["python3", "/opt/flask_project/start"]
 
 WORKDIR /opt/flask_project/

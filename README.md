@@ -16,6 +16,8 @@
 
 ![demo3](README/demo3.png)
 
+## ## docker 依赖安装 或者本机依赖安装二选一
+
 ## docker 依赖安装
 
 安装docker

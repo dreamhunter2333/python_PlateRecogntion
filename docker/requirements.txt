@@ -4,3 +4,4 @@ Click==7.0
 opencv-python==4.0.0.21
 pyzbar==0.1.8
 numpy==1.16.2
+pytest

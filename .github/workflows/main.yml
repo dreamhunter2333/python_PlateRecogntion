@@ -1,0 +1,24 @@
+name: Python Flask CI
+
+on:
+  push:
+    branches: [ flask ]
+  pull_request:
+    branches: [ flask ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout flask
+        uses: actions/checkout@v2
+        with:
+          ref: flask
+
+      - name: RUN
+        uses: "docker://ubuntu:latest"
+        with:
+          options: -v ../:/opt/flask_project
+          args: bash docker/test.sh

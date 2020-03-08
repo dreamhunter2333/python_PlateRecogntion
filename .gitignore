@@ -4,3 +4,4 @@ database/
 images/
 tmp/
 .DS_Store
+.pytest_cache

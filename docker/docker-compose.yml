@@ -4,9 +4,7 @@ services:
     flask_container:
         image: flask_image:1.0
         container_name: flask_container
-        command: python3 /opt/flask_project/start
-        environment:
-            - PASSWORD=admin
+        command: /bin/sh -c "while sleep 1000; do :; done"
         ports:
             - "9999:9999"
         volumes:
