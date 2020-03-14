@@ -18,7 +18,7 @@
 
 ## ## docker 依赖安装 或者本机依赖安装二选一
 
-## docker 依赖安装
+## docker 依赖安装 运行
 
 安装docker
 
@@ -30,7 +30,7 @@ bash start.sh
 
 打开 [localhost:9999](http://localhost:9999)
 
-## 本机依赖安装
+## 本机依赖安装 运行
 
 ```bash
 # Installing ZBar for Ubuntu can be accomplished with the following command:
@@ -47,11 +47,6 @@ brew install zbar
 ```bash
 cd docker
 python3 -m pip install -r requirements.txt
-```
-
-## 运行
-
-```bash
 # 运行
 python3 start
 ```
