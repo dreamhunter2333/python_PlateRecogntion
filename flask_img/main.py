@@ -6,7 +6,7 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 from flask import send_from_directory
-# from flask_img.db import get_db
+from flask_img.db import get_db
 
 import time
 import cv2
@@ -23,8 +23,8 @@ predictor.train_svm()
 bp = Blueprint('main', __name__)
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
-IMAGE_FOLDER = bp.root_path + '/../images/'
-TMP_FOLDER = bp.root_path + '/tmp/'
+IMAGE_FOLDER = os.path.join(bp.root_path, '..', 'images')
+TMP_FOLDER = os.path.join(bp.root_path, 'tmp')
 CARD_COLOR = {
     "blue": "蓝色",
     "yello": "黄色",
@@ -71,10 +71,22 @@ def index():
         image.save(os.path.join(IMAGE_FOLDER, filename))
         result = {}
         try:
+            db = get_db()
+
             if recon_option == 'car':
                 result = car_pic(filename)
             elif recon_option == 'barcode':
                 result = barcode_pic(filename)
+            db.execute(
+                'INSERT INTO img_info (img_color_contours, img_only_color, barcode_info)'
+                ' VALUES (?, ?, ?)',
+                (
+                    result.get('img_color_contours', ''),
+                    result.get('img_only_color', ''),
+                    ' '.join(result['text']) if result.get('text') else ''
+                )
+            )
+            db.commit()
             result.update({
                 'result': '识别成功'
             })
@@ -105,8 +117,8 @@ def car_pic(filename):
     r_color, roi_color, color_color = predictor.img_only_color(oldimg, oldimg, first_img)
     if roi_c is None and roi_color is None:
         raise ValueError('没有找到车牌')
-    cv2.cv2.imwrite(TMP_FOLDER+"img_color_contours_"+filename, roi_c)
-    cv2.cv2.imwrite(TMP_FOLDER+"img_only_color_"+filename, roi_color)
+    cv2.cv2.imwrite(os.path.join(TMP_FOLDER, "img_color_contours_"+filename), roi_c)
+    cv2.cv2.imwrite(os.path.join(TMP_FOLDER, "img_only_color_"+filename), roi_color)
     # print(color_c, r_c, "|", color_color, r_color)
     return {
         'car': True,
@@ -140,7 +152,7 @@ def barcode_pic(filename):
         text_list.append(text)
         cv2.cv2.putText(image, text, (x, y - 10), cv2.cv2.FONT_HERSHEY_TRIPLEX,
             0.5, (0, 255, 0), 1)
-    cv2.cv2.imwrite(TMP_FOLDER+filename, image)
+    cv2.cv2.imwrite(os.path.join(TMP_FOLDER, filename), image)
     return {
         'barcode': True,
         'text': text_list,

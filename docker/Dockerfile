@@ -1,4 +1,4 @@
-FROM  ubuntu:latest
+FROM  ubuntu:18.04
 LABEL author=jinmu333
 
 USER root
@@ -14,8 +14,8 @@ RUN apt-get update -y && apt-get upgrade -y
 RUN apt-get install screenfetch git -y
 RUN apt install python3-dev python3-pip -y
 ENV SHELL=/bin/zsh
-RUN git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh && \
-    cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+# RUN git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh && \
+#     cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 
 RUN python3 -m pip install autopep8 pylint -i https://pypi.tuna.tsinghua.edu.cn/simple
 COPY ./requirements.txt /opt/install/
