@@ -18,7 +18,7 @@ jobs:
           ref: flask
 
       - name: RUN
-        uses: "docker://ubuntu:latest"
+        uses: "docker://ubuntu:18.04"
         with:
           options: -v ../:/opt/flask_project
           args: bash docker/test.sh
