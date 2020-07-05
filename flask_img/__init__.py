@@ -5,7 +5,7 @@ from flask import Flask
 
 def create_app():
     # create and configure the app
-    app = Flask(__name__, static_folder='')
+    app = Flask(__name__, static_folder='static', static_url_path='')
     database_path = os.path.join(app.root_path, '..', 'database')
     app.config.from_mapping(
         DEBUG=False,
@@ -19,12 +19,12 @@ def create_app():
     except OSError:
         pass
 
-    from . import db
-    db.init_app(app)
-    db.get_db()
-
     from . import main
     app.register_blueprint(main.bp)
+
+    @app.route('/', methods=('GET', 'POST'))
+    def index():
+        return app.send_static_file('index.html')
     app.add_url_rule('/', endpoint='index')
 
     return app
