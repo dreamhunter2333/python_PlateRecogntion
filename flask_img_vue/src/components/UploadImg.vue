@@ -34,8 +34,8 @@
       <div v-for="item in result.text" v-bind:key="item">
         <p>{{item}}</p>
       </div>
-      <div v-for="item in result.pic" v-bind:key="item">
-        <img :src="'data:image/png;base64,' + item" />
+      <div v-for="(item,index) in result.pic" v-bind:key="index">
+        <img style="width: 70%;" :src="'data:image/png;base64,' + item" />
       </div>
     </el-card>
   </div>
