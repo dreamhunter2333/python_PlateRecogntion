@@ -156,5 +156,5 @@ def barcode_pic(filename):
     return {
         'barcode': True,
         'text': text_list,
-        'filepath': '/tmp/' + filename,
+        'filepath': '/'.join('/tmp', filename)
     }
