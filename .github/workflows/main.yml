@@ -2,13 +2,16 @@ name: Python Flask CI
 
 on:
   push:
-    branches: [ flask vue ]
+    branches:
+      - flask
+      - vue
   pull_request:
-    branches: [ flask vue ]
+    branches:
+      - flask
+      - vue
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
