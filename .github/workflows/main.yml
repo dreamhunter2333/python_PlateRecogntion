@@ -2,9 +2,9 @@ name: Python Flask CI
 
 on:
   push:
-    branches: [ flask ]
+    branches: [ flask vue ]
   pull_request:
-    branches: [ flask ]
+    branches: [ flask vue ]
 
 jobs:
   build:
