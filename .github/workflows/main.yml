@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - flask
-      - vue
   pull_request:
     branches:
       - flask
-      - vue
 
 jobs:
   build:
