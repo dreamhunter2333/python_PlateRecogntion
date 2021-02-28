@@ -21,7 +21,7 @@ RUN python3 -m pip install autopep8 pylint -i https://pypi.tuna.tsinghua.edu.cn/
 COPY ./requirements.txt /opt/install/
 RUN python3 -m pip install -r /opt/install/requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 RUN apt-get update -y && apt-get upgrade -y
-RUN apt-get install libzbar0 libsm6 libxrender1 -y
+RUN apt-get install libzbar0 libsm6 libxrender1 libxext-dev -y
 RUN apt-get update -y && apt-get upgrade -y
 RUN rm -rf /root/.cache/ /opt/install
 ENTRYPOINT ["python3", "/opt/flask_project/start"]

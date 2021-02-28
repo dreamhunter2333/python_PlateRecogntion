@@ -5,6 +5,8 @@
 
 ## 简介
 
+[在线 demo](http://flask_plate.jcstaff.club)
+
 * Flask Bootstrap 网页实现
 * 基于Opencv的车牌识别系统 二维码条形码识别系统
 
