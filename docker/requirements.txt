@@ -3,7 +3,7 @@ Flask-SQLAlchemy
 flask-restful
 Werkzeug==0.16.0
 Click==7.0
-opencv-python==4.0.0.21
+opencv-python==4.2.0.32
 pyzbar==0.1.8
 numpy==1.16.2
 pytest
