@@ -1,0 +1,15 @@
+services:
+
+  ubuntu-plate:
+    image: ubuntu-plate
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ../:/app/
+    environment:
+      - LC_ALL=en_US.utf8
+      - PYTHONIOENCODING=utf-8
+    ports:
+      - 5900:5900
+      - 6080:80

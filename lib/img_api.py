@@ -43,7 +43,8 @@ class AccessToken(AccessTokenSuper):
         return accessTokenJson
 
 
-ACCESS_TOKEN = AccessToken().getToken()['access_token']
+TOKEN = AccessToken().getToken()
+ACCESS_TOKEN = ACCESS_TOKEN if isinstance(TOKEN, str) else TOKEN['access_token']
 
 LICENSE_PLATE_URL = URL_LIST_URL['LICENSE_PLATE'] + '?access_token={}'.format(ACCESS_TOKEN)
 

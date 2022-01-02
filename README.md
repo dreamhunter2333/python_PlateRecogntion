@@ -19,14 +19,15 @@
 
 ****
 
-* 毕业设计基于Opencv的车牌识别系统 
+* 毕业设计基于Opencv的车牌识别系统
 * 安装 python3.7
-* 使用hyperlpr提高识别率 
+* 使用hyperlpr提高识别率
 * 两种方法都无法识别时调用百度api(有手动按钮)
 
 ****
 
 ## 开发环境配置
+
 ``` bash
 
 # 按顺序安装
@@ -34,9 +35,9 @@ pip3 install -U pip
 
 pip3 install hyperlpr
 
-pip3 install numpy
+pip3 install numpy==1.16.2
 
-pip3 install opencv-python
+pip3 install opencv-python==4.0.0.21
 
 pip3 install pillow
 
@@ -55,7 +56,7 @@ pip3 install xlutils
 [百度api网址](https://cloud.baidu.com/product/ocr)
 
 ``` bash
-# 首次运行修改 img_api.py中的 ID,KEY的配置信息为自己百度api信息 
+# 首次运行修改 img_api.py中的 ID,KEY的配置信息为自己百度api信息
 INFO_CONFIG = {
     'ID': ' ',
     'API_KEY': ' ',
@@ -90,25 +91,47 @@ python3 search_sql.py
 * [android数据库查询软件](https://github.com/jinmu333/android_sql)
 
 ## 图片展示
+
 ### 车牌搜索识别找出某个车牌号
+
 ![演示](pic/searchpic.png)
+
 ### 车牌对比识别前后是否一致
+
 ![演示](pic/duibi.gif)
+
 ### 主界面
+
 ![界面](pic/4.png)
+
 ### 网络图片识别
+
 ![演示](pic/3.png)
+
 ### 车牌认证
+
 ![identificationdemo](pic/identificationdemo.png)
+
 ### 车牌数据库搜索
+
 ![log](pic/search_sql.png)
+
 ### 两种方法都无法识别时百度api(有手动按钮)
+
 ![log](pic/api.png)
+
 ### 登录注册页面
+
 ![log](pic/log.gif)
+
 ### 运行数据写入数据库
+
 ![sql](pic/sql.png)
+
 ### 本次运行数据写入excel (data.xls)
+
 ![界面](pic/1.png)
+
 ### 欢迎界面
+
 ![欢迎界面](pic/2.png)
