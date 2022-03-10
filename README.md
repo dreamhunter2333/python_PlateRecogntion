@@ -31,24 +31,7 @@
 ``` bash
 
 # 按顺序安装
-pip3 install -U pip
-
-pip3 install hyperlpr
-
-pip3 install numpy==1.16.2
-
-pip3 install opencv-python==4.0.0.21
-
-pip3 install pillow
-
-pip3 install xlutils
-
-pip3 install pymysql
-
-pip3 install requests
-
-pip3 install xlutils
-
+./venv/bin/python3 -m pip install -r requirements.txt
 ```
 
 ## 运行演示
