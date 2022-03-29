@@ -20,7 +20,7 @@
 ****
 
 * 毕业设计基于Opencv的车牌识别系统
-* 安装 python3.7
+* 安装 python3.6 或 python3.7
 * 使用hyperlpr提高识别率
 * 两种方法都无法识别时调用百度api(有手动按钮)
 
