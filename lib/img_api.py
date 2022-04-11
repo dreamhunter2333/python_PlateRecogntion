@@ -59,9 +59,7 @@ class LicensePlate(LicensePlateSuper):
         self.HEADER = {
             'Content-Type': 'application/x-www-form-urlencoded',
         }
-        self.IMAGE_CONFIG = {
-            'multi_detect': multi_detect,
-        }
+        self.IMAGE_CONFIG = {}
 
         if image is not None:
             imagepath = os.path.exists(image)
