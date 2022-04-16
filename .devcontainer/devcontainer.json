@@ -1,0 +1,16 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.231.6/containers/python-3
+{
+	"name": "PlateRecogntion",
+	"dockerComposeFile": [
+		"../docker/docker-compose.yml",
+	],
+	"service": "ubuntu-plate",
+	"workspaceFolder": "/app",
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"ms-python.python",
+		"ms-python.vscode-pylance"
+	],
+	"shutdownAction": "stopCompose",
+}

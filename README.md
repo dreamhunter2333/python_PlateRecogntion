@@ -28,6 +28,10 @@
 
 ## 开发环境配置
 
+### docker 开发环境搭建
+
+[点此查看 docker 开发环境搭建](/docker/readme.md)
+
 ### windows 快速搭建环境
 
 #### 下载虚拟环境 zip 解压到项目目录 venv 下
@@ -93,6 +97,8 @@ python3 match.py
 python3 search.py
 
 # 运行车牌认证主界面
+# 查看img_sql.py文件 数据库相关改为自己的(地址，用户名。密码，数据库名字)
+# db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
 python3 identification.py
 
 # 运行车牌数据库搜索主界面

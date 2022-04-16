@@ -5,12 +5,19 @@ __author__ = 'jinmu333'
 import pymysql
 
 
-def sql(TIME, COLOR1, TEXT1, COLOR2, TEXT2, API, SOURCE):
+def get_db():
     try:
         # 打开数据库连接
-        db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
-    except:
-        print("数据库连接失败")
+        return pymysql.connect("localhost", "python", "Python12345@", "chepai")
+    except Exception as e:
+        print("数据库连接失败", e)
+        return
+
+
+def sql(TIME, COLOR1, TEXT1, COLOR2, TEXT2, API, SOURCE):
+    # 打开数据库连接
+    db = get_db()
+    if not db:
         return
     # 使用cursor()方法获取操作游标
     cursor = db.cursor()
@@ -27,21 +34,19 @@ def sql(TIME, COLOR1, TEXT1, COLOR2, TEXT2, API, SOURCE):
         # 提交到数据库执行
         db.commit()
         print("数据库写入成功")
-    except:
+    except Exception as e:
         # 如果发生错误则回滚
         db.rollback()
-        print("数据库写入失败")
+        print("数据库写入失败", e)
 
     # 关闭数据库连接
     db.close()
 
 
 def create_sql():
-    try:
-        # 打开数据库连接
-        db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
-    except:
-        print("数据库连接失败")
+    # 打开数据库连接
+    db = get_db()
+    if not db:
         return
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = db.cursor()
@@ -49,10 +54,10 @@ def create_sql():
     # 使用预处理语句创建表
     sql = """CREATE TABLE CARINFO (
             TIME VARCHAR(100),
-            COLOR1 VARCHAR(100), 
-            TEXT1 VARCHAR(100), 
-            COLOR2 VARCHAR(100), 
-            TEXT2 VARCHAR(100), 
+            COLOR1 VARCHAR(100),
+            TEXT1 VARCHAR(100),
+            COLOR2 VARCHAR(100),
+            TEXT2 VARCHAR(100),
             API VARCHAR(100),
             SOURCE VARCHAR(500))"""
 
@@ -62,10 +67,10 @@ def create_sql():
         # 提交到数据库执行
         db.commit()
         print("数据库创建成功")
-    except:
+    except Exception as e:
         # 如果发生错误则回滚
         db.rollback()
-        print("数据库已存在")
+        print("数据库已存在", e)
 
     # 关闭数据库连接
     db.close()
@@ -73,11 +78,8 @@ def create_sql():
 
 def select_sql(NAME):
     # 打开数据库连接
-    try:
-        # 打开数据库连接
-        db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
-    except:
-        print("注册数据库连接失败")
+    db = get_db()
+    if not db:
         return
 
     # 使用cursor()方法获取操作游标
@@ -98,7 +100,8 @@ def select_sql(NAME):
             # print("password=%s" %(password))
             # print(password)
             return password
-    except:
+    except Exception as e:
+        print(e)
         return 0
 
     # 关闭数据库连接
@@ -107,11 +110,8 @@ def select_sql(NAME):
 
 def sign_sql(NAME, PASSWORD):
     # 打开数据库连接
-    try:
-        # 打开数据库连接
-        db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
-    except:
-        print("注册数据库连接失败")
+    db = get_db()
+    if not db:
         return
 
     # 使用cursor()方法获取操作游标
@@ -126,21 +126,19 @@ def sign_sql(NAME, PASSWORD):
         # 提交到数据库执行
         db.commit()
         print("注册数据库写入成功")
-    except:
+    except Exception as e:
         # 如果发生错误则回滚
         db.rollback()
-        print("注册数据库写入失败")
+        print("注册数据库写入失败", e)
 
     # 关闭数据库连接
     db.close()
 
 
 def create_signsql():
-    try:
-        # 打开数据库连接
-        db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
-    except:
-        print("数据库连接失败")
+    # 打开数据库连接
+    db = get_db()
+    if not db:
         return
     # 使用 cursor() 方法创建一个游标对象 cursor
     cursor = db.cursor()
@@ -156,10 +154,10 @@ def create_signsql():
         # 提交到数据库执行
         db.commit()
         print("注册数据库创建成功")
-    except:
+    except Exception as e:
         # 如果发生错误则回滚
         db.rollback()
-        print("注册数据库已存在")
+        print("注册数据库已存在", e)
 
     # 关闭数据库连接
     db.close()

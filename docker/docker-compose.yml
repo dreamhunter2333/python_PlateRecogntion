@@ -2,6 +2,7 @@ services:
 
   ubuntu-plate:
     image: ubuntu-plate
+    container_name: ubuntu-plate
     build:
       context: ../
       dockerfile: docker/Dockerfile
@@ -13,3 +14,29 @@ services:
     ports:
       - 5900:5900
       - 6080:80
+
+  mysql-db:
+    image: mysql:5.7
+    container_name: mysql-db
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+      --lower_case_table_names=1
+      --max_connections=10000
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'chepai'
+      MYSQL_USER: 'python'
+      MYSQL_PASSWORD: 'Python12345@'
+      MYSQL_ROOT_PASSWORD: 'Python12345@'
+    ports:
+      - '3306'
+    expose:
+      - '3306'
+    volumes:
+      - docker-db:/var/lib/mysql
+
+volumes:
+  docker-db:
