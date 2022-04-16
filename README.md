@@ -28,13 +28,39 @@
 
 ## 开发环境配置
 
-``` bash
+### windows 快速搭建环境
 
-# 按顺序安装
+#### 下载虚拟环境 zip 解压到项目目录 venv 下
+
+[https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/venv.zip](https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/venv.zip)
+
+结构如下
+
+```bash
+$ ls -l venv/
+total 10
+drwxr-xr-x 1 dreamhunter 197609  0 Apr 16 17:18 Include/
+drwxr-xr-x 1 dreamhunter 197609  0 Apr 16 17:18 Lib/
+-rw-r--r-- 1 dreamhunter 197609 61 Apr 16 17:24 pip-selfcheck.json
+-rw-r--r-- 1 dreamhunter 197609 92 Apr 16 17:18 pyvenv.cfg
+drwxr-xr-x 1 dreamhunter 197609  0 Apr 16 17:24 Scripts/
+```
+
+#### 下载 mysql 便携版
+
+[https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/mysql-server-winx64.zip](https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/mysql-server-winx64.zip)
+
+解压后，cmd 执行 start.bat
+
+### 手动安装依赖
+
+``` bash
 ./venv/bin/python3 -m pip install -r requirements.txt
 ```
 
 ## 运行演示
+
+windows 替换 python3 命令为 `venv\\Scripts\\python.exe`
 
 [百度api网址](https://cloud.baidu.com/product/ocr)
 
@@ -49,9 +75,12 @@ INFO_CONFIG = {
 # 查看img_sql.py文件 数据库相关改为自己的(地址，用户名。密码，数据库名字)
 # db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
 # GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost'
+# windows 下载便携版
 mysql.server start
 
 # 运行登录界面
+# 如为虚拟环境，需要替换文件中 python3 命令为
+# windows 替换文件中 python3 命令为 exe 路径，如我提供的虚拟环境的 venv\\Scripts\\python.exe
 python3 login.py
 
 # 运行主界面
