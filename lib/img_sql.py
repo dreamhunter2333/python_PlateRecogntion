@@ -52,7 +52,7 @@ def create_sql():
     cursor = db.cursor()
 
     # 使用预处理语句创建表
-    sql = """CREATE TABLE CARINFO (
+    sql = """CREATE TABLE IF NOT EXISTS CARINFO (
             TIME VARCHAR(100),
             COLOR1 VARCHAR(100),
             TEXT1 VARCHAR(100),
@@ -144,7 +144,7 @@ def create_signsql():
     cursor = db.cursor()
 
     # 使用预处理语句创建表
-    sql = """CREATE TABLE USERS (
+    sql = """CREATE TABLE IF NOT EXISTS USERS (
             NAME VARCHAR(100),
             PASSWORD VARCHAR(100))"""
 
