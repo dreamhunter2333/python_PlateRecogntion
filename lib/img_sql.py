@@ -8,7 +8,7 @@ import pymysql
 def get_db():
     try:
         # 打开数据库连接
-        return pymysql.connect("localhost", "python", "Python12345@", "chepai")
+        return pymysql.connect(host="localhost", port=3306, user="python", passwd="Python12345@", database="chepai")
     except Exception as e:
         print("数据库连接失败", e)
         return
