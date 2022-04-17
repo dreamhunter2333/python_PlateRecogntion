@@ -95,13 +95,12 @@ class CardPredictor:
         img_edge2 = cv2.morphologyEx(img_edge1, cv2.MORPH_OPEN, Matrix)
         return img_edge2, oldimg
 
-    def img_color_contours(self, img_contours, oldimg):
+    def img_color_contours(self, img_contours, oldimg, add_contours=False):
         """
         :param img_contours: 预处理好的图像
         :param oldimg: 原图像
         :return: 已经定位好的车牌
         """
-
         if img_contours.any():
             #config.set_name(img_contours)
             cv2.imwrite("tmp/img_contours.jpg", img_contours)
@@ -109,7 +108,7 @@ class CardPredictor:
         pic_hight, pic_width = img_contours.shape[:2]
 
         card_contours = img_math.img_findContours(img_contours)
-        card_imgs = img_math.img_Transform(card_contours, oldimg, pic_width, pic_hight)
+        card_imgs, car_img_contours = img_math.img_Transform(card_contours, oldimg, pic_width, pic_hight)
         colors, car_imgs = img_math.img_color(card_imgs)
         predict_result = []
         predict_str = ""
@@ -119,6 +118,7 @@ class CardPredictor:
         for i, color in enumerate(colors):
             if color in ("blue", "yello", "green"):
                 card_img = card_imgs[i]
+                car_img_contour = car_img_contours[i]
                 # cv2.imwrite("tmp/card_img.jpg", card_img)
                 try:
                     gray_img = cv2.cvtColor(card_img, cv2.COLOR_BGR2GRAY)
@@ -225,6 +225,10 @@ class CardPredictor:
                 card_color = color
                 break
 
+        if add_contours:
+            # 识别到的字符、定位的车牌图像、车牌颜色、位置
+            return predict_str, roi, card_color, car_img_contour
+
         return predict_str, roi, card_color  # 识别到的字符、定位的车牌图像、车牌颜色
 
     def img_only_color(self, filename, oldimg, img_contours):
@@ -253,7 +257,7 @@ class CardPredictor:
         img_edge2 = cv2.morphologyEx(img_edge1, cv2.MORPH_OPEN, Matrix)
 
         card_contours = img_math.img_findContours(img_edge2)
-        card_imgs = img_math.img_Transform(card_contours, oldimg, pic_width, pic_hight)
+        card_imgs, car_img_contours = img_math.img_Transform(card_contours, oldimg, pic_width, pic_hight)
         colors, car_imgs = img_math.img_color(card_imgs)
 
         predict_result = []
@@ -380,4 +384,3 @@ class CardPredictor:
             if w * h > 1500 and 3 < ration < 4 and w > h:
                 cropimg = img[y:y + h, x:x + w]
                 colors_img.append(cropimg)
-

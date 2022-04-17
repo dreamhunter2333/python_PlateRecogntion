@@ -105,9 +105,11 @@ def img_findContours(img_contours):
 
     return car_contours
 
-#进行矩形矫正
+
+# 进行矩形矫正
 def img_Transform(car_contours, oldimg, pic_width, pic_hight):
     car_imgs = []
+    car_img_contours = []
     for car_rect in car_contours:
         if -1 < car_rect[2] < 1:
             angle = 1
@@ -140,6 +142,7 @@ def img_Transform(car_contours, oldimg, pic_width, pic_hight):
             point_limit(left_point)
             car_img = dst[int(left_point[1]):int(heigth_point[1]), int(left_point[0]):int(new_right_point[0])]
             car_imgs.append(car_img)
+            car_img_contours.append([left_point, low_point, right_point, heigth_point])
 
         elif left_point[1] > right_point[1]:  # 负角度
             new_left_point = [left_point[0], heigth_point[1]]
@@ -152,8 +155,9 @@ def img_Transform(car_contours, oldimg, pic_width, pic_hight):
             point_limit(new_left_point)
             car_img = dst[int(right_point[1]):int(heigth_point[1]), int(new_left_point[0]):int(right_point[0])]
             car_imgs.append(car_img)
+            car_img_contours.append([left_point, low_point, right_point, heigth_point])
 
-    return car_imgs
+    return car_imgs, car_img_contours
 
 
 def img_color(card_imgs):
