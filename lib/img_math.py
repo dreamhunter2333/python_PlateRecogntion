@@ -92,6 +92,7 @@ def img_findContours(img_contours):
     # print("findContours len = ", len(contours))
     # 排除面积最小的点
     car_contours = []
+    boxPoints = [] # car_coutours location points
     for cnt in contours:
         ant = cv2.minAreaRect(cnt)
         width, height = ant[1]
@@ -102,8 +103,9 @@ def img_findContours(img_contours):
         if 2 < ration < 5.5:
             car_contours.append(ant)
             box = cv2.boxPoints(ant)
+            boxPoints.append(box)
 
-    return car_contours
+    return car_contours, boxPoints
 
 #进行矩形矫正
 def img_Transform(car_contours, oldimg, pic_width, pic_hight):

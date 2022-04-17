@@ -108,7 +108,7 @@ class CardPredictor:
 
         pic_hight, pic_width = img_contours.shape[:2]
 
-        card_contours = img_math.img_findContours(img_contours)
+        card_contours, boxPoints = img_math.img_findContours(img_contours)
         card_imgs = img_math.img_Transform(card_contours, oldimg, pic_width, pic_hight)
         colors, car_imgs = img_math.img_color(card_imgs)
         predict_result = []
@@ -252,7 +252,7 @@ class CardPredictor:
         img_edge1 = cv2.morphologyEx(output, cv2.MORPH_CLOSE, Matrix)
         img_edge2 = cv2.morphologyEx(img_edge1, cv2.MORPH_OPEN, Matrix)
 
-        card_contours = img_math.img_findContours(img_edge2)
+        card_contours, boxPoints = img_math.img_findContours(img_edge2)
         card_imgs = img_math.img_Transform(card_contours, oldimg, pic_width, pic_hight)
         colors, car_imgs = img_math.img_color(card_imgs)
 
@@ -260,11 +260,13 @@ class CardPredictor:
         predict_str = ""
         roi = None
         card_color = None
+        box_point = None
 
         for i, color in enumerate(colors):
 
             if color in ("blue", "yello", "green"):
                 card_img = card_imgs[i]
+                box_point = boxPoints[i]
 
                 try:
                     gray_img = cv2.cvtColor(card_img, cv2.COLOR_BGR2GRAY)
@@ -358,7 +360,7 @@ class CardPredictor:
                 roi = card_img
                 card_color = color
                 break
-        return predict_str, roi, card_color  # 识别到的字符、定位的车牌图像、车牌颜色
+        return predict_str, roi, card_color, box_point  # 识别到的字符、定位的车牌图像、车牌颜色、图片位置
 
     def img_mser(self, filename):
         if type(filename) == type(""):
@@ -381,3 +383,122 @@ class CardPredictor:
                 cropimg = img[y:y + h, x:x + w]
                 colors_img.append(cropimg)
 
+    # 根据区域位置 points, 用 cover img 覆盖该区域, 并返回新的 img
+    def img_cover(self, origImg, coverImg, points):
+        direction = 'horizontal'
+        if (origImg.size[0] < origImg.size[1]):
+            direction = 'vertical'
+       
+        # Read source image.
+        # src = cv2.imread('original.jpg')
+        coverImg.show()
+        src = cv2.cvtColor(np.asarray(coverImg), cv2.COLOR_RGB2BGR)
+
+        # resizedCoverImg = coverImg.resize((wh[0], wh[1]), Image.ANTIALIAS)
+        # resizedCoverImg.save('/app/tmp/resize_cover_img.png')
+
+        # Four corners of source image
+        # Coordinates are in x,y system with x horizontal to the right and y vertical downward
+        # listed clockwise from top left
+        # pts_src = np.float32([[0, 0], [src.shape[1], 0], [src.shape[1], src.shape[0]], [0, src.shape[0]]])
+        pts_src = np.float32([[0, 0], [src.shape[1], 0], [src.shape[1], src.shape[0]], [0, src.shape[0]]])
+
+        # # Read destination image.
+        # dst = cv2.imread('green_rect.png')
+        origImg.show()
+        dst = cv2.cvtColor(np.asarray(origImg), cv2.COLOR_RGB2BGR)
+
+        
+
+        # ### 竖屏
+        # points[0] ## 左下角坐标
+        # points[1] ## 左上角坐标
+        # points[2] ## 右上角坐标
+        # points[3] ## 右下角坐标
+        # ### 横屏
+        # points[0] ## 右下角坐标
+        # points[1] ## 左下角坐标
+        # points[2] ## 左上角坐标
+        # points[3] ## 右上角坐标
+
+        # 竖屏情况下需要转换下 points
+        if direction == 'vertical':
+            br = [points[3][0], points[3][1]]
+            bl = [points[0][0], points[0][1]]
+            tl = [points[1][0], points[1][1]]
+            tr = [points[2][0], points[2][1]]
+            points[0] = br
+            points[1] = bl
+            points[2] = tl
+            points[3] = tr
+
+        # 确定车牌位置
+        w1 = None
+        w2 = None
+        h1 = None
+        h2 = None
+        if (points[1][0] > points[2][0]):
+            w1 = int(points[2][0])
+        else:
+            w1 = int(points[1][0])
+
+        if (points[0][0] > points[3][0]):
+            w2 = int(points[0][0])
+        else:
+            w2 = int(points[3][0])
+
+        if (points[2][1] > points[3][1]):
+            h1 = int(points[3][1])
+        else:
+            h1 = int(points[2][1])
+
+        if (points[0][1] > points[1][1]):
+            h2 = int(points[0][1])
+        else:
+            h2 = int(points[1][1])
+
+        # dst = cv2.imread('/app/car_pic/ganzou6.png')
+        # [高度开始位置:高度结束位置, 宽度开始位置:宽度结束位置]
+        dst[h1:h2,w1:w2] = [0, 255, 0]
+        # print('dst ============ : ', h1, h2, w1, w2, dst.shape[1], direction)
+
+        # # Four corners of destination image.
+        # pts_dst = np.float32(points)
+        pts_dst = np.float32([points[2], points[3], points[0], points[1]]) # 2 3 0 1
+        # # Calculate Homography if more than 4 points
+        # # h = forward transformation matrix
+        # #h, status = cv2.findHomography(pts_src, pts_dst)
+
+        # # Alternate if only 4 points
+        h = cv2.getPerspectiveTransform(pts_src,pts_dst)
+
+        # # Warp source image to destination based on homography
+        # # size argument is width x height, so have to reverse shape values
+        src_warped = cv2.warpPerspective(src, h, (dst.shape[1],dst.shape[0]))
+
+        # # Set BGR color ranges
+        lowerBound = np.array([0, 255, 0])
+        upperBound = np.array([0, 255, 0])
+
+        # # Compute mask (roi) from ranges in dst
+        mask = cv2.inRange(dst, lowerBound, upperBound);
+
+        # # Dilate mask, if needed, when green border shows
+        kernel = np.ones((3,3),np.uint8)
+        mask = cv2.dilate(mask,kernel,iterations = 1)
+
+        # # Invert mask
+        inv_mask = cv2.bitwise_not(mask)
+
+        # # Mask dst with inverted mask
+        dst_masked = cv2.bitwise_and(dst, dst, mask=inv_mask)
+
+        # # Put src_warped over dst
+        result = cv2.add(dst_masked, src_warped)
+
+        # # Save outputs
+        cv2.imwrite('tmp/warped_src.jpg', src_warped)
+        cv2.imwrite('tmp/inverted_mask.jpg', inv_mask)
+        cv2.imwrite('tmp/masked_dst.jpg', dst_masked)
+        cv2.imwrite('tmp/perspective_composite.jpg', result)
+        return src_warped, inv_mask, dst_masked, result
