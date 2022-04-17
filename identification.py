@@ -18,6 +18,15 @@ import tkinter.messagebox
 from time import sleep
 
 
+def get_db():
+    try:
+        # 打开数据库连接
+        return pymysql.connect(host="localhost", port=3306, user="python", passwd="Python12345@", database="chepai")
+    except Exception as e:
+        print("数据库连接失败", e)
+        return
+
+
 class ThreadWithReturnValue(Thread):
     def __init__(self, group=None, target=None, name=None, args=(), kwargs=None, *, daemon=None):
         Thread.__init__(self, group, target, name, args, kwargs, daemon=daemon)
@@ -230,12 +239,6 @@ class Search(ttk.Frame):
             self.thread2.start()
             self.thread_run2 = True
             return
-        NAME1 = "localhost"
-        USRE1 = "python"
-        PASS1 = "Python12345@"
-        SQLNAME1 = "chepai"
-        TABLENAME1 = "CARINFO"
-        TABLENAME2 = "CARIDE"
         CARPLA1 = self.picre()
         if CARPLA1 == "":
             return
@@ -244,17 +247,11 @@ class Search(ttk.Frame):
 
         self.sql_flag = 0
 
-        self.select_sql(NAME1, USRE1, PASS1, SQLNAME1, TABLENAME1, CARPLA1)
+        self.select_sql("CARINFO", CARPLA1)
         if self.sql_flag == 1:
-            self.select_sql3(NAME1, USRE1, PASS1, SQLNAME1, TABLENAME2, CARPLA1)
+            self.select_sql3("CARIDE", CARPLA1)
 
     def sql233(self):
-        NAME1 = "localhost"
-        USRE1 = "python"
-        PASS1 = "Python12345@"
-        SQLNAME1 = "chepai"
-        TABLENAME1 = "CARINFO"
-        TABLENAME2 = "CARIDE"
         CARPLA1 = self.picre()
         if CARPLA1 == "":
             return
@@ -263,9 +260,9 @@ class Search(ttk.Frame):
 
         self.sql_flag = 0
 
-        self.select_sql(NAME1, USRE1, PASS1, SQLNAME1, TABLENAME1, CARPLA1)
+        self.select_sql("CARINFO", CARPLA1)
         if self.sql_flag == 1:
-            self.select_sql3(NAME1, USRE1, PASS1, SQLNAME1, TABLENAME2, CARPLA1)
+            self.select_sql3("CARIDE", CARPLA1)
 
     def sql2(self):
         if not self.thread_run:
@@ -273,14 +270,7 @@ class Search(ttk.Frame):
                 tkinter.messagebox.showinfo(title='车牌数据库系统', message='请输入')
                 return
 
-        NAME1 = "localhost"
-        USRE1 = "python"
-        PASS1 = "Python12345@"
-        SQLNAME1 = "chepai"
-        TABLENAME1 = "CARIDE"
-        NAME2 = self.input5.get()
-
-        self.select_sql2(NAME1, USRE1, PASS1, SQLNAME1, TABLENAME1, NAME2)
+        self.select_sql2("CARIDE", self.input5.get())
 
     def clean(self):
         self.s1.set("")
@@ -296,15 +286,12 @@ class Search(ttk.Frame):
         self.tkImage = ImageTk.PhotoImage(image=self.pilImage)
         self.image_ctl.configure(image=self.tkImage)
 
-    def select_sql(self, NAME, USRE, PASS, SQLNAME, TABLENAME, CARPLA):
+    def select_sql(self, TABLENAME, CARPLA):
         textstr = ""
         textstr2 = ""
         # 打开数据库连接
-        try:
-            # 打开数据库连接
-            db = pymysql.connect(NAME, USRE, PASS, SQLNAME)
-        except:
-            print("数据库连接失败")
+        db = get_db()
+        if not db:
             return
 
         # 使用cursor()方法获取操作游标
@@ -343,13 +330,10 @@ class Search(ttk.Frame):
         # 关闭数据库连接
         db.close()
 
-    def select_sql2(self, NAME, USRE, PASS, SQLNAME, TABLENAME, NAME3):
+    def select_sql2(self, TABLENAME, NAME3):
         # 打开数据库连接
-        try:
-            # 打开数据库连接
-            db = pymysql.connect(NAME, USRE, PASS, SQLNAME)
-        except:
-            print("数据库连接失败")
+        db = get_db()
+        if not db:
             return
 
         # 使用cursor()方法获取操作游标
@@ -373,13 +357,10 @@ class Search(ttk.Frame):
         # 关闭数据库连接
         db.close()
 
-    def select_sql3(self, NAME, USRE, PASS, SQLNAME, TABLENAME, NAME3):
+    def select_sql3(self, TABLENAME, NAME3):
         # 打开数据库连接
-        try:
-            # 打开数据库连接
-            db = pymysql.connect(NAME, USRE, PASS, SQLNAME)
-        except:
-            print("数据库连接失败")
+        db = get_db()
+        if not db:
             return
 
         # 使用cursor()方法获取操作游标
@@ -403,11 +384,9 @@ class Search(ttk.Frame):
         db.close()
 
     def create_sql2(self):
-        try:
-            # 打开数据库连接
-            db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
-        except:
-            print("数据库连接失败")
+        # 打开数据库连接
+        db = get_db()
+        if not db:
             return
         # 使用 cursor() 方法创建一个游标对象 cursor
         cursor = db.cursor()
