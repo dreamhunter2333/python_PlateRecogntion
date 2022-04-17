@@ -111,14 +111,14 @@ class Replace(ttk.Frame):
         img_bgr = img_math.img_read(self.pic_path)
         first_img, oldimg = self.predictor.img_first_pre(img_bgr)
 
-        r_c, roi_c, color_c, contours = self.predictor.img_color_contours(
+        r_c, roi_c, color_c, car_img_box = self.predictor.img_color_contours(
             first_img, oldimg, add_contours=True
         )
 
-        x0 = int(min(contour[0] for contour in contours))
-        x1 = int(max(contour[0] for contour in contours))
-        y0 = int(min(contour[1] for contour in contours))
-        y1 = int(max(contour[1] for contour in contours))
+        x0 = int(min(p[0] for p in car_img_box))
+        x1 = int(max(p[0] for p in car_img_box))
+        y0 = int(min(p[1] for p in car_img_box))
+        y1 = int(max(p[1] for p in car_img_box))
 
         cover_img = cv2.imread('pic/cover.png')
         cover = cv2.resize(
