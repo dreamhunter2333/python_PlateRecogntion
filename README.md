@@ -85,8 +85,6 @@ INFO_CONFIG = {
 mysql.server start
 
 # 运行登录界面
-# 如为虚拟环境，需要替换文件中 python3 命令为
-# windows 替换文件中 python3 命令为 exe 路径，如我提供的虚拟环境的 venv\\Scripts\\python.exe
 python3 login.py
 
 # 运行主界面
@@ -100,12 +98,11 @@ python3 search.py
 
 # 运行车牌认证主界面
 # 查看img_sql.py文件 数据库相关改为自己的(地址，用户名。密码，数据库名字)
-# db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
+# pymysql.connect("localhost", "python", "Python12345@", "chepai")
 python3 identification.py
 
 # 运行车牌数据库搜索主界面
 python3 search_sql.py
-
 ```
 
 * [android数据库查询软件](https://github.com/jinmu333/android_sql)
