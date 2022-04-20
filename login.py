@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-__author__ = 'jinmu333'
-
+import os
+import sys
 import tkinter as tk
-from tkinter import ttk
+
+from tkinter import LEFT, RIGHT, TOP, ttk
 from tkinter.filedialog import *
 import tkinter.messagebox
 from PIL import Image, ImageTk
-import os
+
 import lib.img_sql as img_sql
 
 
@@ -120,20 +121,20 @@ class Login(ttk.Frame):
             # close_window()
             log.state('icon')
             if self.t1 == "登录到车牌 识别 系统":
-                os.system("python3 ./main.py")
+                os.system("{} main.py".format(sys.executable))
             elif self.t1 == "登录到车牌 对比 系统":
-                os.system("python3 ./match.py")
+                os.system("{} match.py".format(sys.executable))
             elif self.t1 == "登录到车牌 搜索 系统":
-                os.system("python3 ./search.py")
+                os.system("{} search.py".format(sys.executable))
             elif self.t1 == "登录到车牌 数据库搜索 系统":
-                os.system("python3 ./search_sql.py")
+                os.system("{} search_sql.py".format(sys.executable))
             elif self.t1 == "登录到车牌 认证 系统":
-                os.system("python3 ./identification.py")
+                os.system("{} identification.py".format(sys.executable))
             log.state('normal')
         else:
             tkinter.messagebox.showinfo(title='车牌识别管理系统', message='密码错误')
 
-    def login(self, self2):
+    def login(self, args):
         self.backstage_interface()
 
 
