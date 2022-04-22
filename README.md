@@ -71,15 +71,18 @@ windows 替换 python3 命令为 `venv\\Scripts\\python.exe`
 [百度api网址](https://cloud.baidu.com/product/ocr)
 
 ``` bash
-# 首次运行修改 img_api.py中的 ID,KEY的配置信息为自己百度api信息
-INFO_CONFIG = {
-    'ID': ' ',
-    'API_KEY': ' ',
-    'SECRET_KEY': ' '
-}
+# 首次运行修改 .env 文件中的配置信息为自己百度api信息
+# 数据库相关改为自己的(地址，用户名。密码，数据库名字)
+api_id=15777797
+api_key=xkQmQk08d7pTP56LqXhqpUbm
+api_secret_key=bzgSQwTy6WTkXczLlYPfOwu2OQZQ8CEg
+host=localhost
+port=3306
+user=python
+passwd=Python12345@
+database=chepai
+
 # 运行
-# 查看img_sql.py文件 数据库相关改为自己的(地址，用户名。密码，数据库名字)
-# db = pymysql.connect("localhost", "python", "Python12345@", "chepai")
 # GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost'
 # windows 下载便携版
 mysql.server start
@@ -103,6 +106,9 @@ python3 identification.py
 
 # 运行车牌数据库搜索主界面
 python3 search_sql.py
+
+# 运行 停车场系统
+python3 park.py
 ```
 
 * [android数据库查询软件](https://github.com/jinmu333/android_sql)

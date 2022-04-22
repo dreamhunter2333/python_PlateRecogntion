@@ -17,11 +17,19 @@ from lib.img_api import api_pic
 import tkinter.messagebox
 from time import sleep
 
+from lib.config import settings
+
 
 def get_db():
     try:
         # 打开数据库连接
-        return pymysql.connect(host="localhost", port=3306, user="python", passwd="Python12345@", database="chepai")
+        return pymysql.connect(
+            host=settings.host,
+            port=settings.port,
+            user=settings.user,
+            passwd=settings.passwd,
+            database=settings.database
+        )
     except Exception as e:
         print("数据库连接失败", e)
         return
