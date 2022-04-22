@@ -6,6 +6,8 @@ import tkinter.messagebox
 
 from tkinter import END, LEFT, RIGHT, TOP, StringVar, Text, ttk
 
+from lib.config import settings
+
 
 class Search(ttk.Frame):
     def __init__(self, win):
@@ -102,11 +104,11 @@ class Search(ttk.Frame):
         try:
             # 打开数据库连接
             return pymysql.connect(
-                host=self.host_input.get() or "localhost",
-                port=int(self.port_input.get() or "3306"),
-                user=self.user_input.get() or "python",
-                passwd=self.passwd_input.get() or "Python12345@",
-                database=self.db_input.get() or "chepai"
+                host=self.host_input.get() or settings.host,
+                port=int(self.port_input.get() or settings.port),
+                user=self.user_input.get() or settings.user,
+                passwd=self.passwd_input.get() or settings.passwd,
+                database=self.db_input.get() or settings.database
             )
         except Exception as e:
             print("数据库连接失败", e)

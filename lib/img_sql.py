@@ -4,11 +4,19 @@ __author__ = 'jinmu333'
 
 import pymysql
 
+from .config import settings
+
 
 def get_db():
     try:
         # 打开数据库连接
-        return pymysql.connect(host="localhost", port=3306, user="python", passwd="Python12345@", database="chepai")
+        return pymysql.connect(
+            host=settings.host,
+            port=settings.port,
+            user=settings.user,
+            passwd=settings.passwd,
+            database=settings.database
+        )
     except Exception as e:
         print("数据库连接失败", e)
         return
@@ -118,7 +126,8 @@ def sign_sql(NAME, PASSWORD):
     cursor = db.cursor()
 
     # SQL 插入语句
-    sql = "INSERT INTO USERS(NAME, PASSWORD) VALUES ('%s', '%s')" %(NAME, PASSWORD)
+    sql = "INSERT INTO USERS(NAME, PASSWORD) VALUES ('%s', '%s')" % (
+        NAME, PASSWORD)
 
     try:
         # 执行sql语句
