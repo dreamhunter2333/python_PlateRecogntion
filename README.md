@@ -106,6 +106,9 @@ python3 identification.py
 
 # 运行车牌数据库搜索主界面
 python3 search_sql.py
+
+# 运行 停车场系统
+python3 park.py
 ```
 
 * [android数据库查询软件](https://github.com/jinmu333/android_sql)
