@@ -22,7 +22,7 @@
 ****
 
 * 毕业设计基于Opencv的车牌识别系统
-* 安装 python3.6 或 python3.7
+* 安装 python3.6
 * 使用hyperlpr提高识别率
 * 两种方法都无法识别时调用百度api(有手动按钮)
 
@@ -33,6 +33,14 @@
 你可以选择使用 docker 搭建，或者 本地搭建环境，Linux/MacOS 搭建，我相信不用介绍配置环境
 
 这里仅介绍 `docker 开发环境搭建` 和 `windows 快速搭建环境`， 你也可以自己手动安装依赖
+
+### MacOS 开发环境搭建
+
+``` bash
+brew install python@3.6
+# 创建虚拟环境
+python3 -m pip install -r requirements.txt
+```
 
 ### docker 开发环境搭建
 
@@ -66,7 +74,7 @@ drwxr-xr-x 1 dreamhunter 197609  0 Apr 16 17:24 Scripts/
 
 解压后，cmd 执行 start.bat
 
-### 手动安装依赖
+### 安装依赖
 
 ``` bash
 python3 -m pip install -r requirements.txt
