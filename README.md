@@ -30,6 +30,10 @@
 
 ## 开发环境配置
 
+你可以选择使用 docker 搭建，或者 本地搭建环境，Linux/MacOS 搭建，我相信不用介绍配置环境
+
+这里仅介绍 `docker 开发环境搭建` 和 `windows 快速搭建环境`， 你也可以自己手动安装依赖
+
 ### docker 开发环境搭建
 
 [点此查看 docker 开发环境搭建](/docker/readme.md)
@@ -52,6 +56,8 @@ drwxr-xr-x 1 dreamhunter 197609  0 Apr 16 17:18 Lib/
 drwxr-xr-x 1 dreamhunter 197609  0 Apr 16 17:24 Scripts/
 ```
 
+之后运行时替换 python3 命令为 `venv\\Scripts\\python.exe`
+
 #### 下载 mysql 便携版
 
 [https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/mysql-server-winx64.zip](https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/mysql-server-winx64.zip)
@@ -61,12 +67,10 @@ drwxr-xr-x 1 dreamhunter 197609  0 Apr 16 17:24 Scripts/
 ### 手动安装依赖
 
 ``` bash
-./venv/bin/python3 -m pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 ## 运行演示
-
-windows 替换 python3 命令为 `venv\\Scripts\\python.exe`
 
 [百度api网址](https://cloud.baidu.com/product/ocr)
 
