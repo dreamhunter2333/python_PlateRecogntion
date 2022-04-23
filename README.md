@@ -42,7 +42,9 @@
 
 #### 下载虚拟环境 zip 解压到项目目录 venv 下
 
-[https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/venv.zip](https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/venv.zip)
+安装 python3.6 [https://www.python.org/downloads/release/python-366/](https://www.python.org/downloads/release/python-366/)
+
+下载 venv [https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/venv.zip](https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/venv.zip)
 
 结构如下
 
@@ -72,7 +74,7 @@ python3 -m pip install -r requirements.txt
 
 ## 运行演示
 
-[百度api网址](https://cloud.baidu.com/product/ocr)
+[点击申请百度 api 网址](https://cloud.baidu.com/product/ocr)
 
 ``` bash
 # 首次运行修改 .env 文件中的配置信息为自己百度api信息
