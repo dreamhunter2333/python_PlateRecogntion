@@ -227,7 +227,7 @@ class CardPredictor:
 
         return predict_str, roi, card_color  # 识别到的字符、定位的车牌图像、车牌颜色
 
-    def img_only_color(self, filename, oldimg, img_contours):
+    def img_only_color(self, filename, oldimg, img_contours, add_box_point=False):
         """
         :param filename: 图像文件
         :param oldimg: 原图像文件
@@ -360,7 +360,11 @@ class CardPredictor:
                 roi = card_img
                 card_color = color
                 break
-        return predict_str, roi, card_color, box_point  # 识别到的字符、定位的车牌图像、车牌颜色、图片位置
+        if add_box_point:
+            # 识别到的字符、定位的车牌图像、车牌颜色、图片位置
+            return predict_str, roi, card_color, box_point
+        # 识别到的字符、定位的车牌图像、车牌颜色
+        return predict_str, roi, card_color
 
     def img_mser(self, filename):
         if type(filename) == type(""):
@@ -388,7 +392,7 @@ class CardPredictor:
         direction = 'horizontal'
         if (origImg.size[0] < origImg.size[1]):
             direction = 'vertical'
-       
+
         # Read source image.
         # src = cv2.imread('original.jpg')
         coverImg.show()
@@ -407,8 +411,6 @@ class CardPredictor:
         # dst = cv2.imread('green_rect.png')
         origImg.show()
         dst = cv2.cvtColor(np.asarray(origImg), cv2.COLOR_RGB2BGR)
-
-        
 
         # ### 竖屏
         # points[0] ## 左下角坐标

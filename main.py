@@ -311,7 +311,7 @@ class Surface(ttk.Frame):
         th1.start()
         th2.start()
         r_c, roi_c, color_c = th1.join()
-        r_color, roi_color, color_color, box_point = th2.join()
+        r_color, roi_color, color_color = th2.join()
         try:
             Plate = HyperLPR_PlateRecogntion(img_bgr)
             # print(Plate[0][0])
