@@ -68,7 +68,7 @@ class ParkHistory(Base):
             session.commit()
 
     @staticmethod
-    def count_car() -> str:
+    def count_car() -> int:
         with DBSession() as session:
             history = session.query(
                 func.count(ParkHistory.id)

@@ -92,10 +92,10 @@ class Login(ttk.Frame):
     def signup_interface(self):
         account = self.input_account.get()
         password = self.input_password.get()
-        if (account == ""):
+        if account == "":
             tkinter.messagebox.showinfo(title='车牌识别管理系统', message='账号不能为空')
             return
-        if (password == ""):
+        if password == "":
             tkinter.messagebox.showinfo(title='车牌识别管理系统', message='密码不能为空')
             return
         if img_sql.select_sql(account):
@@ -107,16 +107,16 @@ class Login(ttk.Frame):
     def backstage_interface(self):
         account = self.input_account.get()
         password = self.input_password.get()
-        if (account == ""):
+        if account == "":
             tkinter.messagebox.showinfo(title='车牌识别管理系统', message='账号不能为空')
             return
-        if (password == ""):
+        if password == "":
             tkinter.messagebox.showinfo(title='车牌识别管理系统', message='密码不能为空')
             return
         if not img_sql.select_sql(account):
             tkinter.messagebox.showinfo(title='车牌识别管理系统', message='用户名未注册')
             return
-        if (password == img_sql.select_sql(account)):
+        if password == img_sql.select_sql(account):
             tkinter.messagebox.showinfo(title='车牌识别管理系统', message='登录成功')
             # close_window()
             log.state('icon')
