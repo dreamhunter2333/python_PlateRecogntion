@@ -20,6 +20,7 @@ import tkinter.messagebox
 import requests
 from time import sleep
 from hyperlpr import *
+from matplotlib import pyplot
 
 
 class ThreadWithReturnValue(Thread):
@@ -490,16 +491,9 @@ class Surface(ttk.Frame):
             return
         self.thread_run = False
         self.thread_run2 = False
-        filename = img_math.img_read("tmp/img_contours.jpg")
-        screenwidth = win.winfo_screenwidth()
-        screenheight = win.winfo_screenheight()
-        win.update()
-        width = win.winfo_width()
-        height = win.winfo_height()
-        laji1 = int((screenwidth - width)/2)
-        laji2 = int((screenheight - height)/2)
-        cv2.imshow("preimg", filename)
-        cv2.moveWindow("preimg", laji1+100, laji2)
+        img = cv2.imread("tmp/img_contours.jpg")
+        pyplot.imshow(img)
+        pyplot.show()
 
     def clean(self):
         if self.thread_run:
