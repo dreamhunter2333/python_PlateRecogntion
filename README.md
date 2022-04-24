@@ -40,9 +40,26 @@
 
 ### windows 快速搭建环境
 
-#### 下载虚拟环境 zip 解压到项目目录 venv 下
+#### 安装 python3.6
 
 安装 python3.6 [https://www.python.org/downloads/release/python-366/](https://www.python.org/downloads/release/python-366/)
+
+#### 下载 mysql 便携版
+
+[https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/mysql-server-winx64.zip](https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/mysql-server-winx64.zip)
+
+解压后，cmd 执行 start.bat
+
+## 安装依赖
+
+``` bash
+# 创建虚拟环境
+python3 -m venv ./venv
+# 安装依赖
+python3 -m pip install -r requirements.txt
+```
+
+### Windows 可以下载预置的虚拟环境
 
 下载 venv [https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/venv.zip](https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/venv.zip)
 
@@ -59,18 +76,6 @@ drwxr-xr-x 1 dreamhunter 197609  0 Apr 16 17:24 Scripts/
 ```
 
 之后运行时替换 python3 命令为 `venv\\Scripts\\python.exe`
-
-#### 下载 mysql 便携版
-
-[https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/mysql-server-winx64.zip](https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/mysql-server-winx64.zip)
-
-解压后，cmd 执行 start.bat
-
-### 安装依赖
-
-``` bash
-python3 -m pip install -r requirements.txt
-```
 
 ## 运行演示
 
