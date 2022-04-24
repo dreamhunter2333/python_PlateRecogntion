@@ -12,6 +12,7 @@ import requests
 from hyperlpr import *
 import cv2
 from threading import Thread
+from lib import img_math
 import lib.img_function as predict
 from lib.img_api import api_pic
 import lib.screencut as screencut
@@ -141,7 +142,6 @@ class Login(ttk.Frame):
         for filename in os.listdir(images_path):
             #print(filename)
             try:
-                img = cv2.imread(images_path + "/" + filename)
                 self.pilImage3 = Image.open(images_path + "/" + filename)
                 self.array_of_img.append(images_path + "/" + filename)
                 self.count = self.count + 1
@@ -315,7 +315,7 @@ class Login(ttk.Frame):
         r_c = None
         r_color = None
         textstr = None
-        img_bgr = cv2.imread(pic_path)
+        img_bgr = img_math.img_read(pic_path)
         first_img, oldimg = self.predictor.img_first_pre(img_bgr)
         th1 = ThreadWithReturnValue(target=self.predictor.img_color_contours, args=(first_img, oldimg))
         th2 = ThreadWithReturnValue(target=self.predictor.img_only_color, args=(oldimg, oldimg, first_img))

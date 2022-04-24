@@ -12,6 +12,7 @@ from hyperlpr import *
 import cv2
 import threading
 from threading import Thread
+from lib import img_math
 import lib.img_function as predict
 from lib.img_api import api_pic
 import tkinter.messagebox
@@ -206,7 +207,7 @@ class Search(ttk.Frame):
         r_c = None
         r_color = None
         text1str = None
-        img_bgr = cv2.imread(self.pic_path)
+        img_bgr = img_math.img_read(self.pic_path)
         first_img, oldimg = self.predictor.img_first_pre(img_bgr)
         try:
             th1 = ThreadWithReturnValue(target=self.predictor.img_color_contours, args=(first_img, oldimg))
