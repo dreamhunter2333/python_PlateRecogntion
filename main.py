@@ -360,7 +360,6 @@ class Surface(ttk.Frame):
         for filename in os.listdir(images_path):
             # print(filename)
             try:
-                img = cv2.imread(images_path + "/" + filename)
                 self.pilImage3 = Image.open(images_path + "/" + filename)
                 self.array_of_img.append(images_path + "/" + filename)
                 self.count = self.count + 1

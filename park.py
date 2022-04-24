@@ -133,7 +133,7 @@ class Park(ttk.Frame):
             tkinter.messagebox.showinfo(title='停车场系统', message='请选择图片')
             raise Exception("请选择图片")
 
-        img_bgr = cv2.imread(self.pic_path)
+        img_bgr = img_math.img_read(self.pic_path)
         first_img, oldimg = self.predictor.img_first_pre(img_bgr)
 
         try:
