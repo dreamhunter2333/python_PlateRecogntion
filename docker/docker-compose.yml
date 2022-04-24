@@ -8,9 +8,12 @@ services:
       dockerfile: docker/Dockerfile
     volumes:
       - ../:/app/
+      - /dev/null:/app/.env
     environment:
-      - LC_ALL=en_US.utf8
       - PYTHONIOENCODING=utf-8
+      - DISPLAY=:1
+    env_file:
+      - .env.docker
     ports:
       - 5900:5900
       - 6080:80
