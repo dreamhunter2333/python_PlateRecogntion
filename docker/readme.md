@@ -1,6 +1,8 @@
 # docker 运行
 
-修改代码中的数据库链接地址为 mysql-db
+## 注意
+
+请先修改 `.env.docker` 中的配置信息，数据库、已经配置好，修改后需要 `docker compose down` 清理
 
 ## 测试
 
@@ -10,7 +12,6 @@ docker-compose up -d
 # 打开远程桌面中的终端
 # 数据库改为 docker-compose 文件的地址密码
 docker exec -it ubuntu-plate bash
-export DISPLAY=:1
 cd /app
 python3 main.py
 ```
@@ -30,9 +31,6 @@ python3 main.py
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/login.py",
-            "env": {
-                "DISPLAY": ":1"
-            },
             "console": "integratedTerminal",
             "justMyCode": true
         }

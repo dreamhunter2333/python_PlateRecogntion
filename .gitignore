@@ -2,3 +2,5 @@ venv/
 *.pyc
 .vscode/
 .idea/
+data.xls
+tmp/
