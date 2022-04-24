@@ -3,7 +3,7 @@
 [![img](https://img.shields.io/github/stars/jinmu333/python_PlateRecogntion.svg?logoColor=blue&style=for-the-badge) ![img](https://img.shields.io/github/forks/jinmu333/python_PlateRecogntion.svg?logoColor=blue&style=for-the-badge) ![img](https://img.shields.io/github/last-commit/jinmu333/python_PlateRecogntion.svg?color=blue&style=for-the-badge) ![img](https://img.shields.io/badge/python-3-blue.svg?style=for-the-badge)](https://github.com/jinmu333/python_PlateRecogntion)
 [![img](https://img.shields.io/badge/link-996.icu-red.svg?style=for-the-badge)](https://github.com/996icu/996.ICU)
 
-## 简介  [原理简介](doc/doc.md)
+## 简介  [点击查看原理简介](doc/doc.md)
 
 ****
 
@@ -33,14 +33,6 @@
 你可以选择使用 docker 搭建，或者 本地搭建环境，Linux/MacOS 搭建，我相信不用介绍配置环境
 
 这里仅介绍 `docker 开发环境搭建` 和 `windows 快速搭建环境`， 你也可以自己手动安装依赖
-
-### MacOS 开发环境搭建
-
-``` bash
-brew install python@3.6
-# 创建虚拟环境
-python3 -m pip install -r requirements.txt
-```
 
 ### docker 开发环境搭建
 
@@ -85,6 +77,7 @@ python3 -m pip install -r requirements.txt
 [点击申请百度 api 网址](https://cloud.baidu.com/product/ocr)
 
 ``` bash
+# 使用前面的 docker 开发可跳过此步骤，请看 docker 文件夹下的文档
 # 首次运行修改 .env 文件中的配置信息为自己百度api信息
 # 数据库相关改为自己的(地址，用户名。密码，数据库名字)
 api_id=15777797
@@ -96,9 +89,9 @@ user=python
 passwd=Python12345@
 database=chepai
 
-# 运行
+# 启动 mysql
 # GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost'
-# windows 下载便携版
+# windows 下载便携版运行即可
 mysql.server start
 
 # 运行登录界面
