@@ -30,13 +30,21 @@
 
 ## 开发环境配置
 
-你可以选择使用 docker 搭建，或者 本地搭建环境，Linux/MacOS 搭建，我相信不用介绍配置环境
+你可以选择使用 docker 搭建，或者 本地搭建环境，Linux 搭建，我相信不用介绍配置环境
 
 这里仅介绍 `docker 开发环境搭建` 和 `windows 快速搭建环境`， 你也可以自己手动安装依赖
 
 ### docker 开发环境搭建
 
 [点此查看 docker 开发环境搭建](/docker/readme.md)
+
+### macos 开发环境搭建
+
+```bash
+brew install tcl-tk pyenv
+# macos 12 最低只能安装此版本
+pyenv isntall 3.7.13
+```
 
 ### windows 快速搭建环境
 
