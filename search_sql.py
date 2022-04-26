@@ -106,7 +106,7 @@ class Search(ttk.Frame):
             return pymysql.connect(
                 host=self.host_input.get() or settings.host,
                 port=int(self.port_input.get() or settings.port),
-                user=self.user_input.get() or settings.user,
+                user=self.user_input.get() or settings.dbuser,
                 passwd=self.passwd_input.get() or settings.passwd,
                 database=self.db_input.get() or settings.database
             )

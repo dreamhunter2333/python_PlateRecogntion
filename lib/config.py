@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     api_secret_key: str
     host: str
     port: int
-    user: str
+    dbuser: str
     passwd: str
     database: str
 

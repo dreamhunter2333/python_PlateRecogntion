@@ -11,7 +11,7 @@ from lib.config import settings
 TZ = timezone(timedelta(hours=8))
 engine = create_engine(
     "mysql+pymysql://{user}:{passwd}@{host}:{port}/{database}".format(
-        user=settings.user,
+        user=settings.dbuser,
         passwd=quote_plus(settings.passwd),
         host=settings.host,
         port=settings.port,
