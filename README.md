@@ -43,7 +43,7 @@
 ```bash
 brew install tcl-tk pyenv
 # macos 12 最低只能安装此版本
-pyenv isntall 3.7.13
+pyenv install 3.7.13
 ```
 
 ### windows 快速搭建环境
