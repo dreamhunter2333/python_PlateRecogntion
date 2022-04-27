@@ -48,6 +48,7 @@ brew install mysql@5.7
 mysql.server start
 mysql -uroot
 CREATE USER 'python'@'%' IDENTIFIED BY 'Python12345@';
+CREATE database chepai;
 GRANT ALL PRIVILEGES ON *.* TO 'python'@'%';
 ```
 
