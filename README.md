@@ -46,6 +46,17 @@ brew install tcl-tk pyenv
 pyenv install 3.7.13
 ```
 
+下载 mysql 便携版并解压
+
+[https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/mysql-5.7.31-macos10.14-x86_64.zip](https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/mysql-5.7.31-macos10.14-x86_64.zip)
+
+```bash
+# 启动
+./bin/mysqld --defaults-file="my.cnf" --explicit_defaults_for_timestamp
+# 停止
+killall mysqld
+```
+
 ### windows 快速搭建环境
 
 #### 安装 python3.6
