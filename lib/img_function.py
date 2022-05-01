@@ -95,7 +95,7 @@ class CardPredictor:
         img_edge2 = cv2.morphologyEx(img_edge1, cv2.MORPH_OPEN, Matrix)
         return img_edge2, oldimg
 
-    def img_color_contours(self, img_contours, oldimg):
+    def img_color_contours(self, img_contours, oldimg, add_box_point=False):
         """
         :param img_contours: 预处理好的图像
         :param oldimg: 原图像
@@ -115,6 +115,7 @@ class CardPredictor:
         predict_str = ""
         roi = None
         card_color = None
+        box_point = None
 
         for i, color in enumerate(colors):
             if color in ("blue", "yello", "green"):
@@ -171,14 +172,14 @@ class CardPredictor:
 
                 # 组合分离汉字
                 cur_dis = 0
-                for i, wave in enumerate(wave_peaks):
+                for wi, wave in enumerate(wave_peaks):
                     if wave[1] - wave[0] + cur_dis > max_wave_dis * 0.6:
                         break
                     else:
                         cur_dis += wave[1] - wave[0]
-                if i > 0:
-                    wave = (wave_peaks[0][0], wave_peaks[i][1])
-                    wave_peaks = wave_peaks[i + 1:]
+                if wi > 0:
+                    wave = (wave_peaks[0][0], wave_peaks[wi][1])
+                    wave_peaks = wave_peaks[wi + 1:]
                     wave_peaks.insert(0, wave)
                 point = wave_peaks[2]
                 point_img = gray_img[:, point[0]:point[1]]
@@ -195,7 +196,7 @@ class CardPredictor:
                 #     cv2.imwrite("tmp/part_cards" + str(i) + ".jpg", part_cards[i])
                 #     i += 1
 
-                for i, part_card in enumerate(part_cards):
+                for pi, part_card in enumerate(part_cards):
                     # 可能是固定车牌的铆钉
 
                     if np.mean(part_card) < 255 / 5:
@@ -208,7 +209,7 @@ class CardPredictor:
                     part_card = cv2.copyMakeBorder(part_card, 0, 0, w, w, cv2.BORDER_CONSTANT, value=[0, 0, 0])
                     part_card = cv2.resize(part_card, (SZ, SZ), interpolation=cv2.INTER_AREA)
                     part_card = img_recognition.preprocess_hog([part_card])
-                    if i == 0:
+                    if pi == 0:
                         resp = self.modelchinese.predict(part_card)
                         charactor = img_recognition.provinces[int(resp[0]) - PROVINCE_START]
                     else:
@@ -223,8 +224,11 @@ class CardPredictor:
 
                 roi = card_img
                 card_color = color
+                box_point = boxPoints[i]
                 break
 
+        if (add_box_point == True):
+            return predict_str, roi, card_color, box_point
         return predict_str, roi, card_color  # 识别到的字符、定位的车牌图像、车牌颜色
 
     def img_only_color(self, filename, oldimg, img_contours, add_box_point=False):
@@ -310,15 +314,19 @@ class CardPredictor:
 
                 # 组合分离汉字
                 cur_dis = 0
-                for i, wave in enumerate(wave_peaks):
+                for wi, wave in enumerate(wave_peaks):
                     if wave[1] - wave[0] + cur_dis > max_wave_dis * 0.6:
                         break
                     else:
                         cur_dis += wave[1] - wave[0]
-                if i > 0:
+                if wi > 0:
                     wave = (wave_peaks[0][0], wave_peaks[i][1])
-                    wave_peaks = wave_peaks[i + 1:]
+                    wave_peaks = wave_peaks[wi + 1:]
                     wave_peaks.insert(0, wave)
+
+                # 存在 wave_peaks < 3 的情况，导致下面语法错误
+                if (len(wave_peaks) < 3):
+                    continue
 
                 point = wave_peaks[2]
                 point_img = gray_img[:, point[0]:point[1]]
@@ -331,7 +339,7 @@ class CardPredictor:
 
                 part_cards = img_math.seperate_card(gray_img, wave_peaks)
 
-                for i, part_card in enumerate(part_cards):
+                for pi, part_card in enumerate(part_cards):
                     # 可能是固定车牌的铆钉
 
                     if np.mean(part_card) < 255 / 5:
@@ -344,7 +352,7 @@ class CardPredictor:
                     part_card = cv2.copyMakeBorder(part_card, 0, 0, w, w, cv2.BORDER_CONSTANT, value=[0, 0, 0])
                     part_card = cv2.resize(part_card, (SZ, SZ), interpolation=cv2.INTER_AREA)
                     part_card = img_recognition.preprocess_hog([part_card])
-                    if i == 0:
+                    if pi == 0:
                         resp = self.modelchinese.predict(part_card)
                         charactor = img_recognition.provinces[int(resp[0]) - PROVINCE_START]
                     else:
