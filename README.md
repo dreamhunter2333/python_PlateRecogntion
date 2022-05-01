@@ -45,7 +45,7 @@ brew install tcl-tk pyenv
 # macos 12 最低只能安装此版本
 pyenv install 3.7.13
 brew install mysql@5.7
-mysql.server start
+mysql.server start --skip-grant-tables
 mysql -uroot
 CREATE USER 'python'@'%' IDENTIFIED BY 'Python12345@';
 CREATE database chepai;
