@@ -96,8 +96,9 @@ drwxr-xr-x 1 dreamhunter 197609  0 Apr 16 17:24 Scripts/
 [点击申请百度 api 网址](https://cloud.baidu.com/product/ocr)
 
 ``` bash
+# 首次运行 cp .env.sample 到 .env
 # 使用前面的 docker 开发可跳过此步骤，请看 docker 文件夹下的文档
-# 首次运行修改 .env 文件中的配置信息为自己百度api信息
+# 修改 .env 文件中的配置信息为自己百度api信息
 # 数据库相关改为自己的(地址，用户名。密码，数据库名字)
 api_id=15777797
 api_key=xkQmQk08d7pTP56LqXhqpUbm
