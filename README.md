@@ -73,24 +73,6 @@ python3 -m venv ./venv
 python3 -m pip install -r requirements.txt
 ```
 
-### Windows 可以下载预置的虚拟环境
-
-下载 venv [https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/venv.zip](https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/venv.zip)
-
-结构如下
-
-```bash
-$ ls -l venv/
-total 10
-drwxr-xr-x 1 dreamhunter 197609  0 Apr 16 17:18 Include/
-drwxr-xr-x 1 dreamhunter 197609  0 Apr 16 17:18 Lib/
--rw-r--r-- 1 dreamhunter 197609 61 Apr 16 17:24 pip-selfcheck.json
--rw-r--r-- 1 dreamhunter 197609 92 Apr 16 17:18 pyvenv.cfg
-drwxr-xr-x 1 dreamhunter 197609  0 Apr 16 17:24 Scripts/
-```
-
-之后运行时替换 python3 命令为 `venv\\Scripts\\python.exe`
-
 ## 运行演示
 
 [点击申请百度 api 网址](https://cloud.baidu.com/product/ocr)
