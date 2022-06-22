@@ -4,7 +4,7 @@ hyperlpr==0.0.1
 idna==3.3
 jsonpath==0.82
 matplotlib==3.3.4
-numpy==1.16.2
+numpy==1.22.0
 opencv-python==4.0.0.21
 pydantic==1.9.0
 python-dotenv==0.20.0
