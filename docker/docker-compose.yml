@@ -36,11 +36,11 @@ services:
       MYSQL_PASSWORD: 'Python12345@'
       MYSQL_ROOT_PASSWORD: 'Python12345@'
     ports:
-      - '3306'
+      - '3306:3306'
     expose:
       - '3306'
     volumes:
-      - docker-db:/var/lib/mysql
+      - plate-db:/var/lib/mysql
 
 volumes:
-  docker-db:
+  plate-db:

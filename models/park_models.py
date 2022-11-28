@@ -8,7 +8,6 @@ from sqlalchemy import Column, String, INT, DateTime, Boolean
 from lib.config import settings
 
 
-TZ = timezone(timedelta(hours=8))
 engine = create_engine(
     "mysql+pymysql://{user}:{passwd}@{host}:{port}/{database}".format(
         user=settings.dbuser,
@@ -55,7 +54,7 @@ class ParkHistory(Base):
             ).order_by(ParkHistory.create_time.desc()).first()
             if not history:
                 return None
-            return history.create_time.astimezone(TZ)
+            return history.create_time.replace(tzinfo=timezone.utc)
 
     @staticmethod
     def del_car(plate: str) -> None:
