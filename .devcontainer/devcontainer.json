@@ -3,7 +3,7 @@
 {
 	"name": "PlateRecogntion",
 	"dockerComposeFile": [
-		"../docker/docker-compose.yml",
+		"../docker/docker-compose.yml"
 	],
 	"service": "ubuntu-plate",
 	"workspaceFolder": "/app",
@@ -12,5 +12,5 @@
 		"ms-python.python",
 		"ms-python.vscode-pylance"
 	],
-	"shutdownAction": "stopCompose",
+	"shutdownAction": "stopCompose"
 }

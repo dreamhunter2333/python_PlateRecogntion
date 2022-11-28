@@ -16,7 +16,10 @@ import lib.img_function as predict
 from models.park_models import ParkHistory
 
 
+# 车位数量
 PARK_SIZE = 100
+# 停车费 元/每小时
+PARK_FEE = 10
 TZ = timezone(timedelta(hours=8))
 
 
@@ -195,10 +198,11 @@ class Park(ttk.Frame):
         delta = datetime.now(tz=TZ) - history_time
         tkinter.messagebox.showinfo(
             title='请缴费',
-            message='{}: 上次进入: {}, \n 停车时长: {} 天 {} 小时 {} 分钟'.format(
+            message='{}: 上次进入: {}, \n 停车时长: {} 天 {} 小时 {} 分钟 \n 费用: {:.2f} 元'.format(
                 plate, history_time, delta.days,
                 (delta.seconds // 3600),
-                ((delta.seconds % 3600) // 60)
+                ((delta.seconds % 3600) // 60),
+                (delta.days * 24 * PARK_FEE + (delta.seconds / 3600) * PARK_FEE)
             )
         )
 
