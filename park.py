@@ -195,11 +195,13 @@ class Park(ttk.Frame):
                 title='停车场系统', message='{} 未进入'.format(plate)
             )
             return
-        delta = datetime.now(tz=TZ) - history_time
+        delta = datetime.now(tz=timezone.utc) - history_time
         tkinter.messagebox.showinfo(
             title='请缴费',
             message='{}: 上次进入: {}, \n 停车时长: {} 天 {} 小时 {} 分钟 \n 费用: {:.2f} 元'.format(
-                plate, history_time, delta.days,
+                plate,
+                history_time.astimezone(tz=TZ),
+                delta.days,
                 (delta.seconds // 3600),
                 ((delta.seconds % 3600) // 60),
                 (delta.days * 24 * PARK_FEE + (delta.seconds / 3600) * PARK_FEE)
