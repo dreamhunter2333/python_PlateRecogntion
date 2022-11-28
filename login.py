@@ -37,9 +37,11 @@ class Login(ttk.Frame):
         frame3.pack(side=TOP, fill=tk.Y, expand=1)
 
         self.t1 = "登录到车牌 识别 系统"
-        self.text_change = ttk.Label(frame0, text=self.t1, font=('Times', '20'))
+        self.text_change = ttk.Label(
+            frame0, text=self.t1, font=('Times', '20'))
         self.text_change.pack(side=TOP)
-        self.change_button = ttk.Button(frame0, text="切换系统", width=15, command=self.change)
+        self.change_button = ttk.Button(
+            frame0, text="切换系统", width=15, command=self.change)
         self.change_button.pack(side=TOP)
 
         self.label_account = ttk.Label(frame1, text='账号: ')
@@ -51,9 +53,11 @@ class Login(ttk.Frame):
         self.input_password = ttk.Entry(frame2, show='*', width=30)
         self.input_password.pack(side=RIGHT)
         self.input_password.bind('<Key-Return>', self.login)
-        self.signup_button = ttk.Button(frame3, text="注册", width=15, command=self.signup_interface)
+        self.signup_button = ttk.Button(
+            frame3, text="注册", width=15, command=self.signup_interface)
         self.signup_button.pack(side=LEFT)
-        self.login_button = ttk.Button(frame3, text="登录", width=15, command=self.backstage_interface)
+        self.login_button = ttk.Button(
+            frame3, text="登录", width=15, command=self.backstage_interface)
         self.login_button.pack(side=RIGHT)
 
         self.pack(fill=tk.BOTH, expand=tk.YES, padx="10", pady="10")
@@ -83,6 +87,10 @@ class Login(ttk.Frame):
         elif self.t1 == "登录到车牌 数据库搜索 系统":
             self.t1 = "登录到车牌 认证 系统"
             log.title("登录到车牌认证系统")
+            self.text_change.configure(text=self.t1)
+        elif self.t1 == "登录到车牌 认证 系统":
+            self.t1 = "登录到 停车场 系统"
+            log.title("登录到 停车场 系统")
             self.text_change.configure(text=self.t1)
         else:
             self.t1 = "登录到车牌 识别 系统"
@@ -130,6 +138,8 @@ class Login(ttk.Frame):
                 os.system("{} search_sql.py".format(sys.executable))
             elif self.t1 == "登录到车牌 认证 系统":
                 os.system("{} identification.py".format(sys.executable))
+            elif self.t1 == "登录到 停车场 系统":
+                os.system("{} park.py".format(sys.executable))
             log.state('normal')
         else:
             tkinter.messagebox.showinfo(title='车牌识别管理系统', message='密码错误')

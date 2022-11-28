@@ -7,7 +7,7 @@ import tkinter.messagebox
 from datetime import timedelta, timezone, datetime
 from PIL import Image, ImageTk
 from hyperlpr import HyperLPR_PlateRecogntion
-from tkinter import LEFT, RIGHT, ttk
+from tkinter import LEFT, RIGHT, BOTTOM, Text, ttk
 from tkinter.filedialog import askopenfilename
 
 
@@ -29,6 +29,7 @@ class Park(ttk.Frame):
 
         frame_left = ttk.Frame(self)
         frame_right = ttk.Frame(self)
+        frame_record = ttk.Frame(self)
 
         win.title("停车场系统")
         win.minsize(850, 700)
@@ -39,36 +40,48 @@ class Park(ttk.Frame):
         self.pack(fill=tk.BOTH, expand=tk.YES, padx="10", pady="10")
         frame_left.pack(side=LEFT, expand=1)
         frame_right.pack(side=RIGHT, expand=0)
+        self.record = Text(frame_right, width=50)
+        self.record.insert('1.0', "此处显示历史记录\n")
+        self.record.pack()
 
         self.image_ctl = ttk.Label(frame_left)
         self.image_ctl.pack(anchor="nw")
 
+        self.size = PARK_SIZE
+        self.size_label = ttk.Label(
+            frame_right, text=f"剩余车位: {self.size}", font=('Times', '20'))
+        self.size_label.pack()
+
+        self.result = ""
+        self.result_label = ttk.Label(
+            frame_right, text="识别结果", font=('Times', '20'))
+        self.result_label.pack()
         from_pic_ctl = ttk.Button(
-            frame_right, text="选择图片", width=20,
+            frame_right, text="选择图片", width=40,
             command=self.from_pic
         )
         car_in_btn = ttk.Button(
-            frame_right, text="进入停车场", width=20,
+            frame_right, text="进入停车场", width=40,
             command=self.car_in
         )
         pay_btn = ttk.Button(
-            frame_right, text="缴费", width=20,
+            frame_right, text="缴费", width=40,
             command=self.pay
         )
         car_out_btn = ttk.Button(
-            frame_right, text="退出停车场", width=20,
+            frame_right, text="退出停车场", width=40,
             command=self.car_out
         )
         clean_ctrl = ttk.Button(
-            frame_right, text="清除识别数据", width=20,
+            frame_right, text="清除识别数据", width=40,
             command=self.clean
         )
 
         from_pic_ctl.pack(anchor="se", pady="5")
-        clean_ctrl.pack(anchor="se", pady="5")
         car_in_btn.pack(anchor="se", pady="5")
         pay_btn.pack(anchor="se", pady="5")
         car_out_btn.pack(anchor="se", pady="5")
+        clean_ctrl.pack(anchor="se", pady="5")
 
         self.clean()
         self.predictor = predict.CardPredictor()
@@ -130,6 +143,8 @@ class Park(ttk.Frame):
         img_bgr = img_math.img_read(self.pic_path)
         self.imgtk = self.get_imgtk(img_bgr)
         self.image_ctl.configure(image=self.imgtk)
+        self.result = self.recogntion()
+        self.result_label.configure(text=self.result)
 
     def recogntion(self):
         if not self.pic_path:
@@ -161,12 +176,12 @@ class Park(ttk.Frame):
             return res
 
     def car_in(self):
-        plate = self.recogntion()
+        plate = self.result
         if not plate:
             tkinter.messagebox.showinfo(title='停车场系统', message='识别失败')
             return
-        count = ParkHistory.count_car()
-        if count >= PARK_SIZE:
+        self.update_size()
+        if self.size <= 0:
             tkinter.messagebox.showinfo(
                 title='停车场系统',
                 message='{} 车位已满'.format(plate)
@@ -181,11 +196,13 @@ class Park(ttk.Frame):
             return
         tkinter.messagebox.showinfo(
             title='停车场系统',
-            message='{} 请进, 剩余车位: {}'.format(plate, PARK_SIZE - count)
+            message='{} 请进'.format(plate)
         )
+        self.record.insert('1.0', f"{datetime.now()} {plate} 进入停车场\n")
+        self.update_size()
 
     def pay(self):
-        plate = self.recogntion()
+        plate = self.result
         if not plate:
             tkinter.messagebox.showinfo(title='停车场系统', message='识别失败')
             return
@@ -196,6 +213,7 @@ class Park(ttk.Frame):
             )
             return
         delta = datetime.now(tz=timezone.utc) - history_time
+        fee = (delta.days * 24 * PARK_FEE + (delta.seconds / 3600) * PARK_FEE)
         tkinter.messagebox.showinfo(
             title='请缴费',
             message='{}: 上次进入: {}, \n 停车时长: {} 天 {} 小时 {} 分钟 \n 费用: {:.2f} 元'.format(
@@ -204,25 +222,36 @@ class Park(ttk.Frame):
                 delta.days,
                 (delta.seconds // 3600),
                 ((delta.seconds % 3600) // 60),
-                (delta.days * 24 * PARK_FEE + (delta.seconds / 3600) * PARK_FEE)
+                fee
             )
+        )
+        self.record.insert(
+            '1.0', f"{datetime.now()} {plate} 缴费: {fee:.2f} 元\n"
         )
 
     def car_out(self):
-        plate = self.recogntion()
+        plate = self.result
         if not plate:
             tkinter.messagebox.showinfo(title='停车场系统', message='识别失败')
             return
         ParkHistory.del_car(plate)
+        self.update_size()
         tkinter.messagebox.showinfo(
             title='停车场系统',
             message='{}: 一路顺风'.format(plate)
         )
-        return
+        self.record.insert('1.0', f"{datetime.now()} {plate} 离开停车场\n")
+
+    def update_size(self):
+        self.size = abs(PARK_SIZE - ParkHistory.count_car())
+        self.size_label.configure(text=f"剩余车位: {self.size}")
 
     def clean(self):
         self.welcome_img = self.get_imgtk(img_math.img_read("pic/hy.png"))
         self.image_ctl.configure(image=self.welcome_img)
+        self.result = ""
+        self.result_label.configure(text="识别结果")
+        self.update_size()
 
 
 def close_window():
