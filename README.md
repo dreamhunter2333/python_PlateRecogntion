@@ -1,10 +1,12 @@
 # Python opencv 车牌识别
 
+车牌数据来源于网络，侵删
+
 [![img](https://img.shields.io/github/stars/jinmu333/python_PlateRecogntion.svg?logoColor=blue&style=for-the-badge) ![img](https://img.shields.io/github/forks/jinmu333/python_PlateRecogntion.svg?logoColor=blue&style=for-the-badge) ![img](https://img.shields.io/github/last-commit/jinmu333/python_PlateRecogntion.svg?color=blue&style=for-the-badge) ![img](https://img.shields.io/badge/python-3-blue.svg?style=for-the-badge)](https://github.com/jinmu333/python_PlateRecogntion)
 [![img](https://img.shields.io/badge/link-996.icu-red.svg?style=for-the-badge)](https://github.com/996icu/996.ICU)
 
 - [Python opencv 车牌识别](#python-opencv-车牌识别)
-  - [简介  点击查看原理简介](#简介--点击查看原理简介)
+  - [简介](#简介)
   - [开发环境配置](#开发环境配置)
     - [docker 开发环境搭建](#docker-开发环境搭建)
     - [macos 开发环境搭建](#macos-开发环境搭建)
@@ -17,6 +19,7 @@
     - [车牌搜索识别找出某个车牌号](#车牌搜索识别找出某个车牌号)
     - [车牌对比识别前后是否一致](#车牌对比识别前后是否一致)
     - [主界面](#主界面)
+    - [停车场系统](#停车场系统)
     - [网络图片识别](#网络图片识别)
     - [车牌认证](#车牌认证)
     - [车牌数据库搜索](#车牌数据库搜索)
@@ -26,21 +29,23 @@
     - [本次运行数据写入excel (data.xls)](#本次运行数据写入excel-dataxls)
     - [欢迎界面](#欢迎界面)
 
-## 简介  [点击查看原理简介](doc/doc.md)
+## 简介
+
+**[点击查看原理简介](doc/doc.md)**
 
 毕业设计基于Opencv的车牌识别系统
 
-* 车牌搜索识别找出某个车牌号
-* 对比识别车牌系统
-* 车牌数据库认证系统
-* 车牌图文搜索系统
-* 车牌数据库搜索系统
-* 文件图片识别车牌
-* 网络图片地址识别车牌
-* 实时截图识别车牌
-* 图片自适应窗口大小
-* 摄像头拍照识别车牌
-* 使用 [hyperlpr](https://github.com/zeusees/HyperLPR) 提高识别率
+- 车牌搜索识别找出某个车牌号
+- 对比识别车牌系统
+- 车牌数据库认证系统
+- 车牌图文搜索系统
+- 车牌数据库搜索系统
+- 文件图片识别车牌
+- 网络图片地址识别车牌
+- 实时截图识别车牌
+- 图片自适应窗口大小
+- 摄像头拍照识别车牌
+- 使用 [hyperlpr](https://github.com/zeusees/HyperLPR) 提高识别率
 
 ## 开发环境配置
 
@@ -122,7 +127,7 @@ python3 search_sql.py
 python3 park.py
 ```
 
-* [android数据库查询软件](https://github.com/jinmu333/android_sql)
+- [android数据库查询软件](https://github.com/jinmu333/android_sql)
 
 ## 图片展示
 
@@ -137,6 +142,10 @@ python3 park.py
 ### 主界面
 
 ![界面](pic/4.png)
+
+### 停车场系统
+
+![停车场系统](pic/park.png)
 
 ### 网络图片识别
 
