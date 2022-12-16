@@ -2,7 +2,7 @@
 
 车牌数据来源于网络，侵删
 
-[![img](https://img.shields.io/github/stars/jinmu333/python_PlateRecogntion.svg?logoColor=blue&style=for-the-badge) ![img](https://img.shields.io/github/forks/jinmu333/python_PlateRecogntion.svg?logoColor=blue&style=for-the-badge) ![img](https://img.shields.io/github/last-commit/jinmu333/python_PlateRecogntion.svg?color=blue&style=for-the-badge) ![img](https://img.shields.io/badge/python-3-blue.svg?style=for-the-badge)](https://github.com/jinmu333/python_PlateRecogntion)
+[![img](https://img.shields.io/github/stars/dreamhunter2333/python_PlateRecogntion.svg?logoColor=blue&style=for-the-badge) ![img](https://img.shields.io/github/forks/dreamhunter2333/python_PlateRecogntion.svg?logoColor=blue&style=for-the-badge) ![img](https://img.shields.io/github/last-commit/dreamhunter2333/python_PlateRecogntion.svg?color=blue&style=for-the-badge) ![img](https://img.shields.io/badge/python-3-blue.svg?style=for-the-badge)](https://github.com/dreamhunter2333/python_PlateRecogntion)
 [![img](https://img.shields.io/badge/link-996.icu-red.svg?style=for-the-badge)](https://github.com/996icu/996.ICU)
 
 - [Python opencv 车牌识别](#python-opencv-车牌识别)
@@ -79,7 +79,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'python'@'%';
 
 #### 下载 mysql 便携版
 
-[https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/mysql-server-winx64.zip](https://github.com/jinmu333/python_PlateRecogntion/releases/download/v0.0.1/mysql-server-winx64.zip)
+[https://github.com/dreamhunter2333/python_PlateRecogntion/releases/download/v0.0.1/mysql-server-winx64.zip](https://github.com/dreamhunter2333/python_PlateRecogntion/releases/download/v0.0.1/mysql-server-winx64.zip)
 
 解压后，cmd 执行 start.bat
 
@@ -127,7 +127,7 @@ python3 search_sql.py
 python3 park.py
 ```
 
-- [android数据库查询软件](https://github.com/jinmu333/android_sql)
+- [android数据库查询软件](https://github.com/dreamhunter2333/android_sql)
 
 ## 图片展示
 
