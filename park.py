@@ -198,7 +198,7 @@ class Park(ttk.Frame):
             title='停车场系统',
             message='{} 请进'.format(plate)
         )
-        self.record.insert('1.0', f"{datetime.now()} {plate} 进入停车场\n")
+        self.record.insert('1.0', f"{datetime.now().astimezone(tz=TZ)} {plate} 进入停车场\n")
         self.update_size()
 
     def pay(self):
@@ -226,7 +226,7 @@ class Park(ttk.Frame):
             )
         )
         self.record.insert(
-            '1.0', f"{datetime.now()} {plate} 缴费: {fee:.2f} 元\n"
+            '1.0', f"{datetime.now().astimezone(tz=TZ)} {plate} 缴费: {fee:.2f} 元\n"
         )
 
     def car_out(self):
@@ -240,7 +240,7 @@ class Park(ttk.Frame):
             title='停车场系统',
             message='{}: 一路顺风'.format(plate)
         )
-        self.record.insert('1.0', f"{datetime.now()} {plate} 离开停车场\n")
+        self.record.insert('1.0', f"{datetime.now().astimezone(tz=TZ)} {plate} 离开停车场\n")
 
     def update_size(self):
         self.size = abs(PARK_SIZE - ParkHistory.count_car())
