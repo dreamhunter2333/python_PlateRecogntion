@@ -26,7 +26,7 @@ class ParkHistory(Base):
 
     id = Column(INT, primary_key=True, autoincrement=True)
     plate = Column(String(255), index=True)
-    create_time = Column(DateTime(timezone=False), server_default=func.now())
+    create_time = Column(DateTime, server_default=func.now())
     deleted = Column(Boolean, default=False)
 
     @staticmethod
@@ -54,7 +54,7 @@ class ParkHistory(Base):
             ).order_by(ParkHistory.create_time.desc()).first()
             if not history:
                 return None
-            return history.create_time.replace(tzinfo=timezone.utc)
+            return history.create_time.astimezone(tz=timezone.utc)
 
     @staticmethod
     def del_car(plate: str) -> None:

@@ -8,9 +8,13 @@
 	"service": "ubuntu-plate",
 	"workspaceFolder": "/app",
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
-		"ms-python.python",
-		"ms-python.vscode-pylance"
-	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance"
+			]
+		}
+	},
 	"shutdownAction": "stopCompose"
 }
