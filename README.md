@@ -96,13 +96,13 @@ python3 -m venv ./venv
 
 [点击申请百度 api 网址](https://cloud.baidu.com/product/ocr)
 
-首次运行拷贝 .env.sample 到 .env
+如果要自定义配置请新建 `.env` 文件，复制 `.env.sample` 的内容到 `.env`
 
 使用前面的 docker 开发可跳过此步骤，请看 docker 文件夹下的文档
 
-修改 .env 文件中的配置信息为自己百度api信息
+修改 `.env` 文件中的配置信息为自己百度api信息
 
-修改 .env 文件中数据库相关改为自己的(地址，用户名。密码，数据库名字)
+修改 `.env` 文件中数据库相关改为自己的(地址，用户名。密码，数据库名字)
 
 ``` bash
 # 运行登录界面
