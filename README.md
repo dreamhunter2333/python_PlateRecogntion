@@ -5,6 +5,12 @@
 [![img](https://img.shields.io/github/stars/dreamhunter2333/python_PlateRecogntion.svg?logoColor=blue&style=for-the-badge) ![img](https://img.shields.io/github/forks/dreamhunter2333/python_PlateRecogntion.svg?logoColor=blue&style=for-the-badge) ![img](https://img.shields.io/github/last-commit/dreamhunter2333/python_PlateRecogntion.svg?color=blue&style=for-the-badge) ![img](https://img.shields.io/badge/python-3-blue.svg?style=for-the-badge)](https://github.com/dreamhunter2333/python_PlateRecogntion)
 [![img](https://img.shields.io/badge/link-996.icu-red.svg?style=for-the-badge)](https://github.com/996icu/996.ICU)
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=dreamhunter2333/python_PlateRecogntion&type=Date&theme=dark" />
+  <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=dreamhunter2333/python_PlateRecogntion&type=Date" />
+  <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=dreamhunter2333/python_PlateRecogntion&type=Date" />
+</picture>
+
 - [Python opencv 车牌识别](#python-opencv-车牌识别)
   - [简介](#简介)
   - [开发环境配置](#开发环境配置)
